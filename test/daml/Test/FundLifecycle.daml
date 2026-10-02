@@ -1,0 +1,155 @@
+module Test.FundLifecycle where
+
+import DA.Assert ((===))
+import DA.Date (Month(..), date)
+import DA.Foldable (forA_)
+import DA.Time (addRelTime, days, time)
+import Daml.Script
+
+import Cash
+import Fund
+import Reporting
+
+testFundId : Text
+testFundId = "LL-I"
+
+termsOf : Int -> Bool -> LpTerms
+termsOf fee mfn = LpTerms with
+  managementFeeBps = fee
+  carryBps = 2000
+  mostFavouredNation = mfn
+
+single : Text -> [a] -> Script a
+single _ [x] = pure x
+single what xs = abort ("Expected exactly one " <> what <> ", found " <> show (length xs))
+
+commit : ContractId Fund -> Party -> Party -> Decimal -> LpTerms -> Script (ContractId Commitment)
+commit fundCid gp lp amount terms = do
+  offerCid <- submit gp do exerciseCmd fundCid OfferCommitment with lp; amount; terms
+  submit lp do exerciseCmd offerCid AcceptCommitment
+
+commitmentOf : Party -> Script (ContractId Commitment, Commitment)
+commitmentOf lp = single "commitment" =<< query @Commitment lp
+
+payCall : Party -> Script ()
+payCall lp = do
+  (noticeCid, _) <- single "capital call" =<< query @CapitalCallNotice lp
+  (commitmentCid, _) <- commitmentOf lp
+  (cashCid, _) <- single "cash holding" =<< query @Cash lp
+  _ <- submit lp do exerciseCmd noticeCid PayCall with commitmentCid; cashCid
+  pure ()
+
+fundLifecycle : Script ()
+fundLifecycle = script do
+  setTime (time (date 2026 Nov 13) 12 0 0)
+
+  bank <- allocateParty "Bank"
+  gp <- allocateParty "GP"
+  admin <- allocateParty "Administrator"
+  lpA <- allocateParty "LP_A"
+  lpB <- allocateParty "LP_B"
+  lpC <- allocateParty "LP_C"
+  auditor <- allocateParty "Auditor"
+
+  forA_ [lpA, lpB, lpC] \lp ->
+    submit bank do createCmd Cash with issuer = bank; owner = lp; amount = 1000000.0
+  gpCashCid <- submit bank do createCmd Cash with issuer = bank; owner = gp; amount = 500000.0
+
+  fundCid <- submit gp do
+    createCmd Fund with
+      gp
+      administrator = admin
+      cashIssuer = bank
+      fundId = testFundId
+      name = "Ledgerline Credit Fund I"
+      vintage = 2026
+  deskCid <- submit admin do createCmd AdminDesk with administrator = admin; gp; fundId = testFundId
+
+  -- B commits less than A but negotiated a lower fee: A's MFN should flag it.
+  commitA <- commit fundCid gp lpA 5000000.0 (termsOf 200 True)
+  commitB <- commit fundCid gp lpB 3000000.0 (termsOf 150 True)
+  commitC <- commit fundCid gp lpC 2000000.0 (termsOf 200 False)
+
+  -- Each LP sees only its own capital account; GP and administrator see all.
+  length <$> query @Commitment gp >>= (=== 3)
+  length <$> query @Commitment admin >>= (=== 3)
+  length <$> query @Commitment auditor >>= (=== 0)
+  (_, ownA) <- commitmentOf lpA
+  ownA.lp === lpA
+  (_, ownB) <- commitmentOf lpB
+  ownB.lp === lpB
+
+  -- Capital call: 10% of commitments, split pro rata.
+  _ <- submit gp do
+    exerciseCmd fundCid IssueCapitalCall with
+      callId = "CC-1"
+      totalAmount = 1000000.0
+      dueDate = date 2026 Nov 27
+      purpose = "Initial loan portfolio"
+      commitmentCids = [commitA, commitB, commitC]
+  (noticeA, callA) <- single "capital call" =<< query @CapitalCallNotice lpA
+  callA.amount === 500000.0
+  (_, callC) <- single "capital call" =<< query @CapitalCallNotice lpC
+  callC.amount === 200000.0
+
+  -- LP B cannot pay (or even see) LP A's call.
+  (cashB, _) <- single "cash holding" =<< query @Cash lpB
+  submitMustFail lpB do
+    exerciseCmd noticeA PayCall with commitmentCid = commitB; cashCid = cashB
+
+  forA_ [lpA, lpB, lpC] payCall
+  (commitA', paidA) <- commitmentOf lpA
+  paidA.contributed === 500000.0
+
+  -- Distribution to A only.
+  _ <- submit gp do
+    exerciseCmd commitA' Distribute with
+      distributionId = "D-1"
+      amount = 100000.0
+      cashCid = gpCashCid
+
+  -- Quarter-end NAV and statements.
+  passTime (days 48)
+  current <- query @Commitment gp
+  _ <- submit admin do
+    exerciseCmd deskCid PublishNav with
+      asOf = date 2026 Dec 31
+      nav = 1200000.0
+      commitmentCids = map fst current
+  (_, statementA) <- single "statement" =<< query @LpStatement lpA
+  statementA.navShare === 600000.0
+  statementA.tvpi === Some 1.4
+  statementA.dpi === Some 0.2
+  length <$> query @LpStatement lpB >>= (=== 1)
+  length <$> query @LpStatement gp >>= (=== 3)
+  length <$> query @NavStatement lpA >>= (=== 0)
+
+  -- MFN checks reveal a verdict, not the peers' terms.
+  (a, _) <- commitmentOf lpA
+  (b, _) <- commitmentOf lpB
+  (c, _) <- commitmentOf lpC
+  _ <- submit admin do exerciseCmd deskCid AttestMfn with commitmentCid = a; peerCommitmentCids = [b, c]
+  (_, mfnA) <- single "attestation" =<< query @MfnAttestation lpA
+  mfnA.isMostFavoured === False
+  mfnA.peersCompared === 2
+  _ <- submit admin do exerciseCmd deskCid AttestMfn with commitmentCid = b; peerCommitmentCids = [a, c]
+  (_, mfnB) <- single "attestation" =<< query @MfnAttestation lpB
+  mfnB.isMostFavoured === True
+  mfnB.peersCompared === 1
+  submitMustFail admin do exerciseCmd deskCid AttestMfn with commitmentCid = c; peerCommitmentCids = [a, b]
+  length <$> query @Commitment lpA >>= (=== 1)
+
+  -- Time-boxed audit access.
+  now <- getTime
+  grantCid <- submit gp do
+    createCmd AuditGrant with
+      gp
+      auditor
+      administrator = admin
+      fundId = testFundId
+      validUntil = addRelTime now (days 30)
+  _ <- submit admin do exerciseCmd deskCid DiscloseToAuditor with grantCid; commitmentCid = a
+  length <$> query @AuditView auditor >>= (=== 1)
+  length <$> query @Commitment auditor >>= (=== 0)
+  passTime (days 31)
+  submitMustFail admin do exerciseCmd deskCid DiscloseToAuditor with grantCid; commitmentCid = b

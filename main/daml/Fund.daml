@@ -1,0 +1,255 @@
+module Fund where
+
+import DA.Foldable (forA_)
+import DA.List (unique)
+
+import Cash
+
+-- | Per-LP economics. Lives only on that LP's commitment, so it doubles as the
+-- side letter: no other LP can see it.
+data LpTerms = LpTerms
+  with
+    managementFeeBps : Int
+    carryBps : Int
+    mostFavouredNation : Bool
+  deriving (Eq, Show)
+
+-- | Split `total` in proportion to `weights`. The last share absorbs rounding
+-- so the parts always sum to exactly `total`.
+proRata : Decimal -> [Decimal] -> [Decimal]
+proRata total weights = proRataGo total (foldl (+) 0.0 weights) weights 0.0
+
+proRataGo : Decimal -> Decimal -> [Decimal] -> Decimal -> [Decimal]
+proRataGo _ _ [] _ = []
+proRataGo total _ [_] allocated = [total - allocated]
+proRataGo total weightSum (w :: ws) allocated =
+  let share = total * w / weightSum
+  in share :: proRataGo total weightSum ws (allocated + share)
+
+unfundedOf : Commitment -> Decimal
+unfundedOf c = c.committed - c.contributed
+
+-- | Fund-level record. Holds no LP list, so nothing about who invested leaks
+-- through it.
+template Fund
+  with
+    gp : Party
+    administrator : Party
+    cashIssuer : Party
+    fundId : Text
+    name : Text
+    vintage : Int
+  where
+    signatory gp
+    observer administrator
+
+    nonconsuming choice OfferCommitment : ContractId CommitmentOffer
+      with
+        lp : Party
+        amount : Decimal
+        terms : LpTerms
+      controller gp
+      do
+        create CommitmentOffer with
+          gp
+          lp
+          administrator
+          cashIssuer
+          fundId
+          fundName = name
+          amount
+          terms
+
+    -- Nonconsuming, so only the GP is an informee of this exercise: each LP
+    -- sees just the creation of its own notice, never the other LPs' shares.
+    nonconsuming choice IssueCapitalCall : [ContractId CapitalCallNotice]
+      with
+        callId : Text
+        totalAmount : Decimal
+        dueDate : Date
+        purpose : Text
+        commitmentCids : [ContractId Commitment]
+      controller gp
+      do
+        assertMsg "Call amount must be positive" (totalAmount > 0.0)
+        assertMsg "Commitments must be distinct" (unique commitmentCids)
+        commitments <- mapA fetch commitmentCids
+        forA_ commitments \c ->
+          assertMsg "Commitment belongs to another fund" (c.gp == gp && c.fundId == fundId)
+        let shares = proRata totalAmount (map (\c -> c.committed) commitments)
+        mapA (issueNotice callId dueDate purpose) (zip commitments shares)
+
+template CommitmentOffer
+  with
+    gp : Party
+    lp : Party
+    administrator : Party
+    cashIssuer : Party
+    fundId : Text
+    fundName : Text
+    amount : Decimal
+    terms : LpTerms
+  where
+    signatory gp
+    observer lp, administrator
+    ensure amount > 0.0
+
+    choice AcceptCommitment : ContractId Commitment
+      controller lp
+      do
+        create Commitment with
+          gp
+          lp
+          administrator
+          cashIssuer
+          fundId
+          fundName
+          committed = amount
+          contributed = 0.0
+          distributed = 0.0
+          terms
+
+    choice DeclineCommitment : ()
+      controller lp
+      do pure ()
+
+    choice WithdrawOffer : ()
+      controller gp
+      do pure ()
+
+-- | The LP's capital account. Visible to the GP, the administrator and that
+-- LP only.
+template Commitment
+  with
+    gp : Party
+    lp : Party
+    administrator : Party
+    cashIssuer : Party
+    fundId : Text
+    fundName : Text
+    committed : Decimal
+    contributed : Decimal
+    distributed : Decimal
+    terms : LpTerms
+  where
+    signatory gp, lp
+    observer administrator
+    ensure committed > 0.0
+      && contributed >= 0.0
+      && contributed <= committed
+      && distributed >= 0.0
+
+    choice ApplyContribution : ContractId Commitment
+      with amount : Decimal
+      controller gp
+      do
+        assertMsg "Contribution must be positive" (amount > 0.0)
+        create this with contributed = contributed + amount
+
+    choice Distribute : (ContractId Commitment, ContractId DistributionReceipt)
+      with
+        distributionId : Text
+        amount : Decimal
+        cashCid : ContractId Cash
+      controller gp
+      do
+        assertMsg "Distribution must be positive" (amount > 0.0)
+        cash <- fetch cashCid
+        assertMsg "Cash must be the fund's settlement asset held by the GP"
+          (cash.issuer == cashIssuer && cash.owner == gp)
+        (paidCid, _) <- exercise cashCid Split with splitAmount = amount
+        _ <- exercise paidCid Transfer with newOwner = lp
+        now <- getTime
+        commitmentCid <- create this with distributed = distributed + amount
+        receiptCid <- create DistributionReceipt with
+          gp
+          lp
+          administrator
+          fundId
+          distributionId
+          amount
+          paidAt = now
+        pure (commitmentCid, receiptCid)
+
+issueNotice : Text -> Date -> Text -> (Commitment, Decimal) -> Update (ContractId CapitalCallNotice)
+issueNotice callId dueDate purpose (c, share) = do
+  assertMsg ("Call exceeds unfunded commitment for " <> show c.lp) (share <= unfundedOf c)
+  create CapitalCallNotice with
+    gp = c.gp
+    lp = c.lp
+    administrator = c.administrator
+    cashIssuer = c.cashIssuer
+    fundId = c.fundId
+    callId
+    amount = share
+    dueDate
+    purpose
+
+template CapitalCallNotice
+  with
+    gp : Party
+    lp : Party
+    administrator : Party
+    cashIssuer : Party
+    fundId : Text
+    callId : Text
+    amount : Decimal
+    dueDate : Date
+    purpose : Text
+  where
+    signatory gp
+    observer lp, administrator
+    ensure amount > 0.0
+
+    -- Cash moves and the capital account updates in one transaction.
+    choice PayCall : (ContractId Commitment, ContractId ContributionReceipt)
+      with
+        commitmentCid : ContractId Commitment
+        cashCid : ContractId Cash
+      controller lp
+      do
+        commitment <- fetch commitmentCid
+        assertMsg "Commitment does not match this call"
+          (commitment.gp == gp && commitment.lp == lp && commitment.fundId == fundId)
+        cash <- fetch cashCid
+        assertMsg "Cash must be the fund's settlement asset held by the LP"
+          (cash.issuer == cashIssuer && cash.owner == lp)
+        (paidCid, _) <- exercise cashCid Split with splitAmount = amount
+        _ <- exercise paidCid Transfer with newOwner = gp
+        newCommitmentCid <- exercise commitmentCid ApplyContribution with amount
+        now <- getTime
+        receiptCid <- create ContributionReceipt with
+          gp
+          lp
+          administrator
+          fundId
+          callId
+          amount
+          paidAt = now
+        pure (newCommitmentCid, receiptCid)
+
+template ContributionReceipt
+  with
+    gp : Party
+    lp : Party
+    administrator : Party
+    fundId : Text
+    callId : Text
+    amount : Decimal
+    paidAt : Time
+  where
+    signatory gp, lp
+    observer administrator
+
+template DistributionReceipt
+  with
+    gp : Party
+    lp : Party
+    administrator : Party
+    fundId : Text
+    distributionId : Text
+    amount : Decimal
+    paidAt : Time
+  where
+    signatory gp, lp
+    observer administrator

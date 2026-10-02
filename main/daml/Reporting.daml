@@ -1,0 +1,211 @@
+module Reporting where
+
+import DA.Foldable (forA_)
+import DA.List (unique)
+
+import Fund
+
+-- | The administrator's working contract. Every choice is nonconsuming and
+-- signed by the administrator alone, so the GP and LPs are not informees of
+-- the exercise: they see only the contracts it creates for them, never the
+-- other commitments it fetched along the way.
+template AdminDesk
+  with
+    administrator : Party
+    gp : Party
+    fundId : Text
+  where
+    signatory administrator
+    observer gp
+
+    -- One transaction produces the fund NAV and every LP statement, so all
+    -- statements are consistent with the same NAV.
+    nonconsuming choice PublishNav : (ContractId NavStatement, [ContractId LpStatement])
+      with
+        asOf : Date
+        nav : Decimal
+        commitmentCids : [ContractId Commitment]
+      controller administrator
+      do
+        assertMsg "NAV cannot be negative" (nav >= 0.0)
+        commitments <- fetchFundCommitments gp fundId commitmentCids
+        let contributions = map (\c -> c.contributed) commitments
+            totalContributed = foldl (+) 0.0 contributions
+        assertMsg "No contributed capital to allocate NAV against" (totalContributed > 0.0)
+        navCid <- create NavStatement with
+          administrator
+          gp
+          fundId
+          asOf
+          nav
+          totalContributed
+          lpCount = length commitments
+        statementCids <- mapA create
+          (zipWith (lpStatement administrator asOf) commitments (proRata nav contributions))
+        pure (navCid, statementCids)
+
+    -- MFN: the LP is owed terms at least as good as any LP with an equal or
+    -- smaller commitment. The LP learns the verdict, not the peers' terms.
+    nonconsuming choice AttestMfn : ContractId MfnAttestation
+      with
+        commitmentCid : ContractId Commitment
+        peerCommitmentCids : [ContractId Commitment]
+      controller administrator
+      do
+        target <- fetch commitmentCid
+        peers <- fetchFundCommitments gp fundId peerCommitmentCids
+        assertMsg "Commitment belongs to another fund" (target.gp == gp && target.fundId == fundId)
+        assertMsg "Peers must exclude the LP being attested"
+          (unique (commitmentCid :: peerCommitmentCids))
+        assertMsg "LP has no most-favoured-nation right" target.terms.mostFavouredNation
+        let comparable = filter (\p -> p.committed <= target.committed) peers
+            noWorseThan p =
+              target.terms.managementFeeBps <= p.terms.managementFeeBps
+                && target.terms.carryBps <= p.terms.carryBps
+        now <- getTime
+        create MfnAttestation with
+          administrator
+          gp
+          lp = target.lp
+          fundId
+          attestedAt = now
+          peersCompared = length comparable
+          isMostFavoured = all noWorseThan comparable
+
+    nonconsuming choice DiscloseToAuditor : ContractId AuditView
+      with
+        grantCid : ContractId AuditGrant
+        commitmentCid : ContractId Commitment
+      controller administrator
+      do
+        grant <- fetch grantCid
+        assertMsg "Grant is for another fund"
+          (grant.gp == gp && grant.fundId == fundId && grant.administrator == administrator)
+        now <- getTime
+        assertMsg "Audit grant has expired" (now < grant.validUntil)
+        c <- fetch commitmentCid
+        assertMsg "Commitment belongs to another fund" (c.gp == gp && c.fundId == fundId)
+        create AuditView with
+          administrator
+          auditor = grant.auditor
+          gp
+          lp = c.lp
+          fundId
+          committed = c.committed
+          contributed = c.contributed
+          distributed = c.distributed
+          terms = c.terms
+          disclosedAt = now
+          validUntil = grant.validUntil
+
+fetchFundCommitments : Party -> Text -> [ContractId Commitment] -> Update [Commitment]
+fetchFundCommitments gp fundId cids = do
+  assertMsg "Commitments must be distinct" (unique cids)
+  commitments <- mapA fetch cids
+  forA_ commitments \c ->
+    assertMsg "Commitment belongs to another fund" (c.gp == gp && c.fundId == fundId)
+  pure commitments
+
+lpStatement : Party -> Date -> Commitment -> Decimal -> LpStatement
+lpStatement administrator asOf c navShare = LpStatement with
+  administrator
+  gp = c.gp
+  lp = c.lp
+  fundId = c.fundId
+  fundName = c.fundName
+  asOf
+  committed = c.committed
+  contributed = c.contributed
+  distributed = c.distributed
+  unfunded = unfundedOf c
+  navShare
+  tvpi = multiple (c.distributed + navShare) c.contributed
+  dpi = multiple c.distributed c.contributed
+
+multiple : Decimal -> Decimal -> Optional Decimal
+multiple value basis = if basis > 0.0 then Some (value / basis) else None
+
+-- | Administrator-signed fund NAV. GP only; LPs get their own LpStatement.
+template NavStatement
+  with
+    administrator : Party
+    gp : Party
+    fundId : Text
+    asOf : Date
+    nav : Decimal
+    totalContributed : Decimal
+    lpCount : Int
+  where
+    signatory administrator
+    observer gp
+
+-- | One LP's quarterly statement, signed by the administrator.
+template LpStatement
+  with
+    administrator : Party
+    gp : Party
+    lp : Party
+    fundId : Text
+    fundName : Text
+    asOf : Date
+    committed : Decimal
+    contributed : Decimal
+    distributed : Decimal
+    unfunded : Decimal
+    navShare : Decimal
+    tvpi : Optional Decimal
+    dpi : Optional Decimal
+  where
+    signatory administrator
+    observer lp, gp
+
+template MfnAttestation
+  with
+    administrator : Party
+    gp : Party
+    lp : Party
+    fundId : Text
+    attestedAt : Time
+    peersCompared : Int
+    isMostFavoured : Bool
+  where
+    signatory administrator
+    observer lp, gp
+
+-- | GP's consent for an auditor to see this fund's records until `validUntil`.
+template AuditGrant
+  with
+    gp : Party
+    auditor : Party
+    administrator : Party
+    fundId : Text
+    validUntil : Time
+  where
+    signatory gp
+    observer auditor, administrator
+
+    choice RevokeAudit : ()
+      controller gp
+      do pure ()
+
+-- | Snapshot of one capital account disclosed to the auditor.
+template AuditView
+  with
+    administrator : Party
+    auditor : Party
+    gp : Party
+    lp : Party
+    fundId : Text
+    committed : Decimal
+    contributed : Decimal
+    distributed : Decimal
+    terms : LpTerms
+    disclosedAt : Time
+    validUntil : Time
+  where
+    signatory administrator
+    observer auditor
+
+    choice WithdrawView : ()
+      controller administrator
+      do pure ()

@@ -1,0 +1,40 @@
+module Test.MultiFund where
+
+import DA.Assert ((===))
+import DA.List (sort)
+import Daml.Script
+
+import Fund
+import Reporting
+import Demo.Setup
+
+fundsSeenBy : Party -> Script [Text]
+fundsSeenBy p = sort . map (\(_, c) -> c.fundId) <$> query @Commitment p
+
+-- Each manager sees only its own fund; the LP is the only party whose node
+-- holds both, so the portfolio view can only be assembled on its side.
+multiFundPrivacy : Script ()
+multiFundPrivacy = script do
+  d <- setupDemo
+  let Demo{gp, gp2, admin, lpA, lpB, lpC, auditor} = d
+
+  fundsSeenBy gp >>= (=== ["LL-I", "LL-I", "LL-I"])
+  fundsSeenBy gp2 >>= (=== ["RW-II", "RW-II"])
+  fundsSeenBy lpA >>= (=== ["LL-I", "RW-II"])
+  fundsSeenBy lpB >>= (=== ["LL-I", "RW-II"])
+  fundsSeenBy lpC >>= (=== ["LL-I"])
+  fundsSeenBy auditor >>= (=== [])
+  length <$> fundsSeenBy admin >>= (=== 5)
+
+  -- RW-II reporting never reaches the LL-I manager, and vice versa.
+  map (\(_, s) -> s.fundId) <$> query @LpStatement gp >>= (=== [])
+  length <$> query @LpStatement gp2 >>= (=== 2)
+  length <$> query @NavStatement gp >>= (=== 0)
+
+  -- RW-II numbers as seeded: CC-1 2.0M pro rata, D-1 120K to A, NAV 2.18M.
+  [(_, statementA)] <- query @LpStatement lpA
+  statementA.contributed === 1600000.0
+  statementA.navShare === 1744000.0
+  statementA.tvpi === Some 1.165
+  [(_, callA)] <- query @CapitalCallNotice lpA
+  callA.amount === 600000.0

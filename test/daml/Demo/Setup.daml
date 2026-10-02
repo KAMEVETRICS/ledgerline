@@ -1,0 +1,132 @@
+module Demo.Setup where
+
+import DA.Date (Month(..), date)
+import DA.Foldable (forA_)
+import Daml.Script
+
+import Cash
+import Fund
+import Reporting
+
+data Demo = Demo
+  with
+    bank : Party
+    gp : Party
+    gp2 : Party
+    admin : Party
+    lpA : Party
+    lpB : Party
+    lpC : Party
+    auditor : Party
+
+-- | Seeds a running ledger for the dashboard demo.
+--
+-- Fund LL-I (GP): three LPs, CC-1 paid. NAV, MFN, distributions and audit
+-- access are left for the live demo.
+-- Fund RW-II (GP2): LP A and LP B only, CC-1 paid, a distribution, a NAV, and
+-- CC-2 outstanding, so the LP portfolio view spans two managers who cannot
+-- see each other.
+setup : Script ()
+setup = do
+  _ <- setupDemo
+  pure ()
+
+setupDemo : Script Demo
+setupDemo = script do
+  bank <- allocateParty "Bank"
+  gp <- allocateParty "GP"
+  gp2 <- allocateParty "GP2"
+  admin <- allocateParty "Administrator"
+  lpA <- allocateParty "LP_A"
+  lpB <- allocateParty "LP_B"
+  lpC <- allocateParty "LP_C"
+  auditor <- allocateParty "Auditor"
+
+  forA_ [lpA, lpB, lpC] \lp ->
+    submit bank do createCmd Cash with issuer = bank; owner = lp; amount = 3000000.0
+  _ <- submit bank do createCmd Cash with issuer = bank; owner = gp; amount = 1000000.0
+  gp2Cash <- submit bank do createCmd Cash with issuer = bank; owner = gp2; amount = 500000.0
+
+  -- Fund LL-I
+  fund1 <- submit gp do
+    createCmd Fund with
+      gp
+      administrator = admin
+      cashIssuer = bank
+      fundId = "LL-I"
+      name = "Ledgerline Credit Fund I"
+      vintage = 2026
+  _ <- submit admin do createCmd AdminDesk with administrator = admin; gp; fundId = "LL-I"
+  a1 <- commit fund1 gp lpA 5000000.0 200 True
+  b1 <- commit fund1 gp lpB 3000000.0 150 True
+  c1 <- commit fund1 gp lpC 2000000.0 200 False
+  _ <- submit gp do
+    exerciseCmd fund1 IssueCapitalCall with
+      callId = "CC-1"
+      totalAmount = 1000000.0
+      dueDate = date 2026 Nov 27
+      purpose = "Initial loan portfolio"
+      commitmentCids = [a1, b1, c1]
+  forA_ [lpA, lpB, lpC] \lp -> payCall lp "LL-I" "CC-1"
+
+  -- Fund RW-II: a different manager, same administrator.
+  fund2 <- submit gp2 do
+    createCmd Fund with
+      gp = gp2
+      administrator = admin
+      cashIssuer = bank
+      fundId = "RW-II"
+      name = "Ridgeway Real Estate Debt II"
+      vintage = 2025
+  desk2 <- submit admin do createCmd AdminDesk with administrator = admin; gp = gp2; fundId = "RW-II"
+  a2 <- commit fund2 gp2 lpA 4000000.0 175 False
+  b2 <- commit fund2 gp2 lpB 1000000.0 150 False
+  _ <- submit gp2 do
+    exerciseCmd fund2 IssueCapitalCall with
+      callId = "CC-1"
+      totalAmount = 2000000.0
+      dueDate = date 2026 Oct 15
+      purpose = "Bridge loan book"
+      commitmentCids = [a2, b2]
+  forA_ [lpA, lpB] \lp -> payCall lp "RW-II" "CC-1"
+
+  (a2', _) <- commitmentIn lpA "RW-II"
+  _ <- submit gp2 do
+    exerciseCmd a2' Distribute with
+      distributionId = "D-1"
+      amount = 120000.0
+      cashCid = gp2Cash
+  fund2Commitments <- map fst . filter (\(_, c) -> c.fundId == "RW-II") <$> query @Commitment gp2
+  _ <- submit admin do
+    exerciseCmd desk2 PublishNav with
+      asOf = date 2026 Sep 30
+      nav = 2180000.0
+      commitmentCids = fund2Commitments
+  _ <- submit gp2 do
+    exerciseCmd fund2 IssueCapitalCall with
+      callId = "CC-2"
+      totalAmount = 750000.0
+      dueDate = date 2026 Oct 31
+      purpose = "Construction draw"
+      commitmentCids = fund2Commitments
+
+  pure Demo with bank; gp; gp2; admin; lpA; lpB; lpC; auditor
+
+commit : ContractId Fund -> Party -> Party -> Decimal -> Int -> Bool -> Script (ContractId Commitment)
+commit fundCid gp lp amount fee mfn = do
+  let terms = LpTerms with managementFeeBps = fee; carryBps = 2000; mostFavouredNation = mfn
+  offerCid <- submit gp do exerciseCmd fundCid OfferCommitment with lp; amount; terms
+  submit lp do exerciseCmd offerCid AcceptCommitment
+
+commitmentIn : Party -> Text -> Script (ContractId Commitment, Commitment)
+commitmentIn lp fundId = do
+  [found] <- filter (\(_, c) -> c.fundId == fundId) <$> query @Commitment lp
+  pure found
+
+payCall : Party -> Text -> Text -> Script ()
+payCall lp fundId callId = do
+  [(noticeCid, _)] <- filter (\(_, n) -> n.fundId == fundId && n.callId == callId) <$> query @CapitalCallNotice lp
+  (commitmentCid, _) <- commitmentIn lp fundId
+  [(cashCid, _)] <- query @Cash lp
+  _ <- submit lp do exerciseCmd noticeCid PayCall with commitmentCid; cashCid
+  pure ()

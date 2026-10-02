@@ -1,0 +1,31 @@
+module Cash where
+
+-- | Settlement stand-in for DevNet testing. Replace with a CIP-56 instrument
+-- (e.g. a stablecoin holding) before any real pilot. Not redeemable value.
+template Cash
+  with
+    issuer : Party
+    owner : Party
+    amount : Decimal
+  where
+    signatory issuer
+    observer owner
+    ensure amount > 0.0
+
+    choice Split : (ContractId Cash, Optional (ContractId Cash))
+      with splitAmount : Decimal
+      controller owner
+      do
+        assertMsg "Split amount must be positive and within the holding"
+          (splitAmount > 0.0 && splitAmount <= amount)
+        taken <- create this with amount = splitAmount
+        if splitAmount == amount
+          then pure (taken, None)
+          else do
+            change <- create this with amount = amount - splitAmount
+            pure (taken, Some change)
+
+    choice Transfer : ContractId Cash
+      with newOwner : Party
+      controller owner
+      do create this with owner = newOwner
