@@ -2,7 +2,7 @@
 
 Fund administration on Canton where every party sees a different, correct view of one ledger. LPs see only their own capital account. The GP sees the whole fund. Auditors see only what was disclosed, for a fixed window.
 
-HackCanton Season 4 entry for two tracks: Investment Infrastructure, and Data & Analytics.
+HackCanton Season 3 entry, Investment Infrastructure track (Funds, DAOs & Governance Tools).
 
 ## Who sees what
 
