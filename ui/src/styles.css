@@ -26,6 +26,10 @@
   --hue-c: #c2255c;
   --hue-auditor: #7048e8;
   --hue-eco: #0b7285;
+  --chart-1: #3b5bdb;
+  --chart-2: #e8590c;
+  --chart-3: #0ca678;
+  --chart-4: #ae3ec9;
 
   color-scheme: light;
   font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -62,6 +66,10 @@
     --hue-c: #f0679a;
     --hue-auditor: #a58bff;
     --hue-eco: #3bc9db;
+    --chart-1: #7c93ff;
+    --chart-2: #ff922b;
+    --chart-3: #38d9a9;
+    --chart-4: #da77f2;
     color-scheme: dark;
   }
 }
@@ -252,3 +260,25 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .signin { grid-template-columns: 1fr; margin-top: 24px; padding: 0 16px; }
   .solo { padding: 16px; }
 }
+
+/* ---------- charts (ui/src/charts.tsx) */
+.chart { width: 100%; }
+.chart-tip { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; box-shadow: var(--shadow); font-size: 12px; }
+.chart-swatch { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 6px; }
+.source { display: inline-flex; gap: 4px; align-items: center; font-size: 11.5px; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); }
+.source.fixture { color: var(--warn); background: var(--warn-bg); border-color: transparent; }
+.source.ccspace, .source.ledger { color: var(--good); background: var(--good-bg); border-color: transparent; }
+
+/* ---------- network section */
+.network { max-width: 1180px; margin: 0 auto; padding: 16px 24px 40px; }
+.subnav { display: flex; gap: 4px; flex-wrap: wrap; border-bottom: 1px solid var(--border); margin-bottom: 18px; }
+.subnav button { border: 0; background: none; padding: 8px 12px; cursor: pointer; color: var(--muted); font-weight: 500; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.subnav button.on { color: var(--text); border-bottom-color: var(--text); }
+.network-page { display: flex; flex-direction: column; gap: 16px; }
+.page-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+.page-head h2 { font-size: 20px; font-weight: 600; }
+.page-head p { margin-top: 2px; }
+.panel { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.panel h3 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 600; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; }
+@media (max-width: 640px) { .network { padding: 12px 16px 32px; } }

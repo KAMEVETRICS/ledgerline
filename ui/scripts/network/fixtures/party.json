@@ -1,0 +1,139 @@
+{
+  "meta": {
+    "source": "fixture",
+    "network": "mainnet",
+    "asOf": "2026-10-02T00:00:00.000Z",
+    "note": "Sample data for UI development. Not a real party."
+  },
+  "party": "sample-party::12200000",
+  "holdings": [
+    {
+      "instrument": "CC",
+      "admin": null,
+      "amount": 1250000,
+      "valueUsd": 225000
+    },
+    {
+      "instrument": "USDCx",
+      "admin": "sample-issuer::1220aaaa",
+      "amount": 340000,
+      "valueUsd": 340000
+    },
+    {
+      "instrument": "CBTC",
+      "admin": "sample-issuer::1220bbbb",
+      "amount": 2.5,
+      "valueUsd": null
+    }
+  ],
+  "recent": [
+    {
+      "id": "op-1",
+      "at": "2026-10-02T00:00:00.000Z",
+      "type": "transfer",
+      "direction": "in",
+      "counterparty": "sample-counterparty-1::1220cccc",
+      "instrument": "CC",
+      "amount": 23306.86
+    },
+    {
+      "id": "op-2",
+      "at": "2026-10-01T07:12:00.000Z",
+      "type": "transfer",
+      "direction": "out",
+      "counterparty": "sample-counterparty-2::1220cccc",
+      "instrument": "CC",
+      "amount": 23817.32
+    },
+    {
+      "id": "op-3",
+      "at": "2026-09-30T14:24:00.000Z",
+      "type": "transfer",
+      "direction": "in",
+      "counterparty": "sample-counterparty-3::1220cccc",
+      "instrument": "CC",
+      "amount": 14673.18
+    },
+    {
+      "id": "op-4",
+      "at": "2026-09-29T21:36:00.000Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 3477.86
+    },
+    {
+      "id": "op-5",
+      "at": "2026-09-29T04:48:00.000Z",
+      "type": "transfer",
+      "direction": "in",
+      "counterparty": "sample-counterparty-2::1220cccc",
+      "instrument": "USDCx",
+      "amount": 35667.11
+    },
+    {
+      "id": "op-6",
+      "at": "2026-09-28T12:00:00.000Z",
+      "type": "transfer",
+      "direction": "out",
+      "counterparty": "sample-counterparty-3::1220cccc",
+      "instrument": "CC",
+      "amount": 3646.71
+    },
+    {
+      "id": "op-7",
+      "at": "2026-09-27T19:12:00.000Z",
+      "type": "transfer",
+      "direction": "in",
+      "counterparty": "sample-counterparty-1::1220cccc",
+      "instrument": "CC",
+      "amount": 40037.09
+    },
+    {
+      "id": "op-8",
+      "at": "2026-09-27T02:24:00.000Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 29635.02
+    },
+    {
+      "id": "op-9",
+      "at": "2026-09-26T09:36:00.000Z",
+      "type": "transfer",
+      "direction": "in",
+      "counterparty": "sample-counterparty-3::1220cccc",
+      "instrument": "CC",
+      "amount": 36449.26
+    },
+    {
+      "id": "op-10",
+      "at": "2026-09-25T16:48:00.000Z",
+      "type": "transfer",
+      "direction": "out",
+      "counterparty": "sample-counterparty-1::1220cccc",
+      "instrument": "USDCx",
+      "amount": 31987.63
+    },
+    {
+      "id": "op-11",
+      "at": "2026-09-25T00:00:00.000Z",
+      "type": "transfer",
+      "direction": "in",
+      "counterparty": "sample-counterparty-2::1220cccc",
+      "instrument": "CC",
+      "amount": 11055.56
+    },
+    {
+      "id": "op-12",
+      "at": "2026-09-24T07:12:00.000Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 23892.15
+    }
+  ]
+}

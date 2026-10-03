@@ -1,0 +1,592 @@
+{
+  "meta": {
+    "source": "fixture",
+    "network": "mainnet",
+    "asOf": "2026-10-02T00:00:00.000Z",
+    "note": "Sample data for UI development. Not real validators."
+  },
+  "validators": [
+    {
+      "id": "validator-01",
+      "name": "Sample Validator 1",
+      "party": "sample-validator-1::12200000",
+      "sponsor": "Sample SV 1",
+      "version": "0.4.18",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:44:51.557Z",
+      "uptime30d": 0.909,
+      "rewards30dCC": 21545.62
+    },
+    {
+      "id": "validator-02",
+      "name": "Sample Validator 2",
+      "party": "sample-validator-2::12200001",
+      "sponsor": "Sample SV 2",
+      "version": "0.4.19",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:46:38.804Z",
+      "uptime30d": 0.938,
+      "rewards30dCC": 10513.28
+    },
+    {
+      "id": "validator-03",
+      "name": "Sample Validator 3",
+      "party": "sample-validator-3::12200002",
+      "sponsor": "Sample SV 3",
+      "version": "0.4.19",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:33:09.787Z",
+      "uptime30d": 0.912,
+      "rewards30dCC": 27476.27
+    },
+    {
+      "id": "validator-04",
+      "name": "Sample Validator 4",
+      "party": "sample-validator-4::12200003",
+      "sponsor": "Sample SV 4",
+      "version": "0.4.19",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:00:19.316Z",
+      "uptime30d": 0.985,
+      "rewards30dCC": 19993.53
+    },
+    {
+      "id": "validator-05",
+      "name": "Sample Validator 5",
+      "party": "sample-validator-5::12200004",
+      "sponsor": "Sample SV 5",
+      "version": "0.4.18",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:21:28.796Z",
+      "uptime30d": 0.986,
+      "rewards30dCC": 21929.4
+    },
+    {
+      "id": "validator-06",
+      "name": "Sample Validator 6",
+      "party": "sample-validator-6::12200005",
+      "sponsor": "Sample SV 1",
+      "version": "0.4.19",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:54:33.299Z",
+      "uptime30d": 0.914,
+      "rewards30dCC": 29001.77
+    },
+    {
+      "id": "validator-07",
+      "name": "Sample Validator 7",
+      "party": "sample-validator-7::12200006",
+      "sponsor": "Sample SV 2",
+      "version": "0.4.19",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:04:31.600Z",
+      "uptime30d": 0.989,
+      "rewards30dCC": 21010.17
+    },
+    {
+      "id": "validator-08",
+      "name": "Sample Validator 8",
+      "party": "sample-validator-8::12200007",
+      "sponsor": "Sample SV 3",
+      "version": "0.4.19",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:49:10.140Z",
+      "uptime30d": 0.955,
+      "rewards30dCC": 15179.34
+    },
+    {
+      "id": "validator-09",
+      "name": "Sample Validator 9",
+      "party": "sample-validator-9::12200008",
+      "sponsor": "Sample SV 4",
+      "version": "0.4.18",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:03:24.762Z",
+      "uptime30d": 0.982,
+      "rewards30dCC": 13105.88
+    },
+    {
+      "id": "validator-10",
+      "name": "Sample Validator 10",
+      "party": "sample-validator-10::12200009",
+      "sponsor": "Sample SV 5",
+      "version": "0.4.19",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:10:14.179Z",
+      "uptime30d": 0.947,
+      "rewards30dCC": 11214.1
+    },
+    {
+      "id": "validator-11",
+      "name": "Sample Validator 11",
+      "party": "sample-validator-11::12200010",
+      "sponsor": "Sample SV 1",
+      "version": "0.4.19",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:58:39.161Z",
+      "uptime30d": 0.954,
+      "rewards30dCC": 26599.21
+    },
+    {
+      "id": "validator-12",
+      "name": "Sample Validator 12",
+      "party": "sample-validator-12::12200011",
+      "sponsor": "Sample SV 2",
+      "version": "0.4.19",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:09:16.804Z",
+      "uptime30d": 0.968,
+      "rewards30dCC": 17615.16
+    },
+    {
+      "id": "validator-13",
+      "name": "Sample Validator 13",
+      "party": "sample-validator-13::12200012",
+      "sponsor": "Sample SV 3",
+      "version": "0.4.18",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:24:51.635Z",
+      "uptime30d": 0.97,
+      "rewards30dCC": 24227.31
+    },
+    {
+      "id": "validator-14",
+      "name": "Sample Validator 14",
+      "party": "sample-validator-14::12200013",
+      "sponsor": "Sample SV 4",
+      "version": "0.4.19",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:16:52.974Z",
+      "uptime30d": 0.999,
+      "rewards30dCC": 18995.06
+    },
+    {
+      "id": "validator-15",
+      "name": "Sample Validator 15",
+      "party": "sample-validator-15::12200014",
+      "sponsor": "Sample SV 5",
+      "version": "0.4.19",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:54:07.464Z",
+      "uptime30d": 0.919,
+      "rewards30dCC": 18947.57
+    },
+    {
+      "id": "validator-16",
+      "name": "Sample Validator 16",
+      "party": "sample-validator-16::12200015",
+      "sponsor": "Sample SV 1",
+      "version": "0.4.19",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:52:22.795Z",
+      "uptime30d": 0.977,
+      "rewards30dCC": 21874.41
+    },
+    {
+      "id": "validator-17",
+      "name": "Sample Validator 17",
+      "party": "sample-validator-17::12200016",
+      "sponsor": "Sample SV 2",
+      "version": "0.4.18",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:11:43.281Z",
+      "uptime30d": 0.939,
+      "rewards30dCC": 14315.38
+    },
+    {
+      "id": "validator-18",
+      "name": "Sample Validator 18",
+      "party": "sample-validator-18::12200017",
+      "sponsor": "Sample SV 3",
+      "version": "0.4.19",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:43:40.585Z",
+      "uptime30d": 0.902,
+      "rewards30dCC": 15559.44
+    },
+    {
+      "id": "validator-19",
+      "name": "Sample Validator 19",
+      "party": "sample-validator-19::12200018",
+      "sponsor": "Sample SV 4",
+      "version": "0.4.19",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:39:57.713Z",
+      "uptime30d": 0.988,
+      "rewards30dCC": 29117.56
+    },
+    {
+      "id": "validator-20",
+      "name": "Sample Validator 20",
+      "party": "sample-validator-20::12200019",
+      "sponsor": "Sample SV 5",
+      "version": "0.4.19",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:48:26.285Z",
+      "uptime30d": 0.987,
+      "rewards30dCC": 21646.46
+    },
+    {
+      "id": "validator-21",
+      "name": "Sample Validator 21",
+      "party": "sample-validator-21::12200020",
+      "sponsor": "Sample SV 1",
+      "version": "0.4.18",
+      "active": true,
+      "lastActiveAt": "2026-10-01T23:39:47.948Z",
+      "uptime30d": 0.931,
+      "rewards30dCC": 12587.19
+    },
+    {
+      "id": "validator-22",
+      "name": "Sample Validator 22",
+      "party": "sample-validator-22::12200021",
+      "sponsor": "Sample SV 2",
+      "version": "0.4.19",
+      "active": false,
+      "lastActiveAt": "2026-09-21T04:19:35.186Z",
+      "uptime30d": 0.341,
+      "rewards30dCC": 5686.05
+    },
+    {
+      "id": "validator-23",
+      "name": "Sample Validator 23",
+      "party": "sample-validator-23::12200022",
+      "sponsor": "Sample SV 3",
+      "version": "0.4.19",
+      "active": false,
+      "lastActiveAt": "2026-09-22T17:57:40.395Z",
+      "uptime30d": 0.473,
+      "rewards30dCC": 4840.24
+    },
+    {
+      "id": "validator-24",
+      "name": "Sample Validator 24",
+      "party": "sample-validator-24::12200023",
+      "sponsor": "Sample SV 4",
+      "version": "0.4.19",
+      "active": false,
+      "lastActiveAt": "2026-09-27T05:45:37.612Z",
+      "uptime30d": 0.347,
+      "rewards30dCC": 4036.93
+    }
+  ],
+  "series": {
+    "activeDaily": [
+      {
+        "t": "2026-09-03",
+        "v": 20
+      },
+      {
+        "t": "2026-09-04",
+        "v": 20
+      },
+      {
+        "t": "2026-09-05",
+        "v": 19
+      },
+      {
+        "t": "2026-09-06",
+        "v": 18
+      },
+      {
+        "t": "2026-09-07",
+        "v": 20
+      },
+      {
+        "t": "2026-09-08",
+        "v": 20
+      },
+      {
+        "t": "2026-09-09",
+        "v": 21
+      },
+      {
+        "t": "2026-09-10",
+        "v": 19
+      },
+      {
+        "t": "2026-09-11",
+        "v": 20
+      },
+      {
+        "t": "2026-09-12",
+        "v": 19
+      },
+      {
+        "t": "2026-09-13",
+        "v": 20
+      },
+      {
+        "t": "2026-09-14",
+        "v": 20
+      },
+      {
+        "t": "2026-09-15",
+        "v": 20
+      },
+      {
+        "t": "2026-09-16",
+        "v": 21
+      },
+      {
+        "t": "2026-09-17",
+        "v": 20
+      },
+      {
+        "t": "2026-09-18",
+        "v": 20
+      },
+      {
+        "t": "2026-09-19",
+        "v": 22
+      },
+      {
+        "t": "2026-09-20",
+        "v": 20
+      },
+      {
+        "t": "2026-09-21",
+        "v": 20
+      },
+      {
+        "t": "2026-09-22",
+        "v": 21
+      },
+      {
+        "t": "2026-09-23",
+        "v": 20
+      },
+      {
+        "t": "2026-09-24",
+        "v": 21
+      },
+      {
+        "t": "2026-09-25",
+        "v": 22
+      },
+      {
+        "t": "2026-09-26",
+        "v": 22
+      },
+      {
+        "t": "2026-09-27",
+        "v": 21
+      },
+      {
+        "t": "2026-09-28",
+        "v": 22
+      },
+      {
+        "t": "2026-09-29",
+        "v": 22
+      },
+      {
+        "t": "2026-09-30",
+        "v": 21
+      },
+      {
+        "t": "2026-10-01",
+        "v": 21
+      },
+      {
+        "t": "2026-10-02",
+        "v": 22
+      }
+    ],
+    "rewardsPerRoundCC": [
+      {
+        "t": "2026-10-01T16:10:00.000Z",
+        "v": 2385.8
+      },
+      {
+        "t": "2026-10-01T16:20:00.000Z",
+        "v": 2006.37
+      },
+      {
+        "t": "2026-10-01T16:30:00.000Z",
+        "v": 1875.3
+      },
+      {
+        "t": "2026-10-01T16:40:00.000Z",
+        "v": 2224.18
+      },
+      {
+        "t": "2026-10-01T16:50:00.000Z",
+        "v": 2278.3
+      },
+      {
+        "t": "2026-10-01T17:00:00.000Z",
+        "v": 2394
+      },
+      {
+        "t": "2026-10-01T17:10:00.000Z",
+        "v": 2133.62
+      },
+      {
+        "t": "2026-10-01T17:20:00.000Z",
+        "v": 2199.53
+      },
+      {
+        "t": "2026-10-01T17:30:00.000Z",
+        "v": 1905.21
+      },
+      {
+        "t": "2026-10-01T17:40:00.000Z",
+        "v": 2285.81
+      },
+      {
+        "t": "2026-10-01T17:50:00.000Z",
+        "v": 2041.34
+      },
+      {
+        "t": "2026-10-01T18:00:00.000Z",
+        "v": 2015.17
+      },
+      {
+        "t": "2026-10-01T18:10:00.000Z",
+        "v": 2332.5
+      },
+      {
+        "t": "2026-10-01T18:20:00.000Z",
+        "v": 2309.42
+      },
+      {
+        "t": "2026-10-01T18:30:00.000Z",
+        "v": 2209.46
+      },
+      {
+        "t": "2026-10-01T18:40:00.000Z",
+        "v": 1976.01
+      },
+      {
+        "t": "2026-10-01T18:50:00.000Z",
+        "v": 2166.71
+      },
+      {
+        "t": "2026-10-01T19:00:00.000Z",
+        "v": 1892.56
+      },
+      {
+        "t": "2026-10-01T19:10:00.000Z",
+        "v": 1889.78
+      },
+      {
+        "t": "2026-10-01T19:20:00.000Z",
+        "v": 1830.14
+      },
+      {
+        "t": "2026-10-01T19:30:00.000Z",
+        "v": 2243.4
+      },
+      {
+        "t": "2026-10-01T19:40:00.000Z",
+        "v": 1918.72
+      },
+      {
+        "t": "2026-10-01T19:50:00.000Z",
+        "v": 2279.59
+      },
+      {
+        "t": "2026-10-01T20:00:00.000Z",
+        "v": 2086.52
+      },
+      {
+        "t": "2026-10-01T20:10:00.000Z",
+        "v": 2188.03
+      },
+      {
+        "t": "2026-10-01T20:20:00.000Z",
+        "v": 2224.76
+      },
+      {
+        "t": "2026-10-01T20:30:00.000Z",
+        "v": 1872.35
+      },
+      {
+        "t": "2026-10-01T20:40:00.000Z",
+        "v": 1829.29
+      },
+      {
+        "t": "2026-10-01T20:50:00.000Z",
+        "v": 2133.68
+      },
+      {
+        "t": "2026-10-01T21:00:00.000Z",
+        "v": 2237.49
+      },
+      {
+        "t": "2026-10-01T21:10:00.000Z",
+        "v": 2313.53
+      },
+      {
+        "t": "2026-10-01T21:20:00.000Z",
+        "v": 2000.69
+      },
+      {
+        "t": "2026-10-01T21:30:00.000Z",
+        "v": 2029.95
+      },
+      {
+        "t": "2026-10-01T21:40:00.000Z",
+        "v": 2395.86
+      },
+      {
+        "t": "2026-10-01T21:50:00.000Z",
+        "v": 1971.2
+      },
+      {
+        "t": "2026-10-01T22:00:00.000Z",
+        "v": 2274.37
+      },
+      {
+        "t": "2026-10-01T22:10:00.000Z",
+        "v": 1927.46
+      },
+      {
+        "t": "2026-10-01T22:20:00.000Z",
+        "v": 2355.86
+      },
+      {
+        "t": "2026-10-01T22:30:00.000Z",
+        "v": 1980.55
+      },
+      {
+        "t": "2026-10-01T22:40:00.000Z",
+        "v": 1991.05
+      },
+      {
+        "t": "2026-10-01T22:50:00.000Z",
+        "v": 1972.38
+      },
+      {
+        "t": "2026-10-01T23:00:00.000Z",
+        "v": 2324.87
+      },
+      {
+        "t": "2026-10-01T23:10:00.000Z",
+        "v": 2271.91
+      },
+      {
+        "t": "2026-10-01T23:20:00.000Z",
+        "v": 1978.3
+      },
+      {
+        "t": "2026-10-01T23:30:00.000Z",
+        "v": 2195.17
+      },
+      {
+        "t": "2026-10-01T23:40:00.000Z",
+        "v": 2022.4
+      },
+      {
+        "t": "2026-10-01T23:50:00.000Z",
+        "v": 1841.46
+      },
+      {
+        "t": "2026-10-02T00:00:00.000Z",
+        "v": 1826.43
+      }
+    ]
+  }
+}

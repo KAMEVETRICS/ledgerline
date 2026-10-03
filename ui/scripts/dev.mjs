@@ -6,7 +6,9 @@ import * as esbuild from "esbuild-wasm";
 import { readFile } from "node:fs/promises";
 import http from "node:http";
 import path from "node:path";
+import "./env.mjs";
 import { authorizeLedger, handleApi } from "./auth.mjs";
+import { handleNetwork } from "./network/index.mjs";
 import { buildOptions } from "./options.mjs";
 
 const PORT = Number(process.env.PORT ?? 5173);
@@ -89,6 +91,7 @@ async function serveStatic(req, res) {
 
 http
   .createServer(async (req, res) => {
+    if (req.url?.startsWith("/api/network/") && (await handleNetwork(req, res))) return;
     if (req.url?.startsWith("/api/") && (await handleApi(req, res))) return;
     if (req.url?.startsWith("/v2/")) return proxyToLedger(req, res);
     if (req.url === "/__reload") {

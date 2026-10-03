@@ -1,19 +1,59 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { shortRole } from "./components";
 import { ROLES, ROLE_INFO, TEMPLATE_LABELS, type Role } from "./model";
+import { NetworkSection } from "./network/NetworkSection";
 import { Pane } from "./panes";
+import { EcosystemPrivateMarkets } from "./private/EcosystemPrivateMarkets";
 import { useStore } from "./store";
+import type { SessionRole } from "./ledger";
 
 const DEFAULT_PANES: Role[] = ["GP", "GP2", "LP_A", "LP_B"];
 
+// Hash routes: #/network/<page>, #/me, #/parties, #/matrix, #/private-markets
+function useRoute(): [string, (r: string) => void] {
+  const read = () => window.location.hash.replace(/^#\/?/, "");
+  const [route, setRoute] = useState(read);
+  useEffect(() => {
+    const on = () => setRoute(read());
+    window.addEventListener("hashchange", on);
+    return () => window.removeEventListener("hashchange", on);
+  }, []);
+  return [route, (r) => (window.location.hash = `/${r}`)];
+}
+
+type NavItem = { route: string; label: string };
+
+function navFor(role: SessionRole): NavItem[] {
+  const network = { route: "network/overview", label: "Network" };
+  if (role === "Judge")
+    return [
+      { route: "parties", label: "Party views" },
+      { route: "matrix", label: "Who holds what" },
+      network,
+    ];
+  if (role === "Ecosystem") return [network, { route: "private-markets", label: "Private markets" }];
+  return [{ route: "me", label: "My dashboard" }, network];
+}
+
 export default function App() {
   const { status, session, toasts } = useStore();
-  const judge = session?.role === "Judge";
+  const [route, go] = useRoute();
+  const nav = session ? navFor(session.role) : [];
+  const active = nav.find((n) => route.split("/")[0] === n.route.split("/")[0]) ?? nav[0];
 
   return (
     <div className="app">
       <header className="topbar">
         <Brand />
+        {session && nav.length > 0 && (
+          <nav className="tabs" aria-label="Sections">
+            {nav.map((n) => (
+              <button key={n.route} className={n === active ? "on" : ""} aria-current={n === active ? "page" : undefined} onClick={() => go(n.route)}>
+                {n.label}
+              </button>
+            ))}
+          </nav>
+        )}
         {session && <UserChip />}
         <span className={`status ${status}`}>
           <span className="dot" />
@@ -22,12 +62,20 @@ export default function App() {
       </header>
 
       {status === "signedout" && <SignIn />}
-      {status === "offline" && <Offline />}
-      {status === "ready" && judge && <JudgeView />}
-      {status === "ready" && session && !judge && (
-        <main className="solo">
-          <Pane role={session.role as Role} />
-        </main>
+      {/* Network pages use public data, so they work even when the local ledger is down. */}
+      {session && active?.route.startsWith("network") && <NetworkSection page={route.split("/")[1] ?? "overview"} go={go} />}
+      {status === "offline" && !active?.route.startsWith("network") && <Offline />}
+      {status === "ready" && session && active && (
+        <>
+          {active.route === "parties" && <JudgeView />}
+          {active.route === "matrix" && <Matrix />}
+          {active.route === "private-markets" && <EcosystemPrivateMarkets />}
+          {active.route === "me" && (
+            <main className="solo">
+              <Pane role={session.role as Role} />
+            </main>
+          )}
+        </>
       )}
 
       <div className="toasts" aria-live="polite">
@@ -130,10 +178,9 @@ function SignIn() {
   );
 }
 
-// Demo-only account: every party side by side, plus the holdings matrix.
+// Demo-only account: every party side by side.
 function JudgeView() {
   const { parties } = useStore();
-  const [tab, setTab] = useState<"views" | "matrix">("views");
   const [panes, setPanes] = useState<Role[]>(DEFAULT_PANES);
 
   const toggle = (r: Role) =>
@@ -142,40 +189,25 @@ function JudgeView() {
   return (
     <>
       <div className="lens">
-        <nav className="tabs" role="tablist">
-          <button role="tab" aria-selected={tab === "views"} className={tab === "views" ? "on" : ""} onClick={() => setTab("views")}>
-            Party views
+        <span className="muted">Show views for</span>
+        {ROLES.filter((r) => parties[r]).map((r) => (
+          <button
+            key={r}
+            className={`chip${panes.includes(r) ? " on" : ""}`}
+            style={{ ["--c" as string]: ROLE_INFO[r].hue }}
+            aria-pressed={panes.includes(r)}
+            onClick={() => toggle(r)}
+          >
+            {ROLE_INFO[r].name}
           </button>
-          <button role="tab" aria-selected={tab === "matrix"} className={tab === "matrix" ? "on" : ""} onClick={() => setTab("matrix")}>
-            Who holds what
-          </button>
-        </nav>
-        {tab === "views" && (
-          <>
-            {ROLES.filter((r) => parties[r]).map((r) => (
-              <button
-                key={r}
-                className={`chip${panes.includes(r) ? " on" : ""}`}
-                style={{ ["--c" as string]: ROLE_INFO[r].hue }}
-                aria-pressed={panes.includes(r)}
-                onClick={() => toggle(r)}
-              >
-                {ROLE_INFO[r].name}
-              </button>
-            ))}
-            <span className="muted lens-tip">Hover any contract to see whose node holds it.</span>
-          </>
-        )}
+        ))}
+        <span className="muted lens-tip">Hover any contract to see whose node holds it.</span>
       </div>
-      {tab === "views" ? (
-        <main className="panes">
-          {panes.map((r) => (
-            <Pane key={r} role={r} />
-          ))}
-        </main>
-      ) : (
-        <Matrix />
-      )}
+      <main className="panes">
+        {panes.map((r) => (
+          <Pane key={r} role={r} />
+        ))}
+      </main>
     </>
   );
 }
