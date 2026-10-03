@@ -41,6 +41,8 @@ setupDemo = script do
   lpB <- allocateParty "LP_B"
   lpC <- allocateParty "LP_C"
   auditor <- allocateParty "Auditor"
+  -- Read-only viewer of network-wide statistics; holds no fund records.
+  _ <- allocateParty "Ecosystem"
 
   forA_ [lpA, lpB, lpC] \lp ->
     submit bank do createCmd Cash with issuer = bank; owner = lp; amount = 3000000.0

@@ -77,6 +77,7 @@ export function Pane({ role }: { role: Role }) {
         {role === "Administrator" && <AdminView />}
         {isLp(role) && <LpView role={role} />}
         {role === "Auditor" && <AuditorView />}
+        {role === "Ecosystem" && <Empty>Network-wide statistics appear here once administrators publish them.</Empty>}
       </div>
       <footer className="pane-foot">
         <span className="muted">This node holds</span>

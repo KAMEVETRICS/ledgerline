@@ -1,11 +1,12 @@
 // Dev server: esbuild-wasm (no native binaries, which Windows Application
 // Control blocks on this machine) rebuilds on change; this server serves www/,
 // pushes a reload event after each rebuild, and forwards /v2 to the Canton
-// sandbox's JSON Ledger API.
+// sandbox's JSON Ledger API, scoped to the signed-in user's party (auth.mjs).
 import * as esbuild from "esbuild-wasm";
 import { readFile } from "node:fs/promises";
 import http from "node:http";
 import path from "node:path";
+import { authorizeLedger, handleApi } from "./auth.mjs";
 import { buildOptions } from "./options.mjs";
 
 const PORT = Number(process.env.PORT ?? 5173);
@@ -30,9 +31,34 @@ const ctx = await esbuild.context({
 });
 await ctx.watch();
 
-function proxyToLedger(req, res) {
+function ledgerFetch(urlPath) {
+  return new Promise((resolve, reject) => {
+    http
+      .get({ hostname: "127.0.0.1", port: LEDGER_PORT, path: urlPath }, (r) => {
+        const chunks = [];
+        r.on("data", (c) => chunks.push(c));
+        r.on("end", () => resolve(Buffer.concat(chunks)));
+      })
+      .on("error", reject);
+  });
+}
+
+async function proxyToLedger(req, res) {
+  let decision;
+  try {
+    decision = await authorizeLedger(req, ledgerFetch);
+  } catch (e) {
+    decision = { ok: false, status: 502, error: `Ledger JSON API on port ${LEDGER_PORT} unavailable: ${e.message}` };
+  }
+  if (!decision.ok) {
+    res.writeHead(decision.status, { "content-type": "application/json" });
+    res.end(JSON.stringify({ cause: decision.error }));
+    return;
+  }
+  const headers = { ...req.headers, "content-length": decision.body.length };
+  delete headers.cookie; // the session never leaves this server
   const upstream = http.request(
-    { hostname: "127.0.0.1", port: LEDGER_PORT, path: req.url, method: req.method, headers: req.headers },
+    { hostname: "127.0.0.1", port: LEDGER_PORT, path: req.url, method: req.method, headers },
     (r) => {
       res.writeHead(r.statusCode ?? 502, r.headers);
       r.pipe(res);
@@ -42,7 +68,7 @@ function proxyToLedger(req, res) {
     res.writeHead(502, { "content-type": "text/plain" });
     res.end(`Ledger JSON API on port ${LEDGER_PORT} unavailable: ${e.message}`);
   });
-  req.pipe(upstream);
+  upstream.end(decision.body);
 }
 
 async function serveStatic(req, res) {
@@ -62,7 +88,8 @@ async function serveStatic(req, res) {
 }
 
 http
-  .createServer((req, res) => {
+  .createServer(async (req, res) => {
+    if (req.url?.startsWith("/api/") && (await handleApi(req, res))) return;
     if (req.url?.startsWith("/v2/")) return proxyToLedger(req, res);
     if (req.url === "/__reload") {
       res.writeHead(200, { "content-type": "text/event-stream", "cache-control": "no-store", connection: "keep-alive" });

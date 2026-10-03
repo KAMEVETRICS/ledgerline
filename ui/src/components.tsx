@@ -49,7 +49,7 @@ export function HolderDots({ roles }: { roles: Role[] }) {
 }
 
 export const shortRole = (r: Role) =>
-  ({ GP: "GP LL", GP2: "GP RW", Administrator: "Admin", LP_A: "LP A", LP_B: "LP B", LP_C: "LP C", Auditor: "Audit" })[r];
+  ({ GP: "GP LL", GP2: "GP RW", Administrator: "Admin", LP_A: "LP A", LP_B: "LP B", LP_C: "LP C", Auditor: "Audit", Ecosystem: "Eco" })[r];
 
 export function Stat({ label, value, sub }: { label: string; value: ReactNode; sub?: ReactNode }) {
   return (

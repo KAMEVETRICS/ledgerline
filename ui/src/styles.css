@@ -25,6 +25,7 @@
   --hue-b: #c2760c;
   --hue-c: #c2255c;
   --hue-auditor: #7048e8;
+  --hue-eco: #0b7285;
 
   color-scheme: light;
   font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -60,6 +61,7 @@
     --hue-b: #f0a43a;
     --hue-c: #f0679a;
     --hue-auditor: #a58bff;
+    --hue-eco: #3bc9db;
     color-scheme: dark;
   }
 }
@@ -231,3 +233,22 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .table td .small { font-weight: 400; }
 .table td { vertical-align: top; }
 .table td .small { white-space: nowrap; }
+
+/* ---------- sign-in & single-role layout */
+.user { display: flex; align-items: center; gap: 10px; }
+.user-name { font-weight: 500; font-size: 13px; }
+.solo { max-width: 860px; margin: 0 auto; padding: 20px 24px 40px; }
+.signin { max-width: 860px; margin: 48px auto; padding: 0 24px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.signin-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+.signin-card h2 { font-size: 20px; font-weight: 600; }
+.signin-card .btn { align-self: stretch; padding: 9px 12px; }
+.signin-error { color: var(--bad); background: var(--bad-bg); border-radius: 8px; padding: 8px 10px; font-size: 13px; }
+.signin-demo { padding: 8px 0; display: flex; flex-direction: column; gap: 8px; }
+.signin-demo h3 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 600; }
+.signin-demo ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.signin-demo li { display: flex; align-items: center; gap: 10px; }
+.lens .tabs { margin-right: 8px; }
+@media (max-width: 640px) {
+  .signin { grid-template-columns: 1fr; margin-top: 24px; padding: 0 16px; }
+  .solo { padding: 16px; }
+}

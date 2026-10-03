@@ -1,0 +1,15 @@
+{
+  "_note": "Demo accounts for the local sandbox and the HackCanton judges. Not real credentials; every account shares the demo password below.",
+  "password": "canton-demo-2026",
+  "users": [
+    { "username": "judge", "role": "Judge", "name": "Judge (all views, demo only)" },
+    { "username": "ledgerline-gp", "role": "GP", "name": "Ledgerline Capital" },
+    { "username": "ridgeway-gp", "role": "GP2", "name": "Ridgeway Partners" },
+    { "username": "admin", "role": "Administrator", "name": "Fund administrator" },
+    { "username": "harbor", "role": "LP_A", "name": "Harbor Pension Plan" },
+    { "username": "mesa", "role": "LP_B", "name": "Mesa Family Office" },
+    { "username": "northfield", "role": "LP_C", "name": "Northfield Endowment" },
+    { "username": "auditor", "role": "Auditor", "name": "Auditor" },
+    { "username": "ecosystem", "role": "Ecosystem", "name": "Ecosystem viewer" }
+  ]
+}

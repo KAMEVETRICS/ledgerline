@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { shortRole } from "./components";
 import { ROLES, ROLE_INFO, TEMPLATE_LABELS, type Role } from "./model";
 import { Pane } from "./panes";
@@ -7,7 +7,132 @@ import { useStore } from "./store";
 const DEFAULT_PANES: Role[] = ["GP", "GP2", "LP_A", "LP_B"];
 
 export default function App() {
-  const { status, parties, toasts } = useStore();
+  const { status, session, toasts } = useStore();
+  const judge = session?.role === "Judge";
+
+  return (
+    <div className="app">
+      <header className="topbar">
+        <Brand />
+        {session && <UserChip />}
+        <span className={`status ${status}`}>
+          <span className="dot" />
+          {status === "ready" ? "Canton ledger connected" : status === "offline" ? "Ledger offline" : status === "signedout" ? "Signed out" : "Connecting…"}
+        </span>
+      </header>
+
+      {status === "signedout" && <SignIn />}
+      {status === "offline" && <Offline />}
+      {status === "ready" && judge && <JudgeView />}
+      {status === "ready" && session && !judge && (
+        <main className="solo">
+          <Pane role={session.role as Role} />
+        </main>
+      )}
+
+      <div className="toasts" aria-live="polite">
+        {toasts.map((t) => (
+          <div key={t.id} className={`toast ${t.kind}`}>
+            {t.text}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Brand() {
+  return (
+    <div className="brand">
+      <span className="logo" aria-hidden>
+        <svg viewBox="0 0 24 24" width="22" height="22">
+          <path d="M4 5h4v14H4zM10 9h4v10h-4zM16 13h4v6h-4z" fill="currentColor" />
+        </svg>
+      </span>
+      <div>
+        <h1>Ledgerline</h1>
+        <p>Private-markets data on Canton. Every party sees only its own truth.</p>
+      </div>
+    </div>
+  );
+}
+
+function UserChip() {
+  const { session, signOut } = useStore();
+  return (
+    <div className="user">
+      <span className="user-name">{session!.name}</span>
+      <button className="btn ghost" onClick={() => signOut()}>
+        Sign out
+      </button>
+    </div>
+  );
+}
+
+const DEMO_USERS: [string, string][] = [
+  ["harbor", "LP, two funds"],
+  ["mesa", "LP, two funds"],
+  ["ledgerline-gp", "Fund manager"],
+  ["ridgeway-gp", "Fund manager"],
+  ["admin", "Fund administrator"],
+  ["auditor", "Auditor"],
+  ["ecosystem", "Network statistics"],
+  ["judge", "All views side by side"],
+];
+
+function SignIn() {
+  const { signIn } = useStore();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [pending, setPending] = useState(false);
+
+  const submit = async (e: FormEvent) => {
+    e.preventDefault();
+    setPending(true);
+    setError(await signIn(username, password));
+    setPending(false);
+  };
+
+  return (
+    <main className="signin">
+      <form className="signin-card" onSubmit={submit}>
+        <h2>Sign in</h2>
+        <p className="muted">Each account is bound to one Canton party. The server only lets it read and act as that party.</p>
+        <label className="field">
+          <span>Username</span>
+          <input autoComplete="username" value={username} onChange={(e) => setUsername(e.target.value)} autoFocus />
+        </label>
+        <label className="field">
+          <span>Password</span>
+          <input type="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        </label>
+        {error && <p className="signin-error" role="alert">{error}</p>}
+        <button className="btn primary" type="submit" disabled={pending || !username || !password}>
+          {pending ? "Signing in…" : "Sign in"}
+        </button>
+      </form>
+      <section className="signin-demo">
+        <h3>Demo accounts</h3>
+        <p className="muted small">Pick one to fill the username. The demo password is in the README.</p>
+        <ul>
+          {DEMO_USERS.map(([u, label]) => (
+            <li key={u}>
+              <button type="button" className="chip" onClick={() => setUsername(u)}>
+                {u}
+              </button>
+              <span className="muted small">{label}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </main>
+  );
+}
+
+// Demo-only account: every party side by side, plus the holdings matrix.
+function JudgeView() {
+  const { parties } = useStore();
   const [tab, setTab] = useState<"views" | "matrix">("views");
   const [panes, setPanes] = useState<Role[]>(DEFAULT_PANES);
 
@@ -15,19 +140,8 @@ export default function App() {
     setPanes((ps) => (ps.includes(r) ? ps.filter((p) => p !== r) : ROLES.filter((x) => x === r || ps.includes(x))));
 
   return (
-    <div className="app">
-      <header className="topbar">
-        <div className="brand">
-          <span className="logo" aria-hidden>
-            <svg viewBox="0 0 24 24" width="22" height="22">
-              <path d="M4 5h4v14H4zM10 9h4v10h-4zM16 13h4v6h-4z" fill="currentColor" />
-            </svg>
-          </span>
-          <div>
-            <h1>Ledgerline</h1>
-            <p>One fund ledger. Every party sees only its own truth.</p>
-          </div>
-        </div>
+    <>
+      <div className="lens">
         <nav className="tabs" role="tablist">
           <button role="tab" aria-selected={tab === "views"} className={tab === "views" ? "on" : ""} onClick={() => setTab("views")}>
             Party views
@@ -36,18 +150,8 @@ export default function App() {
             Who holds what
           </button>
         </nav>
-        <span className={`status ${status}`}>
-          <span className="dot" />
-          {status === "ready" ? "Canton sandbox connected" : status === "loading" ? "Connecting…" : "Ledger offline"}
-        </span>
-      </header>
-
-      {status === "offline" && <Offline />}
-
-      {status === "ready" && tab === "views" && (
-        <>
-          <div className="lens">
-            <span className="muted">Show views for</span>
+        {tab === "views" && (
+          <>
             {ROLES.filter((r) => parties[r]).map((r) => (
               <button
                 key={r}
@@ -60,25 +164,19 @@ export default function App() {
               </button>
             ))}
             <span className="muted lens-tip">Hover any contract to see whose node holds it.</span>
-          </div>
-          <main className="panes" style={{ ["--cols" as string]: panes.length }}>
-            {panes.map((r) => (
-              <Pane key={r} role={r} />
-            ))}
-          </main>
-        </>
-      )}
-
-      {status === "ready" && tab === "matrix" && <Matrix />}
-
-      <div className="toasts" aria-live="polite">
-        {toasts.map((t) => (
-          <div key={t.id} className={`toast ${t.kind}`}>
-            {t.text}
-          </div>
-        ))}
+          </>
+        )}
       </div>
-    </div>
+      {tab === "views" ? (
+        <main className="panes">
+          {panes.map((r) => (
+            <Pane key={r} role={r} />
+          ))}
+        </main>
+      ) : (
+        <Matrix />
+      )}
+    </>
   );
 }
 

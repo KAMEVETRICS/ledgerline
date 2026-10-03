@@ -1,8 +1,8 @@
 import type { Contract } from "./ledger";
 
-export type Role = "GP" | "GP2" | "Administrator" | "LP_A" | "LP_B" | "LP_C" | "Auditor";
+export type Role = "GP" | "GP2" | "Administrator" | "LP_A" | "LP_B" | "LP_C" | "Auditor" | "Ecosystem";
 
-export const ROLES: Role[] = ["GP", "GP2", "Administrator", "LP_A", "LP_B", "LP_C", "Auditor"];
+export const ROLES: Role[] = ["GP", "GP2", "Administrator", "LP_A", "LP_B", "LP_C", "Auditor", "Ecosystem"];
 
 export const ROLE_INFO: Record<Role, { name: string; kind: string; hue: string }> = {
   GP: { name: "Ledgerline Capital", kind: "General partner", hue: "var(--hue-gp)" },
@@ -12,6 +12,7 @@ export const ROLE_INFO: Record<Role, { name: string; kind: string; hue: string }
   LP_B: { name: "Mesa Family Office", kind: "Limited partner", hue: "var(--hue-b)" },
   LP_C: { name: "Northfield Endowment", kind: "Limited partner", hue: "var(--hue-c)" },
   Auditor: { name: "Auditor", kind: "Auditor", hue: "var(--hue-auditor)" },
+  Ecosystem: { name: "Ecosystem viewer", kind: "Network statistics", hue: "var(--hue-eco)" },
 };
 
 export const TEMPLATE_LABELS: Record<string, string> = {

@@ -23,6 +23,7 @@ async function call<T>(path: string, body?: unknown): Promise<T> {
     body: body === undefined ? undefined : JSON.stringify(body),
   });
   const text = await res.text();
+  if (res.status === 401) throw new SignedOut();
   if (!res.ok) throw new LedgerError(errorMessage(text, res.status));
   return (text ? JSON.parse(text) : undefined) as T;
 }
@@ -40,6 +41,37 @@ function errorMessage(text: string, status: number): string {
   if (/CONTRACT_NOT_FOUND/.test(cause)) return "That contract changed in the meantime. Try again.";
   return cause.slice(0, 240) || `Ledger request failed (${status})`;
 }
+
+// ---- session (served by ui/scripts/auth.mjs, which scopes /v2 to the user's party)
+
+export type SessionRole = "Judge" | "GP" | "GP2" | "Administrator" | "LP_A" | "LP_B" | "LP_C" | "Auditor" | "Ecosystem";
+export type Session = { username: string; role: SessionRole; name: string };
+
+export class SignedOut extends Error {}
+
+export async function me(): Promise<Session> {
+  const res = await fetch("/api/me");
+  if (res.status === 401) throw new SignedOut();
+  if (!res.ok) throw new LedgerError(`Server unavailable (${res.status})`);
+  return res.json();
+}
+
+export async function login(username: string, password: string): Promise<Session> {
+  const res = await fetch("/api/login", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ username, password }),
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new LedgerError(body.error ?? "Sign-in failed");
+  return body as Session;
+}
+
+export async function logout(): Promise<void> {
+  await fetch("/api/logout", { method: "POST" });
+}
+
+// ---- ledger
 
 export async function listParties(): Promise<string[]> {
   const res = await call<{ partyDetails: { party: string }[] }>("parties");
