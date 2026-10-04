@@ -1,0 +1,2327 @@
+{
+  "period": "30d",
+  "view": "providers",
+  "from": "2026-09-05",
+  "to": "2026-10-05",
+  "total": 100,
+  "limit": 100,
+  "offset": 0,
+  "items": [
+    {
+      "party_id": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "total_markers": 1450023,
+      "self_markers": 1449936,
+      "non_self_markers": 87,
+      "coupons": 0,
+      "total_cc_earned": "2103857.4975890012",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 2,
+      "first_seen": "2026-09-05T00:00:01Z",
+      "last_seen": "2026-10-04T00:55:10Z",
+      "featured_since": "2025-11-14T20:53:12Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6"
+      ],
+      "host_party_ids": [
+        "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "total_markers": 137746,
+      "self_markers": 137746,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "78882.9273446524",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:00:27Z",
+      "last_seen": "2026-10-04T00:53:52Z",
+      "featured_since": "2026-05-28T21:32:37Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024"
+      ],
+      "host_party_ids": [
+        "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024"
+      ],
+      "topology_as_of": "2026-10-04T00:48:06Z",
+      "burn_party_id": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "acme-lp::1220a7daf7140e112f15a46f2daa52fe9c8651024ff8705bb23c494275dd02209596",
+      "total_markers": 97145,
+      "self_markers": 91887,
+      "non_self_markers": 5258,
+      "coupons": 0,
+      "total_cc_earned": "755385.7119990091",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 2,
+      "first_seen": "2026-09-05T00:04:48Z",
+      "last_seen": "2026-10-03T17:50:06Z",
+      "featured_since": "2026-06-25T13:00:12Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::HelloMoon-validator-1::1220a7daf7140e112f15a46f2daa52fe9c8651024ff8705bb23c494275dd02209596"
+      ],
+      "host_party_ids": [
+        "HelloMoon-validator-1::1220a7daf7140e112f15a46f2daa52fe9c8651024ff8705bb23c494275dd02209596"
+      ],
+      "topology_as_of": "2026-10-04T00:48:03Z",
+      "burn_party_id": "HelloMoon-validator-1::1220a7daf7140e112f15a46f2daa52fe9c8651024ff8705bb23c494275dd02209596",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "cantonloop-mainnet-1::12205fb70ce14897d06baec18a4b889f296c765a8325fd3d99cc084b1f980426ac12",
+      "total_markers": 38046,
+      "self_markers": 38046,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "631135.0958605825",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:01:12Z",
+      "last_seen": "2026-10-04T00:26:50Z",
+      "featured_since": "2025-08-28T06:04:18Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::cantonloop-mainnet-1::12205fb70ce14897d06baec18a4b889f296c765a8325fd3d99cc084b1f980426ac12"
+      ],
+      "host_party_ids": [
+        "cantonloop-mainnet-1::12205fb70ce14897d06baec18a4b889f296c765a8325fd3d99cc084b1f980426ac12"
+      ],
+      "topology_as_of": "2026-10-04T00:48:04Z",
+      "burn_party_id": "cantonloop-mainnet-1::12205fb70ce14897d06baec18a4b889f296c765a8325fd3d99cc084b1f980426ac12",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "kora-app::1220efef3108b73891ecb7992fadf48bf7bd99e93ad071ec95da7cc40a53a8ebe8bf",
+      "total_markers": 35390,
+      "self_markers": 35390,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "5020706.4680598159",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:01:47Z",
+      "last_seen": "2026-10-04T00:52:46Z",
+      "featured_since": "2026-03-07T13:22:18Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::kora-mainNetValidator-1::122078afc72fa2000040c98f1eb9fe2962860b5a9829df85feec7f5d026755bca7d0"
+      ],
+      "host_party_ids": [
+        "kora-mainNetValidator-1::122078afc72fa2000040c98f1eb9fe2962860b5a9829df85feec7f5d026755bca7d0"
+      ],
+      "topology_as_of": "2026-10-04T00:48:06Z",
+      "burn_party_id": "kora-mainNetValidator-1::122078afc72fa2000040c98f1eb9fe2962860b5a9829df85feec7f5d026755bca7d0",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "tritemiusapp::1220cda52890c386641bf69705740e0a9abc2c6aef3878a86dfcfc7958946f59692b",
+      "total_markers": 28026,
+      "self_markers": 28026,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "15420.1294261149",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:00:25Z",
+      "last_seen": "2026-10-04T00:51:53Z",
+      "featured_since": "2026-07-05T18:00:49Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::Tritemius-validator-1::1220cda52890c386641bf69705740e0a9abc2c6aef3878a86dfcfc7958946f59692b"
+      ],
+      "host_party_ids": [
+        "Tritemius-validator-1::1220cda52890c386641bf69705740e0a9abc2c6aef3878a86dfcfc7958946f59692b"
+      ],
+      "topology_as_of": "2026-10-04T00:48:08Z",
+      "burn_party_id": "Tritemius-validator-1::1220cda52890c386641bf69705740e0a9abc2c6aef3878a86dfcfc7958946f59692b",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "8a72dd81-b8a4-425a-9061-31ed663d4450::1220d572036d26e3f8ef2fe127184d812a00e0b1b36e129acf990a82a06651e735a1",
+      "total_markers": 27615,
+      "self_markers": 27615,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "15234.6795292608",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:09:08Z",
+      "last_seen": "2026-10-04T00:53:15Z",
+      "featured_since": "2026-01-30T23:00:16Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::InformationSystemsLTD-validator-1::1220d572036d26e3f8ef2fe127184d812a00e0b1b36e129acf990a82a06651e735a1"
+      ],
+      "host_party_ids": [
+        "InformationSystemsLTD-validator-1::1220d572036d26e3f8ef2fe127184d812a00e0b1b36e129acf990a82a06651e735a1"
+      ],
+      "topology_as_of": "2026-10-04T00:48:03Z",
+      "burn_party_id": "InformationSystemsLTD-validator-1::1220d572036d26e3f8ef2fe127184d812a00e0b1b36e129acf990a82a06651e735a1",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "trakx-utility::1220f2acce9d7491505ee5fabb548e9975bbf0f8efaae98404d7399922fb48a03aeb",
+      "total_markers": 27114,
+      "self_markers": 13557,
+      "non_self_markers": 13557,
+      "coupons": 0,
+      "total_cc_earned": "287067.6327112650",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 2,
+      "first_seen": "2026-09-05T00:04:48Z",
+      "last_seen": "2026-10-04T00:50:09Z",
+      "featured_since": "2026-07-04T13:02:08Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::trakx-validator-1::1220f2acce9d7491505ee5fabb548e9975bbf0f8efaae98404d7399922fb48a03aeb"
+      ],
+      "host_party_ids": [
+        "trakx-validator-1::1220f2acce9d7491505ee5fabb548e9975bbf0f8efaae98404d7399922fb48a03aeb"
+      ],
+      "topology_as_of": "2026-10-04T00:48:08Z",
+      "burn_party_id": "trakx-validator-1::1220f2acce9d7491505ee5fabb548e9975bbf0f8efaae98404d7399922fb48a03aeb",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "Bridge-Operator::1220c8448890a70e65f6906bd48d797ee6551f094e9e6a53e329fd5b2b549334f13f",
+      "total_markers": 26424,
+      "self_markers": 4154,
+      "non_self_markers": 22270,
+      "coupons": 0,
+      "total_cc_earned": "5444132.5028767894",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 10,
+      "first_seen": "2026-09-05T00:04:48Z",
+      "last_seen": "2026-10-04T00:50:09Z",
+      "featured_since": "2025-10-23T11:36:20Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::digitalasset-bridge-001::1220c8448890a70e65f6906bd48d797ee6551f094e9e6a53e329fd5b2b549334f13f"
+      ],
+      "host_party_ids": [
+        "digitalasset-bridge-1::1220c8448890a70e65f6906bd48d797ee6551f094e9e6a53e329fd5b2b549334f13f"
+      ],
+      "topology_as_of": "2026-10-04T00:48:04Z",
+      "burn_party_id": "digitalasset-bridge-1::1220c8448890a70e65f6906bd48d797ee6551f094e9e6a53e329fd5b2b549334f13f",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "nodetech-mainnet-1::122091e990ffc729fcd266b4dd5b03320daba234c7d1c5470f50f21a7720a6d1c278",
+      "total_markers": 25678,
+      "self_markers": 25678,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "14144.3352242236",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:01:28Z",
+      "last_seen": "2026-10-04T00:54:54Z",
+      "featured_since": "2026-04-20T01:00:09Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::nodetech-mainnet-1::122091e990ffc729fcd266b4dd5b03320daba234c7d1c5470f50f21a7720a6d1c278"
+      ],
+      "host_party_ids": [
+        "nodetech-mainnet-1::122091e990ffc729fcd266b4dd5b03320daba234c7d1c5470f50f21a7720a6d1c278"
+      ],
+      "topology_as_of": "2026-10-04T00:48:06Z",
+      "burn_party_id": "nodetech-mainnet-1::122091e990ffc729fcd266b4dd5b03320daba234c7d1c5470f50f21a7720a6d1c278",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "edel-various-1::122085b19d439b7e68abf7c94c3d9949f9e23aef3f1d4835ccbcb0993ed96fb53432",
+      "total_markers": 25585,
+      "self_markers": 8809,
+      "non_self_markers": 16776,
+      "coupons": 0,
+      "total_cc_earned": "339683.0440293795",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 4,
+      "first_seen": "2026-09-05T00:04:48Z",
+      "last_seen": "2026-10-04T00:50:09Z",
+      "featured_since": "2026-04-20T01:00:20Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::edel-various-1::122085b19d439b7e68abf7c94c3d9949f9e23aef3f1d4835ccbcb0993ed96fb53432"
+      ],
+      "host_party_ids": [
+        "edel-various-1::122085b19d439b7e68abf7c94c3d9949f9e23aef3f1d4835ccbcb0993ed96fb53432"
+      ],
+      "topology_as_of": "2026-10-04T00:48:05Z",
+      "burn_party_id": "edel-various-1::122085b19d439b7e68abf7c94c3d9949f9e23aef3f1d4835ccbcb0993ed96fb53432",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "ember-validator-1::1220ad9c097ae75192b4716854fa413aa8582c86a62b16714663cdab55e025cc79c4",
+      "total_markers": 25006,
+      "self_markers": 12504,
+      "non_self_markers": 12502,
+      "coupons": 0,
+      "total_cc_earned": "5207063.2744270325",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 2,
+      "first_seen": "2026-09-05T00:04:48Z",
+      "last_seen": "2026-10-04T00:50:09Z",
+      "featured_since": "2026-07-10T00:53:26Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::ember-validator-1-p1::1220ad9c097ae75192b4716854fa413aa8582c86a62b16714663cdab55e025cc79c4"
+      ],
+      "host_party_ids": [
+        "ember-validator-1::1220ad9c097ae75192b4716854fa413aa8582c86a62b16714663cdab55e025cc79c4"
+      ],
+      "topology_as_of": "2026-10-04T00:48:05Z",
+      "burn_party_id": "ember-validator-1::1220ad9c097ae75192b4716854fa413aa8582c86a62b16714663cdab55e025cc79c4",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "Fairmint-validator-1::122047f456985651be8ea317881a9af4f04521417ce1a449b75543541acf33aac4d2",
+      "total_markers": 24459,
+      "self_markers": 24459,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "13617.2239966120",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T02:11:31Z",
+      "last_seen": "2026-10-03T22:04:33Z",
+      "featured_since": "2025-06-21T19:00:54Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::Fairmint-validator-1::122047f456985651be8ea317881a9af4f04521417ce1a449b75543541acf33aac4d2"
+      ],
+      "host_party_ids": [
+        "Fairmint-validator-1::122047f456985651be8ea317881a9af4f04521417ce1a449b75543541acf33aac4d2"
+      ],
+      "topology_as_of": "2026-10-04T00:48:05Z",
+      "burn_party_id": "Fairmint-validator-1::122047f456985651be8ea317881a9af4f04521417ce1a449b75543541acf33aac4d2",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "rails-cethMain-1::12200350ba6e96e3b701c3048b5aa013a8c1c08833e8ebf54339cff581055c29003a",
+      "total_markers": 20850,
+      "self_markers": 4170,
+      "non_self_markers": 16680,
+      "coupons": 0,
+      "total_cc_earned": "3929694.8607220254",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 5,
+      "first_seen": "2026-09-05T00:04:48Z",
+      "last_seen": "2026-10-04T00:50:09Z",
+      "featured_since": "2026-03-14T01:00:27Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::rails-cethMain-1::12200350ba6e96e3b701c3048b5aa013a8c1c08833e8ebf54339cff581055c29003a"
+      ],
+      "host_party_ids": [
+        "rails-cethMain-1::12200350ba6e96e3b701c3048b5aa013a8c1c08833e8ebf54339cff581055c29003a"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "rails-cethMain-1::12200350ba6e96e3b701c3048b5aa013a8c1c08833e8ebf54339cff581055c29003a",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "Cantex-validator-1::122038c015864f106cfed48bb9106b7c89982368d27956ffcdfda6c38328f0909b8c",
+      "total_markers": 20777,
+      "self_markers": 20777,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "602742.6464888478",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:00:19Z",
+      "last_seen": "2026-10-04T00:51:53Z",
+      "featured_since": "2026-01-28T17:01:02Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::Cantex-validator-1::122038c015864f106cfed48bb9106b7c89982368d27956ffcdfda6c38328f0909b8c"
+      ],
+      "host_party_ids": [
+        "Cantex-validator-1::122038c015864f106cfed48bb9106b7c89982368d27956ffcdfda6c38328f0909b8c"
+      ],
+      "topology_as_of": "2026-10-04T00:48:04Z",
+      "burn_party_id": "Cantex-validator-1::122038c015864f106cfed48bb9106b7c89982368d27956ffcdfda6c38328f0909b8c",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "cantory::1220a0a64bd45fee105f5c80474842a4337bb09323ca748d7ea6dacc07fc6237572c",
+      "total_markers": 19180,
+      "self_markers": 19180,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "17999.2296549119",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:00:23Z",
+      "last_seen": "2026-10-04T00:50:01Z",
+      "featured_since": "2025-12-26T19:00:58Z",
+      "hosting_type": "multi-hosted",
+      "participant_ids": [
+        "PAR::k2f-validator-2::1220b508e30821c8c238a33ef26347c37b910739160f24ea576d8074c67cfa9babc2",
+        "PAR::k2f-validator-3::1220a063793907881d3a23f1073b6611eadf44f5bd641d3c0708ebd1c65acd044036",
+        "PAR::k2f-validator-4::1220004a1d56ef9c06b070c1aecd3a5009e89594da04a217a56493a9869d6e7b6850",
+        "PAR::k2f-validator-5::122094d4dcfcb4a507834156725e8ce52303780059e16ca31583f502377f253d9bd3",
+        "PAR::k2f-validator-6::12208eb5283da06d07e14753aa8a1253d61171befb17d082195eefd65d04e99720a9"
+      ],
+      "host_party_ids": [
+        "k2f-validator-2::1220b508e30821c8c238a33ef26347c37b910739160f24ea576d8074c67cfa9babc2",
+        "k2f-validator-3::1220a063793907881d3a23f1073b6611eadf44f5bd641d3c0708ebd1c65acd044036",
+        "k2f-validator-4::1220004a1d56ef9c06b070c1aecd3a5009e89594da04a217a56493a9869d6e7b6850",
+        "k2f-validator-5::122094d4dcfcb4a507834156725e8ce52303780059e16ca31583f502377f253d9bd3",
+        "k2f-validator-6::12208eb5283da06d07e14753aa8a1253d61171befb17d082195eefd65d04e99720a9"
+      ],
+      "topology_as_of": "2026-10-04T00:48:04Z",
+      "burn_party_id": "k2f-validator-2::1220b508e30821c8c238a33ef26347c37b910739160f24ea576d8074c67cfa9babc2",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "asset-relayer::1220f1b0d7a83c7eaaf6d712d95d5952ea2c801238af9c342e8d83c87dfc45c999dc",
+      "total_markers": 16490,
+      "self_markers": 8245,
+      "non_self_markers": 8245,
+      "coupons": 0,
+      "total_cc_earned": "317846.6272569525",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 2,
+      "first_seen": "2026-09-05T00:04:48Z",
+      "last_seen": "2026-10-04T00:50:09Z",
+      "featured_since": "2026-05-29T20:24:10Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::send-cantonwallet-1::1220f1b0d7a83c7eaaf6d712d95d5952ea2c801238af9c342e8d83c87dfc45c999dc"
+      ],
+      "host_party_ids": [
+        "send-cantonwallet-1::1220f1b0d7a83c7eaaf6d712d95d5952ea2c801238af9c342e8d83c87dfc45c999dc"
+      ],
+      "topology_as_of": "2026-10-04T00:48:03Z",
+      "burn_party_id": "send-cantonwallet-1::1220f1b0d7a83c7eaaf6d712d95d5952ea2c801238af9c342e8d83c87dfc45c999dc",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "kaiko-app-rewards::12200c178d1f0bbefe2337e1c63a8bc3017ea14b3e773b918dae2f2d426340e58491",
+      "total_markers": 15252,
+      "self_markers": 15252,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "8410.2497525463",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:00:09Z",
+      "last_seen": "2026-10-04T00:54:24Z",
+      "featured_since": "2026-06-30T19:01:11Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::kaiko-mainnet-3::12200c178d1f0bbefe2337e1c63a8bc3017ea14b3e773b918dae2f2d426340e58491"
+      ],
+      "host_party_ids": [
+        "kaiko-mainnet-3::12200c178d1f0bbefe2337e1c63a8bc3017ea14b3e773b918dae2f2d426340e58491"
+      ],
+      "topology_as_of": "2026-10-04T00:48:06Z",
+      "burn_party_id": "kaiko-mainnet-3::12200c178d1f0bbefe2337e1c63a8bc3017ea14b3e773b918dae2f2d426340e58491",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "576413da77524b51afd26dc5356b6959::122051b225c4d162a3fe77fbe1bdcf782ad1ed34eaa899fd8e5f79c97f465e259f1d",
+      "total_markers": 13470,
+      "self_markers": 0,
+      "non_self_markers": 13470,
+      "coupons": 0,
+      "total_cc_earned": "517979.8015494733",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 8,
+      "first_seen": "2026-09-05T00:09:49Z",
+      "last_seen": "2026-10-04T00:50:49Z",
+      "featured_since": "2026-05-19T19:47:27Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::cantor8-digik-1::12204dcfad78c016ab59babba72d4ffe9bdca8aeaf6299a3f0da59523ee3f765b053"
+      ],
+      "host_party_ids": [
+        "cantor8-digik-1::12204dcfad78c016ab59babba72d4ffe9bdca8aeaf6299a3f0da59523ee3f765b053"
+      ],
+      "topology_as_of": "2026-10-04T00:48:03Z",
+      "burn_party_id": "cantor8-digik-1::12204dcfad78c016ab59babba72d4ffe9bdca8aeaf6299a3f0da59523ee3f765b053",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "sunthycloud-mainnet-1::1220dc2c99151dbe0ca0ff322dbdcf0f511c181e9277799640287c37f26c7a993773",
+      "total_markers": 9897,
+      "self_markers": 9897,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "34122.9658411447",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:00:41Z",
+      "last_seen": "2026-10-04T00:37:26Z",
+      "featured_since": "2026-01-09T22:59:12Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::sunthycloud-mainnet-1::1220dc2c99151dbe0ca0ff322dbdcf0f511c181e9277799640287c37f26c7a993773"
+      ],
+      "host_party_ids": [
+        "sunthycloud-mainnet-1::1220dc2c99151dbe0ca0ff322dbdcf0f511c181e9277799640287c37f26c7a993773"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "sunthycloud-mainnet-1::1220dc2c99151dbe0ca0ff322dbdcf0f511c181e9277799640287c37f26c7a993773",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "temple-mainnet-1::1220f238bb79df3efbbac2ea964c3cd501003971a2cb59043e2dac50b06e85b8620f",
+      "total_markers": 9636,
+      "self_markers": 9636,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "13107276.4763516076",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:01:20Z",
+      "last_seen": "2026-10-04T00:51:23Z",
+      "featured_since": "2025-09-11T20:36:28Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::temple-mainnet-1::1220f238bb79df3efbbac2ea964c3cd501003971a2cb59043e2dac50b06e85b8620f"
+      ],
+      "host_party_ids": [
+        "temple-mainnet-1::1220f238bb79df3efbbac2ea964c3cd501003971a2cb59043e2dac50b06e85b8620f"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "temple-mainnet-1::1220f238bb79df3efbbac2ea964c3cd501003971a2cb59043e2dac50b06e85b8620f",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "nuxaris-validator-1::122065645666a14e30513626b92fd348b76fe0430557d08f68ac3e2beb37b407b3c9",
+      "total_markers": 8475,
+      "self_markers": 8475,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "20553.3192636377",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:03:34Z",
+      "last_seen": "2026-10-04T00:52:39Z",
+      "featured_since": "2026-08-12T16:00:09Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::nuxaris-validator-1-recovery1::122065645666a14e30513626b92fd348b76fe0430557d08f68ac3e2beb37b407b3c9"
+      ],
+      "host_party_ids": [
+        "nuxaris-validator-1::122065645666a14e30513626b92fd348b76fe0430557d08f68ac3e2beb37b407b3c9"
+      ],
+      "topology_as_of": "2026-10-04T00:48:06Z",
+      "burn_party_id": "nuxaris-validator-1::122065645666a14e30513626b92fd348b76fe0430557d08f68ac3e2beb37b407b3c9",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "cbtc-network::12205af3b949a04776fc48cdcc05a060f6bda2e470632935f375d1049a8546a3b262",
+      "total_markers": 8334,
+      "self_markers": 0,
+      "non_self_markers": 8334,
+      "coupons": 0,
+      "total_cc_earned": "3216582.9674101975",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 2,
+      "first_seen": "2026-09-05T00:04:48Z",
+      "last_seen": "2026-10-04T00:50:09Z",
+      "featured_since": "2025-10-25T16:38:16Z",
+      "hosting_type": "multi-hosted",
+      "participant_ids": [
+        "PAR::FCS::1220b8182fa42d0cf657bda7f124366a2c603d5df4aafd789a88549dc9a0e3191259",
+        "PAR::bitsafe-validator-1::122099b62cca95da75dac582b27019a890cab72cc2ee6afa1cb816bc5fbd56ea693d",
+        "PAR::dsrv-mainnetValidator-01::1220e2f4abe1c5ca7e07464037fe7fefc839b7b8fea24985d0d2a2790fa72e3c13ac",
+        "PAR::iBTC-validator-1::1220409a9fcc5ff6422e29ab978c22c004dde33202546b4bcbde24b25b85353366c2",
+        "PAR::nethermind-angkor-1::12201d94ec4ba973ab5c51e3b769a6aca54f061afc963619a4d6109044eaccafc7ba"
+      ],
+      "host_party_ids": [
+        "FinoaConsensusServices-validator-1::1220b8182fa42d0cf657bda7f124366a2c603d5df4aafd789a88549dc9a0e3191259",
+        "bitsafe-validator-1::122099b62cca95da75dac582b27019a890cab72cc2ee6afa1cb816bc5fbd56ea693d",
+        "dsrv-mainnetValidator-01::1220e2f4abe1c5ca7e07464037fe7fefc839b7b8fea24985d0d2a2790fa72e3c13ac",
+        "iBTC-validator-1::1220409a9fcc5ff6422e29ab978c22c004dde33202546b4bcbde24b25b85353366c2",
+        "nethermind-angkor-1::12201d94ec4ba973ab5c51e3b769a6aca54f061afc963619a4d6109044eaccafc7ba"
+      ],
+      "topology_as_of": "2026-10-04T00:48:04Z",
+      "burn_party_id": "FinoaConsensusServices-validator-1::1220b8182fa42d0cf657bda7f124366a2c603d5df4aafd789a88549dc9a0e3191259",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "handl-issuer::12207ac147ad3e95894e7a507da3f04a819e8996f0bdf31c084ab3b77e51746b03cf",
+      "total_markers": 8286,
+      "self_markers": 4143,
+      "non_self_markers": 4143,
+      "coupons": 0,
+      "total_cc_earned": "223735.3653997867",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 2,
+      "first_seen": "2026-09-05T00:04:48Z",
+      "last_seen": "2026-10-04T00:50:09Z",
+      "featured_since": "2026-03-20T13:00:22Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::handlpay-main-1::12207ac147ad3e95894e7a507da3f04a819e8996f0bdf31c084ab3b77e51746b03cf"
+      ],
+      "host_party_ids": [
+        "handlpay-main-1::12207ac147ad3e95894e7a507da3f04a819e8996f0bdf31c084ab3b77e51746b03cf"
+      ],
+      "topology_as_of": "2026-10-04T00:48:05Z",
+      "burn_party_id": "handlpay-main-1::12207ac147ad3e95894e7a507da3f04a819e8996f0bdf31c084ab3b77e51746b03cf",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "bitdynamicsab-mainnet-1::1220ea322b53b7f031e5e2e99796d02cb84e3fef257c63e89204622dc174f552c1d6",
+      "total_markers": 8101,
+      "self_markers": 0,
+      "non_self_markers": 8101,
+      "coupons": 0,
+      "total_cc_earned": "12220.4375066137",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:06:45Z",
+      "last_seen": "2026-10-04T00:53:13Z",
+      "featured_since": "2026-04-03T12:00:55Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::bitdynamicsab-mainnet-1::1220ea322b53b7f031e5e2e99796d02cb84e3fef257c63e89204622dc174f552c1d6"
+      ],
+      "host_party_ids": [
+        "bitdynamicsab-mainnet-1::1220ea322b53b7f031e5e2e99796d02cb84e3fef257c63e89204622dc174f552c1d6"
+      ],
+      "topology_as_of": "2026-10-04T00:48:04Z",
+      "burn_party_id": "bitdynamicsab-mainnet-1::1220ea322b53b7f031e5e2e99796d02cb84e3fef257c63e89204622dc174f552c1d6",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "Modulo-Issuer::1220bbd47c5a10d5540c420e1f8f0f1fd513464ec6110dbd5123970dbe3b538805d3",
+      "total_markers": 8099,
+      "self_markers": 2352,
+      "non_self_markers": 5747,
+      "coupons": 0,
+      "total_cc_earned": "223732.6241056860",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 6,
+      "first_seen": "2026-09-14T19:57:40Z",
+      "last_seen": "2026-10-04T00:53:21Z",
+      "featured_since": "2026-09-12T06:43:09Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::modulo-mainnet-2::1220bbd47c5a10d5540c420e1f8f0f1fd513464ec6110dbd5123970dbe3b538805d3"
+      ],
+      "host_party_ids": [
+        "modulo-mainnet-2::1220bbd47c5a10d5540c420e1f8f0f1fd513464ec6110dbd5123970dbe3b538805d3"
+      ],
+      "topology_as_of": "2026-10-04T00:48:06Z",
+      "burn_party_id": "modulo-mainnet-2::1220bbd47c5a10d5540c420e1f8f0f1fd513464ec6110dbd5123970dbe3b538805d3",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "tradefast-wallet3-1::1220674b79cae334aa788ffa394a6bd7d10e427d9f2abd418048e5be49ceb4256ca4",
+      "total_markers": 7982,
+      "self_markers": 3991,
+      "non_self_markers": 3991,
+      "coupons": 0,
+      "total_cc_earned": "117662.7542008367",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 2,
+      "first_seen": "2026-09-05T00:04:48Z",
+      "last_seen": "2026-10-04T00:50:09Z",
+      "featured_since": "2026-06-21T14:25:11Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::tradefast-mainnet-1::1220674b79cae334aa788ffa394a6bd7d10e427d9f2abd418048e5be49ceb4256ca4"
+      ],
+      "host_party_ids": [
+        "tradefast-mainnet-1::1220674b79cae334aa788ffa394a6bd7d10e427d9f2abd418048e5be49ceb4256ca4"
+      ],
+      "topology_as_of": "2026-10-04T00:48:08Z",
+      "burn_party_id": "tradefast-mainnet-1::1220674b79cae334aa788ffa394a6bd7d10e427d9f2abd418048e5be49ceb4256ca4",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "CantonSwap::122096fe076cc065af0cb38f94caa60e8ddfecbe8f0cfe10655ae7aa06fab99c66b7",
+      "total_markers": 7504,
+      "self_markers": 7500,
+      "non_self_markers": 4,
+      "coupons": 0,
+      "total_cc_earned": "4120.6575626997",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 2,
+      "first_seen": "2026-09-05T11:49:25Z",
+      "last_seen": "2026-10-04T00:54:06Z",
+      "featured_since": "2025-08-21T09:00:21Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::ObsidianSystems-validator-2_1::122096fe076cc065af0cb38f94caa60e8ddfecbe8f0cfe10655ae7aa06fab99c66b7"
+      ],
+      "host_party_ids": [
+        "ObsidianSystems-validator-2::122096fe076cc065af0cb38f94caa60e8ddfecbe8f0cfe10655ae7aa06fab99c66b7"
+      ],
+      "topology_as_of": "2026-10-04T00:48:04Z",
+      "burn_party_id": "ObsidianSystems-validator-2::122096fe076cc065af0cb38f94caa60e8ddfecbe8f0cfe10655ae7aa06fab99c66b7",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "excellar-issuer::12203d1e36930ee0e3fbb898add7e222a47ae9d2a5f0f6187e3a446ea32f871ce2ca",
+      "total_markers": 7454,
+      "self_markers": 3727,
+      "non_self_markers": 3727,
+      "coupons": 0,
+      "total_cc_earned": "123294.5082527396",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 2,
+      "first_seen": "2026-09-07T05:05:45Z",
+      "last_seen": "2026-10-04T00:50:09Z",
+      "featured_since": "2026-09-05T15:49:12Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::excellar-validator-2::12203d1e36930ee0e3fbb898add7e222a47ae9d2a5f0f6187e3a446ea32f871ce2ca"
+      ],
+      "host_party_ids": [
+        "excellar-validator-2::12203d1e36930ee0e3fbb898add7e222a47ae9d2a5f0f6187e3a446ea32f871ce2ca"
+      ],
+      "topology_as_of": "2026-10-04T00:48:05Z",
+      "burn_party_id": "excellar-validator-2::12203d1e36930ee0e3fbb898add7e222a47ae9d2a5f0f6187e3a446ea32f871ce2ca",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "FTP-validator-1::1220c065ad977ae4e480b6ea5bcd96d6d73025a91ad27fa60d1385010ca01cdd39f9",
+      "total_markers": 7012,
+      "self_markers": 7012,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "27206.3206205617",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:05:16Z",
+      "last_seen": "2026-10-04T00:53:50Z",
+      "featured_since": "2026-03-20T02:20:16Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::FTP-validator-1::1220c065ad977ae4e480b6ea5bcd96d6d73025a91ad27fa60d1385010ca01cdd39f9"
+      ],
+      "host_party_ids": [
+        "FTP-validator-1::1220c065ad977ae4e480b6ea5bcd96d6d73025a91ad27fa60d1385010ca01cdd39f9"
+      ],
+      "topology_as_of": "2026-10-04T00:48:05Z",
+      "burn_party_id": "FTP-validator-1::1220c065ad977ae4e480b6ea5bcd96d6d73025a91ad27fa60d1385010ca01cdd39f9",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "Hecto-Finance-1::12208ee00572aea3304ebb12e34320769ea4b421911c9b658a999e0e64ee8a070972",
+      "total_markers": 6864,
+      "self_markers": 3432,
+      "non_self_markers": 3432,
+      "coupons": 0,
+      "total_cc_earned": "60636.7517912381",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 2,
+      "first_seen": "2026-09-05T00:04:48Z",
+      "last_seen": "2026-10-03T23:50:48Z",
+      "featured_since": "2026-06-20T16:17:07Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::Hecto-Validator-1::12208ee00572aea3304ebb12e34320769ea4b421911c9b658a999e0e64ee8a070972"
+      ],
+      "host_party_ids": [
+        "Hecto-Validator-1::12208ee00572aea3304ebb12e34320769ea4b421911c9b658a999e0e64ee8a070972"
+      ],
+      "topology_as_of": "2026-10-04T00:48:05Z",
+      "burn_party_id": "Hecto-Validator-1::12208ee00572aea3304ebb12e34320769ea4b421911c9b658a999e0e64ee8a070972",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "cauri-wallet-provider1::1220e852a0cb4372f91dd2b7b93c71d4580600b0f2c045e6cbebd9f510e88c0ba29b",
+      "total_markers": 6650,
+      "self_markers": 6650,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "118076.4506829929",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:32:21Z",
+      "last_seen": "2026-10-04T00:05:10Z",
+      "featured_since": "2026-04-29T21:35:12Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::lithiumdigital-validator-1::1220e852a0cb4372f91dd2b7b93c71d4580600b0f2c045e6cbebd9f510e88c0ba29b"
+      ],
+      "host_party_ids": [
+        "lithiumdigital-validator-1::1220e852a0cb4372f91dd2b7b93c71d4580600b0f2c045e6cbebd9f510e88c0ba29b"
+      ],
+      "topology_as_of": "2026-10-04T00:48:04Z",
+      "burn_party_id": "lithiumdigital-validator-1::1220e852a0cb4372f91dd2b7b93c71d4580600b0f2c045e6cbebd9f510e88c0ba29b",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "obligate-issuance::1220663cfdc370c3fc447072f3731a838a2a7de757bc29ee0d34b326f317b70db4aa",
+      "total_markers": 5896,
+      "self_markers": 2948,
+      "non_self_markers": 2948,
+      "coupons": 0,
+      "total_cc_earned": "46896.5302976291",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 2,
+      "first_seen": "2026-09-05T01:45:01Z",
+      "last_seen": "2026-09-29T08:01:43Z",
+      "featured_since": "2026-05-08T16:00:14Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::Obligate-validator-1::1220663cfdc370c3fc447072f3731a838a2a7de757bc29ee0d34b326f317b70db4aa"
+      ],
+      "host_party_ids": [
+        "Obligate-validator-1::1220663cfdc370c3fc447072f3731a838a2a7de757bc29ee0d34b326f317b70db4aa"
+      ],
+      "topology_as_of": "2026-10-04T00:48:06Z",
+      "burn_party_id": "Obligate-validator-1::1220663cfdc370c3fc447072f3731a838a2a7de757bc29ee0d34b326f317b70db4aa",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "ppx-asset-provider::12208bc395be430a139e9f78c0d322218fee16be488ce53de988f5d119a87c2e2201",
+      "total_markers": 5557,
+      "self_markers": 2779,
+      "non_self_markers": 2778,
+      "coupons": 0,
+      "total_cc_earned": "334466.4694709967",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 2,
+      "first_seen": "2026-09-05T00:04:48Z",
+      "last_seen": "2026-10-04T00:50:09Z",
+      "featured_since": "2026-06-24T17:23:15Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::pixelplex-mainnet-1::1220347d4ca72661a87bf10a3f47014ad361c131dc3bdec2fb4533d54b9f27894876"
+      ],
+      "host_party_ids": [
+        "pixelplex-mainnet-1::1220347d4ca72661a87bf10a3f47014ad361c131dc3bdec2fb4533d54b9f27894876"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "pixelplex-mainnet-1::1220347d4ca72661a87bf10a3f47014ad361c131dc3bdec2fb4533d54b9f27894876",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "askardex-validator-1::1220f9c81d6050a74509010597b3c38fde6d01473f6c323c60ca8bb8b5d489bb9696",
+      "total_markers": 5296,
+      "self_markers": 3795,
+      "non_self_markers": 1501,
+      "coupons": 0,
+      "total_cc_earned": "16600.3875709909",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 5,
+      "first_seen": "2026-09-05T00:04:09Z",
+      "last_seen": "2026-10-04T00:46:51Z",
+      "featured_since": "2026-07-18T16:48:05Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::askardex-validator-1::1220f9c81d6050a74509010597b3c38fde6d01473f6c323c60ca8bb8b5d489bb9696"
+      ],
+      "host_party_ids": [
+        "askardex-validator-1::1220f9c81d6050a74509010597b3c38fde6d01473f6c323c60ca8bb8b5d489bb9696"
+      ],
+      "topology_as_of": "2026-10-04T00:48:03Z",
+      "burn_party_id": "askardex-validator-1::1220f9c81d6050a74509010597b3c38fde6d01473f6c323c60ca8bb8b5d489bb9696",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "unitedapp-cc::12203179cc5cae0452dbc233403a6a66f6d87988615d0e64defdd77abb133bdc40a9",
+      "total_markers": 4654,
+      "self_markers": 4654,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "17845.6319803423",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T01:26:32Z",
+      "last_seen": "2026-10-03T15:26:02Z",
+      "featured_since": "2025-11-27T17:57:14Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::noders-mainnetval-2::12203179cc5cae0452dbc233403a6a66f6d87988615d0e64defdd77abb133bdc40a9"
+      ],
+      "host_party_ids": [
+        "noders-mainnetval-2::12203179cc5cae0452dbc233403a6a66f6d87988615d0e64defdd77abb133bdc40a9"
+      ],
+      "topology_as_of": "2026-10-04T00:48:08Z",
+      "burn_party_id": "noders-mainnetval-2::12203179cc5cae0452dbc233403a6a66f6d87988615d0e64defdd77abb133bdc40a9",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "Redstone-validator-1::1220a6f7c2315ed7ba230397a459b036bfe9f36763a0e848dad741c4e9d20d85687c",
+      "total_markers": 4644,
+      "self_markers": 4644,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "14993.4947163506",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:00:59Z",
+      "last_seen": "2026-10-04T00:47:44Z",
+      "featured_since": "2026-03-04T00:30:44Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::Redstone-validator-1::1220a6f7c2315ed7ba230397a459b036bfe9f36763a0e848dad741c4e9d20d85687c"
+      ],
+      "host_party_ids": [
+        "Redstone-validator-1::1220a6f7c2315ed7ba230397a459b036bfe9f36763a0e848dad741c4e9d20d85687c"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "Redstone-validator-1::1220a6f7c2315ed7ba230397a459b036bfe9f36763a0e848dad741c4e9d20d85687c",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "walley::1220a0a64bd45fee105f5c80474842a4337bb09323ca748d7ea6dacc07fc6237572c",
+      "total_markers": 4505,
+      "self_markers": 4505,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "34950.2591841837",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:10:04Z",
+      "last_seen": "2026-10-04T00:50:03Z",
+      "featured_since": "2026-02-28T17:00:59Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::k2f-validator-1::1220a0a64bd45fee105f5c80474842a4337bb09323ca748d7ea6dacc07fc6237572c"
+      ],
+      "host_party_ids": [
+        "k2f-validator-1::1220a0a64bd45fee105f5c80474842a4337bb09323ca748d7ea6dacc07fc6237572c"
+      ],
+      "topology_as_of": "2026-10-04T00:48:08Z",
+      "burn_party_id": "k2f-validator-1::1220a0a64bd45fee105f5c80474842a4337bb09323ca748d7ea6dacc07fc6237572c",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "send-cantonwallet-1::1220f1b0d7a83c7eaaf6d712d95d5952ea2c801238af9c342e8d83c87dfc45c999dc",
+      "total_markers": 4427,
+      "self_markers": 4427,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "294455.5967447241",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:05:10Z",
+      "last_seen": "2026-10-04T00:53:42Z",
+      "featured_since": "2025-09-25T20:08:41Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::send-cantonwallet-1::1220f1b0d7a83c7eaaf6d712d95d5952ea2c801238af9c342e8d83c87dfc45c999dc"
+      ],
+      "host_party_ids": [
+        "send-cantonwallet-1::1220f1b0d7a83c7eaaf6d712d95d5952ea2c801238af9c342e8d83c87dfc45c999dc"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "send-cantonwallet-1::1220f1b0d7a83c7eaaf6d712d95d5952ea2c801238af9c342e8d83c87dfc45c999dc",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "metatarz-validator-1::12204da695418db5f840d403841f4e188de5f1e4dd05ad469c0c779222b69de7c84b",
+      "total_markers": 4208,
+      "self_markers": 4208,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "14977.8170836721",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:18:13Z",
+      "last_seen": "2026-10-04T00:43:41Z",
+      "featured_since": "2026-07-31T08:53:20Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::metatarz-validator-1::12204da695418db5f840d403841f4e188de5f1e4dd05ad469c0c779222b69de7c84b"
+      ],
+      "host_party_ids": [
+        "metatarz-validator-1::12204da695418db5f840d403841f4e188de5f1e4dd05ad469c0c779222b69de7c84b"
+      ],
+      "topology_as_of": "2026-10-04T00:48:06Z",
+      "burn_party_id": "metatarz-validator-1::12204da695418db5f840d403841f4e188de5f1e4dd05ad469c0c779222b69de7c84b",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "silvana-orderbook::1220997446016f1e96be9215bab224eace372752853ef99175c332307489bccbb07b",
+      "total_markers": 4205,
+      "self_markers": 4205,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "19219.4136611290",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:00:01Z",
+      "last_seen": "2026-10-04T00:50:01Z",
+      "featured_since": "2026-01-13T17:46:18Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::Silvana-mainnet-1::1220997446016f1e96be9215bab224eace372752853ef99175c332307489bccbb07b"
+      ],
+      "host_party_ids": [
+        "Silvana-mainnet-1::1220997446016f1e96be9215bab224eace372752853ef99175c332307489bccbb07b"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "Silvana-mainnet-1::1220997446016f1e96be9215bab224eace372752853ef99175c332307489bccbb07b",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "yapp-apps::122021ba12f7efa39e2a35ef041c84873097bad7e22e722087f4146daf8ef6092280",
+      "total_markers": 4140,
+      "self_markers": 4140,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "14930.3572781238",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:07:40Z",
+      "last_seen": "2026-10-04T00:46:21Z",
+      "featured_since": "2026-07-10T15:38:21Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::yapperagent-validator-1::122021ba12f7efa39e2a35ef041c84873097bad7e22e722087f4146daf8ef6092280"
+      ],
+      "host_party_ids": [
+        "yapperagent-validator-1::122021ba12f7efa39e2a35ef041c84873097bad7e22e722087f4146daf8ef6092280"
+      ],
+      "topology_as_of": "2026-10-04T00:48:08Z",
+      "burn_party_id": "yapperagent-validator-1::122021ba12f7efa39e2a35ef041c84873097bad7e22e722087f4146daf8ef6092280",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "modo::122014f09cb05cffc2f1c524601c4aa91d35908dc55cfe9e92849390137ccc7c0d41",
+      "total_markers": 4042,
+      "self_markers": 4042,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "15187.6389986108",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:00:01Z",
+      "last_seen": "2026-10-04T00:50:00Z",
+      "featured_since": "2025-11-22T11:44:19Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::Staketab-mainnet-1::122014f09cb05cffc2f1c524601c4aa91d35908dc55cfe9e92849390137ccc7c0d41"
+      ],
+      "host_party_ids": [
+        "Staketab-mainnet-1::122014f09cb05cffc2f1c524601c4aa91d35908dc55cfe9e92849390137ccc7c0d41"
+      ],
+      "topology_as_of": "2026-10-04T00:48:06Z",
+      "burn_party_id": "Staketab-mainnet-1::122014f09cb05cffc2f1c524601c4aa91d35908dc55cfe9e92849390137ccc7c0d41",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "cantor8-digik-1::12204dcfad78c016ab59babba72d4ffe9bdca8aeaf6299a3f0da59523ee3f765b053",
+      "total_markers": 4039,
+      "self_markers": 4039,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "4054764.9103304738",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T01:01:13Z",
+      "last_seen": "2026-10-04T00:23:05Z",
+      "featured_since": "2026-04-21T20:44:30Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::cantor8-digik-1::12204dcfad78c016ab59babba72d4ffe9bdca8aeaf6299a3f0da59523ee3f765b053"
+      ],
+      "host_party_ids": [
+        "cantor8-digik-1::12204dcfad78c016ab59babba72d4ffe9bdca8aeaf6299a3f0da59523ee3f765b053"
+      ],
+      "topology_as_of": "2026-10-04T00:48:04Z",
+      "burn_party_id": "cantor8-digik-1::12204dcfad78c016ab59babba72d4ffe9bdca8aeaf6299a3f0da59523ee3f765b053",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "acme-lending::1220a7daf7140e112f15a46f2daa52fe9c8651024ff8705bb23c494275dd02209596",
+      "total_markers": 3967,
+      "self_markers": 0,
+      "non_self_markers": 3967,
+      "coupons": 0,
+      "total_cc_earned": "91569.7186647974",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:03:51Z",
+      "last_seen": "2026-10-04T00:52:38Z",
+      "featured_since": "2026-04-21T20:44:29Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::HelloMoon-validator-1::1220a7daf7140e112f15a46f2daa52fe9c8651024ff8705bb23c494275dd02209596"
+      ],
+      "host_party_ids": [
+        "HelloMoon-validator-1::1220a7daf7140e112f15a46f2daa52fe9c8651024ff8705bb23c494275dd02209596"
+      ],
+      "topology_as_of": "2026-10-04T00:48:03Z",
+      "burn_party_id": "HelloMoon-validator-1::1220a7daf7140e112f15a46f2daa52fe9c8651024ff8705bb23c494275dd02209596",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "ByBit-MainNetValidator-1::12202c9fc5180723f14e87c88d316355817dd565afc2a897706a789086c33cd6a095",
+      "total_markers": 3955,
+      "self_markers": 3955,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "2170.0547902169",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T01:38:58Z",
+      "last_seen": "2026-10-04T00:47:08Z",
+      "featured_since": "2025-11-10T09:50:06Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::ByBit-MainNetValidator-1::12202c9fc5180723f14e87c88d316355817dd565afc2a897706a789086c33cd6a095"
+      ],
+      "host_party_ids": [
+        "ByBit-MainNetValidator-1::12202c9fc5180723f14e87c88d316355817dd565afc2a897706a789086c33cd6a095"
+      ],
+      "topology_as_of": "2026-10-04T00:48:04Z",
+      "burn_party_id": "ByBit-MainNetValidator-1::12202c9fc5180723f14e87c88d316355817dd565afc2a897706a789086c33cd6a095",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "squid-intents::1220bddaa584fcc35bcd46cd3a4b1e5881fe7a4d202b5b5df93e92f0897fe15ce769",
+      "total_markers": 3950,
+      "self_markers": 0,
+      "non_self_markers": 3950,
+      "coupons": 0,
+      "total_cc_earned": "171180.7615430102",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:02:49Z",
+      "last_seen": "2026-10-04T00:50:11Z",
+      "featured_since": "2026-06-23T16:00:13Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::tokka-validator-1::1220c0f2b46723f59673aa0cd470dc5de04f62aec930ab2295eddfbc980e4a26687e"
+      ],
+      "host_party_ids": [
+        "tokka-validator-1::1220c0f2b46723f59673aa0cd470dc5de04f62aec930ab2295eddfbc980e4a26687e"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "tokka-validator-1::1220c0f2b46723f59673aa0cd470dc5de04f62aec930ab2295eddfbc980e4a26687e",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "dteamtech-validator-1::12206a390f4088321a251280cd20c44f2ae02d54b4d29a8327d3523e7b03a7e98464",
+      "total_markers": 3899,
+      "self_markers": 3899,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "13094.6700349242",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:00:00Z",
+      "last_seen": "2026-10-04T00:50:00Z",
+      "featured_since": "2026-01-30T17:00:48Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::dteamtech-validator-1::12206a390f4088321a251280cd20c44f2ae02d54b4d29a8327d3523e7b03a7e98464"
+      ],
+      "host_party_ids": [
+        "dteamtech-validator-1::12206a390f4088321a251280cd20c44f2ae02d54b4d29a8327d3523e7b03a7e98464"
+      ],
+      "topology_as_of": "2026-10-04T00:48:05Z",
+      "burn_party_id": "dteamtech-validator-1::12206a390f4088321a251280cd20c44f2ae02d54b4d29a8327d3523e7b03a7e98464",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "lattice-app::12203159b906cc358eb649f0b70c0a2ba87420fe933d669034e6d8ba7a582efdf3cf",
+      "total_markers": 3885,
+      "self_markers": 3885,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "13897.7640284072",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T18:43:18Z",
+      "last_seen": "2026-10-04T00:53:53Z",
+      "featured_since": "2026-07-05T18:00:43Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::lattice-validator-mainnet-01::1220ea783548c5e1ae4bab6bfd96427dfa81db56f904b4efc97da8cca0e016f33596"
+      ],
+      "host_party_ids": [
+        "lattice-validator-mainnet-01::1220ea783548c5e1ae4bab6bfd96427dfa81db56f904b4efc97da8cca0e016f33596"
+      ],
+      "topology_as_of": "2026-10-04T00:48:06Z",
+      "burn_party_id": "lattice-validator-mainnet-01::1220ea783548c5e1ae4bab6bfd96427dfa81db56f904b4efc97da8cca0e016f33596",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "slay-money-validator::1220fa07a73d7a0c7df66161449570e987738485ffb03a6d320d831a5d72b355efc5",
+      "total_markers": 3794,
+      "self_markers": 3794,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "13560.7063135194",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:05:13Z",
+      "last_seen": "2026-10-04T00:49:39Z",
+      "featured_since": "2026-07-18T16:49:40Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::slay-money-validator::1220fa07a73d7a0c7df66161449570e987738485ffb03a6d320d831a5d72b355efc5"
+      ],
+      "host_party_ids": [
+        "slay-money-validator::1220fa07a73d7a0c7df66161449570e987738485ffb03a6d320d831a5d72b355efc5"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "slay-money-validator::1220fa07a73d7a0c7df66161449570e987738485ffb03a6d320d831a5d72b355efc5",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "c7trust::12202e2325b04b0f0ee30685088289293b3e7a28d8b26470b39435502912e2876cba",
+      "total_markers": 3756,
+      "self_markers": 3755,
+      "non_self_markers": 1,
+      "coupons": 0,
+      "total_cc_earned": "5059.7830758297",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 2,
+      "first_seen": "2026-09-05T01:31:54Z",
+      "last_seen": "2026-10-04T00:05:02Z",
+      "featured_since": "2025-09-04T17:00:20Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::validator-c7labsuk::12202e2325b04b0f0ee30685088289293b3e7a28d8b26470b39435502912e2876cba"
+      ],
+      "host_party_ids": [
+        "C7LabsUK-validator-1::12202e2325b04b0f0ee30685088289293b3e7a28d8b26470b39435502912e2876cba"
+      ],
+      "topology_as_of": "2026-10-04T00:48:04Z",
+      "burn_party_id": "C7LabsUK-validator-1::12202e2325b04b0f0ee30685088289293b3e7a28d8b26470b39435502912e2876cba",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "party-28dc4516-b5ca-44ff-86c7-2107e90a6807::1220b8301e18aa8a401d6e34e6c20f8b0243183c514373bca8f1b6b9270246341a9e",
+      "total_markers": 3720,
+      "self_markers": 1860,
+      "non_self_markers": 1860,
+      "coupons": 0,
+      "total_cc_earned": "2552.7251834089",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 2,
+      "first_seen": "2026-09-05T00:24:45Z",
+      "last_seen": "2026-10-04T00:40:17Z",
+      "featured_since": "2024-12-11T16:03:56Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::brale-prodmainnet-2::1220b8301e18aa8a401d6e34e6c20f8b0243183c514373bca8f1b6b9270246341a9e"
+      ],
+      "host_party_ids": [
+        "brale-prodmainnet-1::1220b8301e18aa8a401d6e34e6c20f8b0243183c514373bca8f1b6b9270246341a9e"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "brale-prodmainnet-1::1220b8301e18aa8a401d6e34e6c20f8b0243183c514373bca8f1b6b9270246341a9e",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "c7lock::12202e2325b04b0f0ee30685088289293b3e7a28d8b26470b39435502912e2876cba",
+      "total_markers": 3705,
+      "self_markers": 3705,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "3872.2819703597",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:29:32Z",
+      "last_seen": "2026-10-04T00:47:25Z",
+      "featured_since": "2026-07-05T18:00:39Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::validator-c7labsuk::12202e2325b04b0f0ee30685088289293b3e7a28d8b26470b39435502912e2876cba"
+      ],
+      "host_party_ids": [
+        "C7LabsUK-validator-1::12202e2325b04b0f0ee30685088289293b3e7a28d8b26470b39435502912e2876cba"
+      ],
+      "topology_as_of": "2026-10-04T00:48:04Z",
+      "burn_party_id": "C7LabsUK-validator-1::12202e2325b04b0f0ee30685088289293b3e7a28d8b26470b39435502912e2876cba",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "poolparty-operator::1220f1b0d7a83c7eaaf6d712d95d5952ea2c801238af9c342e8d83c87dfc45c999dc",
+      "total_markers": 3685,
+      "self_markers": 3685,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "10962.9857955756",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:05:08Z",
+      "last_seen": "2026-10-04T00:53:40Z",
+      "featured_since": "2026-05-19T04:31:20Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::send-cantonwallet-1::1220f1b0d7a83c7eaaf6d712d95d5952ea2c801238af9c342e8d83c87dfc45c999dc"
+      ],
+      "host_party_ids": [
+        "send-cantonwallet-1::1220f1b0d7a83c7eaaf6d712d95d5952ea2c801238af9c342e8d83c87dfc45c999dc"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "send-cantonwallet-1::1220f1b0d7a83c7eaaf6d712d95d5952ea2c801238af9c342e8d83c87dfc45c999dc",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "Supanova-validator-1::12205c9e7df3ce671bc5e285120cb6e4dfae5ee3029c04fa82f1cd828c5e7197d882",
+      "total_markers": 3672,
+      "self_markers": 3672,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "499176.2496776786",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:10:50Z",
+      "last_seen": "2026-10-03T12:17:28Z",
+      "featured_since": "2026-01-16T18:00:58Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::Supanova-validator-1::12205c9e7df3ce671bc5e285120cb6e4dfae5ee3029c04fa82f1cd828c5e7197d882"
+      ],
+      "host_party_ids": [
+        "Supanova-validator-1::12205c9e7df3ce671bc5e285120cb6e4dfae5ee3029c04fa82f1cd828c5e7197d882"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "Supanova-validator-1::12205c9e7df3ce671bc5e285120cb6e4dfae5ee3029c04fa82f1cd828c5e7197d882",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "SatsTerminal-main-1::122043df1a3b6ae04288cbcd1899434a945a75b849859f20b124e8ba07ebb812a047",
+      "total_markers": 3524,
+      "self_markers": 3524,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "26417.1526500932",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:08:58Z",
+      "last_seen": "2026-10-04T00:51:36Z",
+      "featured_since": "2026-03-28T15:00:45Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::SatsTerminal-main-1::122043df1a3b6ae04288cbcd1899434a945a75b849859f20b124e8ba07ebb812a047"
+      ],
+      "host_party_ids": [
+        "SatsTerminal-main-1::122043df1a3b6ae04288cbcd1899434a945a75b849859f20b124e8ba07ebb812a047"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "SatsTerminal-main-1::122043df1a3b6ae04288cbcd1899434a945a75b849859f20b124e8ba07ebb812a047",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "grofty-wallet::1220d6036f0a1d91276ce99d2b371548605c0ea2b95ab3869811e04182f8a3b8b8bb",
+      "total_markers": 3470,
+      "self_markers": 3470,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "16841.0274591324",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:05:00Z",
+      "last_seen": "2026-10-04T00:46:00Z",
+      "featured_since": "2026-07-05T18:00:57Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::Winnode-Mainnet-1::1220d6036f0a1d91276ce99d2b371548605c0ea2b95ab3869811e04182f8a3b8b8bb"
+      ],
+      "host_party_ids": [
+        "Winnode-Mainnet-1::1220d6036f0a1d91276ce99d2b371548605c0ea2b95ab3869811e04182f8a3b8b8bb"
+      ],
+      "topology_as_of": "2026-10-04T00:48:05Z",
+      "burn_party_id": "Winnode-Mainnet-1::1220d6036f0a1d91276ce99d2b371548605c0ea2b95ab3869811e04182f8a3b8b8bb",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "DStash::122016b8c36f538ee05279581ab01465feab275ebe208288c517c020b679f4ee5e9f",
+      "total_markers": 3276,
+      "self_markers": 3276,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "10797.1401980082",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-08T19:52:58Z",
+      "last_seen": "2026-10-04T00:47:49Z",
+      "featured_since": "2025-08-31T16:01:03Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::EquiTek-validator-1::122016b8c36f538ee05279581ab01465feab275ebe208288c517c020b679f4ee5e9f"
+      ],
+      "host_party_ids": [
+        "EquiTek-validator-1::122016b8c36f538ee05279581ab01465feab275ebe208288c517c020b679f4ee5e9f"
+      ],
+      "topology_as_of": "2026-10-04T00:48:05Z",
+      "burn_party_id": "EquiTek-validator-1::122016b8c36f538ee05279581ab01465feab275ebe208288c517c020b679f4ee5e9f",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "cache-cantor8-1::12207a2fd494b597697ded5a78228b5b9204408cea50ec26b327ae95deaee5cf1812",
+      "total_markers": 3213,
+      "self_markers": 3213,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "1299263.8118038171",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:19:34Z",
+      "last_seen": "2026-10-02T23:59:03Z",
+      "featured_since": "2026-05-22T19:25:16Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::cache-cantor8-1::12207a2fd494b597697ded5a78228b5b9204408cea50ec26b327ae95deaee5cf1812"
+      ],
+      "host_party_ids": [
+        "cache-cantor8-1::12207a2fd494b597697ded5a78228b5b9204408cea50ec26b327ae95deaee5cf1812"
+      ],
+      "topology_as_of": "2026-10-04T00:48:04Z",
+      "burn_party_id": "cache-cantor8-1::12207a2fd494b597697ded5a78228b5b9204408cea50ec26b327ae95deaee5cf1812",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "thehub-validator-2::12209cbda0246f31fda21844936d3ed71d39d1e253827ba5918543cdbb07b4c24353",
+      "total_markers": 2931,
+      "self_markers": 2931,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "1563.4118302380",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-29T16:53:29Z",
+      "last_seen": "2026-10-03T23:13:37Z",
+      "featured_since": "2026-09-29T16:52:29Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::thehub-validator-2::12209cbda0246f31fda21844936d3ed71d39d1e253827ba5918543cdbb07b4c24353"
+      ],
+      "host_party_ids": [
+        "thehub-validator-2::12209cbda0246f31fda21844936d3ed71d39d1e253827ba5918543cdbb07b4c24353"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "thehub-validator-2::12209cbda0246f31fda21844936d3ed71d39d1e253827ba5918543cdbb07b4c24353",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "feat-unhedged-app::12208567a714a12d1ba486a9fa702a0a438b5b3b895510eca791e3ef965a24be8832",
+      "total_markers": 2924,
+      "self_markers": 2924,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "122083.1903755905",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:09:41Z",
+      "last_seen": "2026-10-04T00:55:11Z",
+      "featured_since": "2026-04-21T20:44:25Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::alphadna-mainnet-1::12208567a714a12d1ba486a9fa702a0a438b5b3b895510eca791e3ef965a24be8832"
+      ],
+      "host_party_ids": [
+        "alphadna-mainnet-1::12208567a714a12d1ba486a9fa702a0a438b5b3b895510eca791e3ef965a24be8832"
+      ],
+      "topology_as_of": "2026-10-04T00:48:05Z",
+      "burn_party_id": "alphadna-mainnet-1::12208567a714a12d1ba486a9fa702a0a438b5b3b895510eca791e3ef965a24be8832",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "slaymoney-validator-2::12203c58a9f432f03d906aec51a281b918ee1b83f21f0444d7d66b07ba82ff46936b",
+      "total_markers": 2910,
+      "self_markers": 2910,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "12362.1282731873",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:14:19Z",
+      "last_seen": "2026-10-04T00:35:45Z",
+      "featured_since": "2026-08-12T18:10:42Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::slaymoney-validator-2::12203c58a9f432f03d906aec51a281b918ee1b83f21f0444d7d66b07ba82ff46936b"
+      ],
+      "host_party_ids": [
+        "slaymoney-validator-2::12203c58a9f432f03d906aec51a281b918ee1b83f21f0444d7d66b07ba82ff46936b"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "slaymoney-validator-2::12203c58a9f432f03d906aec51a281b918ee1b83f21f0444d7d66b07ba82ff46936b",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "Tokino-validator-1::1220c4e630e0281e7e1487863dd56078106433c35e4bc013f7d3fc8e22464bc78e28",
+      "total_markers": 2823,
+      "self_markers": 2823,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "13237.5446529388",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:00:14Z",
+      "last_seen": "2026-10-04T00:55:17Z",
+      "featured_since": "2026-02-11T11:37:15Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::Tokino-validator-1::1220c4e630e0281e7e1487863dd56078106433c35e4bc013f7d3fc8e22464bc78e28"
+      ],
+      "host_party_ids": [
+        "Tokino-validator-1::1220c4e630e0281e7e1487863dd56078106433c35e4bc013f7d3fc8e22464bc78e28"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "Tokino-validator-1::1220c4e630e0281e7e1487863dd56078106433c35e4bc013f7d3fc8e22464bc78e28",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "noves-translate::1220dd5cc6e969cd7d7c11e339fbd07fab5f6fa1f999dc09339228d17299d9d68941",
+      "total_markers": 2813,
+      "self_markers": 2813,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "14426.4639399824",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:03:05Z",
+      "last_seen": "2026-10-04T00:40:54Z",
+      "featured_since": "2025-10-03T18:00:16Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::noves-validator-1::1220dd5cc6e969cd7d7c11e339fbd07fab5f6fa1f999dc09339228d17299d9d68941"
+      ],
+      "host_party_ids": [
+        "noves-validator-1::1220dd5cc6e969cd7d7c11e339fbd07fab5f6fa1f999dc09339228d17299d9d68941"
+      ],
+      "topology_as_of": "2026-10-04T00:48:06Z",
+      "burn_party_id": "noves-validator-1::1220dd5cc6e969cd7d7c11e339fbd07fab5f6fa1f999dc09339228d17299d9d68941",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "tradefast-mainnet-1::1220674b79cae334aa788ffa394a6bd7d10e427d9f2abd418048e5be49ceb4256ca4",
+      "total_markers": 2729,
+      "self_markers": 2729,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "219445.7336631352",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:34:37Z",
+      "last_seen": "2026-10-02T13:30:46Z",
+      "featured_since": "2026-02-05T18:24:10Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::tradefast-mainnet-1::1220674b79cae334aa788ffa394a6bd7d10e427d9f2abd418048e5be49ceb4256ca4"
+      ],
+      "host_party_ids": [
+        "tradefast-mainnet-1::1220674b79cae334aa788ffa394a6bd7d10e427d9f2abd418048e5be49ceb4256ca4"
+      ],
+      "topology_as_of": "2026-10-04T00:48:08Z",
+      "burn_party_id": "tradefast-mainnet-1::1220674b79cae334aa788ffa394a6bd7d10e427d9f2abd418048e5be49ceb4256ca4",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "Tradecraft::122096fe076cc065af0cb38f94caa60e8ddfecbe8f0cfe10655ae7aa06fab99c66b7",
+      "total_markers": 2613,
+      "self_markers": 2613,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "1198845.0451450933",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:08:51Z",
+      "last_seen": "2026-10-04T00:47:07Z",
+      "featured_since": "2026-05-01T13:00:10Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::ObsidianSystems-validator-2_1::122096fe076cc065af0cb38f94caa60e8ddfecbe8f0cfe10655ae7aa06fab99c66b7"
+      ],
+      "host_party_ids": [
+        "ObsidianSystems-validator-2::122096fe076cc065af0cb38f94caa60e8ddfecbe8f0cfe10655ae7aa06fab99c66b7"
+      ],
+      "topology_as_of": "2026-10-04T00:48:08Z",
+      "burn_party_id": "ObsidianSystems-validator-2::122096fe076cc065af0cb38f94caa60e8ddfecbe8f0cfe10655ae7aa06fab99c66b7",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "modulo-mainnet-2::1220bbd47c5a10d5540c420e1f8f0f1fd513464ec6110dbd5123970dbe3b538805d3",
+      "total_markers": 2471,
+      "self_markers": 2471,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "12984.9506644196",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T05:58:08Z",
+      "last_seen": "2026-10-03T23:26:11Z",
+      "featured_since": "2025-12-08T03:14:22Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::modulo-mainnet-2::1220bbd47c5a10d5540c420e1f8f0f1fd513464ec6110dbd5123970dbe3b538805d3"
+      ],
+      "host_party_ids": [
+        "modulo-mainnet-2::1220bbd47c5a10d5540c420e1f8f0f1fd513464ec6110dbd5123970dbe3b538805d3"
+      ],
+      "topology_as_of": "2026-10-04T00:48:06Z",
+      "burn_party_id": "modulo-mainnet-2::1220bbd47c5a10d5540c420e1f8f0f1fd513464ec6110dbd5123970dbe3b538805d3",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "auth0_007c68129abae6733ca8b889162e::122064aab814d8d02f957120e33a970a5aca7c14097eab85ab40a36ddff26c70c44b",
+      "total_markers": 2377,
+      "self_markers": 2377,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "4357.1664724606",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:04:54Z",
+      "last_seen": "2026-10-04T00:53:37Z",
+      "featured_since": "2025-05-29T19:01:07Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::chata-main-2::122064aab814d8d02f957120e33a970a5aca7c14097eab85ab40a36ddff26c70c44b"
+      ],
+      "host_party_ids": [
+        "chata-main-2::122064aab814d8d02f957120e33a970a5aca7c14097eab85ab40a36ddff26c70c44b"
+      ],
+      "topology_as_of": "2026-10-04T00:48:04Z",
+      "burn_party_id": "chata-main-2::122064aab814d8d02f957120e33a970a5aca7c14097eab85ab40a36ddff26c70c44b",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "tenkai-main-1::122092e9dd81d0a52f38b110f6b2e6426713418cc4db363c5c9b2c8cb6e46922c671",
+      "total_markers": 2162,
+      "self_markers": 2162,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "563411.4703336598",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:07:14Z",
+      "last_seen": "2026-10-04T00:43:12Z",
+      "featured_since": "2026-01-13T17:23:16Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::tenkai-main-1::122092e9dd81d0a52f38b110f6b2e6426713418cc4db363c5c9b2c8cb6e46922c671"
+      ],
+      "host_party_ids": [
+        "tenkai-main-1::122092e9dd81d0a52f38b110f6b2e6426713418cc4db363c5c9b2c8cb6e46922c671"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "tenkai-main-1::122092e9dd81d0a52f38b110f6b2e6426713418cc4db363c5c9b2c8cb6e46922c671",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "arccade-validator-1::1220ac8a00a3887fa2fa50bf1e674eb0480884c4e0dca1e20ffeeda42f0798ba581a",
+      "total_markers": 2155,
+      "self_markers": 2155,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "14109.7545109697",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:20:28Z",
+      "last_seen": "2026-10-04T00:49:56Z",
+      "featured_since": "2026-08-18T08:33:34Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::arccade-validator-1::1220ac8a00a3887fa2fa50bf1e674eb0480884c4e0dca1e20ffeeda42f0798ba581a"
+      ],
+      "host_party_ids": [
+        "arccade-validator-1::1220ac8a00a3887fa2fa50bf1e674eb0480884c4e0dca1e20ffeeda42f0798ba581a"
+      ],
+      "topology_as_of": "2026-10-04T00:48:03Z",
+      "burn_party_id": "arccade-validator-1::1220ac8a00a3887fa2fa50bf1e674eb0480884c4e0dca1e20ffeeda42f0798ba581a",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "ccbrowser::12202ed141853e92fbb3f49009ec5dc6efbd5c54597943d6b5ef314042536f1ad41e",
+      "total_markers": 1996,
+      "self_markers": 1996,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "14263.8024382087",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:03:08Z",
+      "last_seen": "2026-10-04T00:51:50Z",
+      "featured_since": "2026-07-25T23:22:51Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::noves-validator-2::12202ed141853e92fbb3f49009ec5dc6efbd5c54597943d6b5ef314042536f1ad41e"
+      ],
+      "host_party_ids": [
+        "noves-validator-2::12202ed141853e92fbb3f49009ec5dc6efbd5c54597943d6b5ef314042536f1ad41e"
+      ],
+      "topology_as_of": "2026-10-04T00:48:04Z",
+      "burn_party_id": "noves-validator-2::12202ed141853e92fbb3f49009ec5dc6efbd5c54597943d6b5ef314042536f1ad41e",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "NGC-Ventures-1::1220b89a95fa875dc18dde64309134812da64787d1625297723c0af109088dbd7f0f",
+      "total_markers": 1549,
+      "self_markers": 1549,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "16645.8828362575",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T05:50:38Z",
+      "last_seen": "2026-10-04T00:54:12Z",
+      "featured_since": "2026-06-30T23:02:43Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::NGC-Ventures-1::1220b89a95fa875dc18dde64309134812da64787d1625297723c0af109088dbd7f0f"
+      ],
+      "host_party_ids": [
+        "NGC-Ventures-1::1220b89a95fa875dc18dde64309134812da64787d1625297723c0af109088dbd7f0f"
+      ],
+      "topology_as_of": "2026-10-04T00:48:06Z",
+      "burn_party_id": "NGC-Ventures-1::1220b89a95fa875dc18dde64309134812da64787d1625297723c0af109088dbd7f0f",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "upflam-main-1::1220cc07965b22048868ace639de7f516c45ab59de511e10e2a7f12ae1e3895c4d51",
+      "total_markers": 1254,
+      "self_markers": 629,
+      "non_self_markers": 625,
+      "coupons": 0,
+      "total_cc_earned": "2322.5212671539",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 2,
+      "first_seen": "2026-09-29T16:57:26Z",
+      "last_seen": "2026-10-04T00:50:27Z",
+      "featured_since": "2026-09-29T16:52:23Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::upflam-main-1::1220cc07965b22048868ace639de7f516c45ab59de511e10e2a7f12ae1e3895c4d51"
+      ],
+      "host_party_ids": [
+        "upflam-main-1::1220cc07965b22048868ace639de7f516c45ab59de511e10e2a7f12ae1e3895c4d51"
+      ],
+      "topology_as_of": "2026-10-04T00:48:08Z",
+      "burn_party_id": "upflam-main-1::1220cc07965b22048868ace639de7f516c45ab59de511e10e2a7f12ae1e3895c4d51",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "nexode::12208428f54ef01a64f520dc586a3876f8316b03f1ec40b3764142de89dc5d34acb9",
+      "total_markers": 1191,
+      "self_markers": 1191,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "4894.4617515326",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-25T18:30:02Z",
+      "last_seen": "2026-10-04T00:50:02Z",
+      "featured_since": "2026-09-23T16:14:13Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::nexode-validator-1::12208428f54ef01a64f520dc586a3876f8316b03f1ec40b3764142de89dc5d34acb9"
+      ],
+      "host_party_ids": [
+        "nexode-validator-1::12208428f54ef01a64f520dc586a3876f8316b03f1ec40b3764142de89dc5d34acb9"
+      ],
+      "topology_as_of": "2026-10-04T00:48:06Z",
+      "burn_party_id": "nexode-validator-1::12208428f54ef01a64f520dc586a3876f8316b03f1ec40b3764142de89dc5d34acb9",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "handlpay-main-1::12207ac147ad3e95894e7a507da3f04a819e8996f0bdf31c084ab3b77e51746b03cf",
+      "total_markers": 816,
+      "self_markers": 816,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "17805.0542734602",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:02:23Z",
+      "last_seen": "2026-10-04T00:06:39Z",
+      "featured_since": "2026-02-05T17:35:53Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::handlpay-main-1::12207ac147ad3e95894e7a507da3f04a819e8996f0bdf31c084ab3b77e51746b03cf"
+      ],
+      "host_party_ids": [
+        "handlpay-main-1::12207ac147ad3e95894e7a507da3f04a819e8996f0bdf31c084ab3b77e51746b03cf"
+      ],
+      "topology_as_of": "2026-10-04T00:48:05Z",
+      "burn_party_id": "handlpay-main-1::12207ac147ad3e95894e7a507da3f04a819e8996f0bdf31c084ab3b77e51746b03cf",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "kucoin-node-01::1220a9f52878b918c523d04b7b77fde73b39ba9842292e88bf2e7ce3b86eb25a3978",
+      "total_markers": 785,
+      "self_markers": 785,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "425.9993255831",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:53:17Z",
+      "last_seen": "2026-10-03T23:07:43Z",
+      "featured_since": "2025-11-12T19:40:11Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::kucoin-node-01::1220a9f52878b918c523d04b7b77fde73b39ba9842292e88bf2e7ce3b86eb25a3978"
+      ],
+      "host_party_ids": [
+        "kucoin-node-01::1220a9f52878b918c523d04b7b77fde73b39ba9842292e88bf2e7ce3b86eb25a3978"
+      ],
+      "topology_as_of": "2026-10-04T00:48:06Z",
+      "burn_party_id": "kucoin-node-01::1220a9f52878b918c523d04b7b77fde73b39ba9842292e88bf2e7ce3b86eb25a3978",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "mexc-mainNet-01::12200e0228fa4b2652d5364068ed4e518bfb20e8be9ca062397bd068c8b2817fc5c7",
+      "total_markers": 716,
+      "self_markers": 716,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "398.8432332904",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:58:15Z",
+      "last_seen": "2026-10-03T22:26:07Z",
+      "featured_since": "2025-11-10T05:50:21Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::mexc-mainNet-01::12200e0228fa4b2652d5364068ed4e518bfb20e8be9ca062397bd068c8b2817fc5c7"
+      ],
+      "host_party_ids": [
+        "mexc-mainNet-01::12200e0228fa4b2652d5364068ed4e518bfb20e8be9ca062397bd068c8b2817fc5c7"
+      ],
+      "topology_as_of": "2026-10-04T00:48:06Z",
+      "burn_party_id": "mexc-mainNet-01::12200e0228fa4b2652d5364068ed4e518bfb20e8be9ca062397bd068c8b2817fc5c7",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "kraken-validator-01::12201a93a967d6aa33310fb8b15a5b92a69ff48b7f326f20a26622a56a0ccea4168a",
+      "total_markers": 713,
+      "self_markers": 713,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "389.6935166619",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:15:01Z",
+      "last_seen": "2026-10-04T00:36:13Z",
+      "featured_since": "2025-11-10T05:35:14Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::kraken-validator-01::12201a93a967d6aa33310fb8b15a5b92a69ff48b7f326f20a26622a56a0ccea4168a"
+      ],
+      "host_party_ids": [
+        "kraken-validator-01::12201a93a967d6aa33310fb8b15a5b92a69ff48b7f326f20a26622a56a0ccea4168a"
+      ],
+      "topology_as_of": "2026-10-04T00:48:06Z",
+      "burn_party_id": "kraken-validator-01::12201a93a967d6aa33310fb8b15a5b92a69ff48b7f326f20a26622a56a0ccea4168a",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "tabiri-mainnet-1::122083b942cb402685dfd090832eba3db379fb19c5f33703c93ffd3a7c69e2e1f3b4",
+      "total_markers": 713,
+      "self_markers": 713,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "125659.3403682546",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T01:50:38Z",
+      "last_seen": "2026-10-04T00:20:47Z",
+      "featured_since": "2026-08-27T06:47:37Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::tabiri-mainnet-1::122083b942cb402685dfd090832eba3db379fb19c5f33703c93ffd3a7c69e2e1f3b4"
+      ],
+      "host_party_ids": [
+        "tabiri-mainnet-1::122083b942cb402685dfd090832eba3db379fb19c5f33703c93ffd3a7c69e2e1f3b4"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "tabiri-mainnet-1::122083b942cb402685dfd090832eba3db379fb19c5f33703c93ffd3a7c69e2e1f3b4",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "foundinalsunthy-mainnet-1::12201004202ad4f2ba69d160e148899596aa294db698917f3aaef063afcb0a412c83",
+      "total_markers": 697,
+      "self_markers": 38,
+      "non_self_markers": 659,
+      "coupons": 0,
+      "total_cc_earned": "12877.7729085642",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 2,
+      "first_seen": "2026-09-05T00:10:46Z",
+      "last_seen": "2026-10-03T10:10:01Z",
+      "featured_since": "2025-11-24T00:33:14Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::foundinalsunthy-mainnet-1::12201004202ad4f2ba69d160e148899596aa294db698917f3aaef063afcb0a412c83"
+      ],
+      "host_party_ids": [
+        "foundinalsunthy-mainnet-1::12201004202ad4f2ba69d160e148899596aa294db698917f3aaef063afcb0a412c83"
+      ],
+      "topology_as_of": "2026-10-04T00:48:05Z",
+      "burn_party_id": "foundinalsunthy-mainnet-1::12201004202ad4f2ba69d160e148899596aa294db698917f3aaef063afcb0a412c83",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "rho-relay::12202d95f280fada14a100a940bb0901a08882cccc92144bc4cf9856994e192e3e73",
+      "total_markers": 691,
+      "self_markers": 0,
+      "non_self_markers": 691,
+      "coupons": 0,
+      "total_cc_earned": "17453.7406665970",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T17:05:06Z",
+      "last_seen": "2026-10-04T00:42:18Z",
+      "featured_since": "2026-04-23T02:03:09Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::RhoLabs-validator-1::1220bfb589b92ba1c248d94b30f464cb74d8d9cc3d9eea4799097434f4784ed1d178"
+      ],
+      "host_party_ids": [
+        "RhoLabs-validator-1::1220bfb589b92ba1c248d94b30f464cb74d8d9cc3d9eea4799097434f4784ed1d178"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "RhoLabs-validator-1::1220bfb589b92ba1c248d94b30f464cb74d8d9cc3d9eea4799097434f4784ed1d178",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "ftp-x402-infrastructure::1220da867ceb28e1531ebfbea9ca9b25f75be06755999f48f0ec4b96f4174e3cd133",
+      "total_markers": 600,
+      "self_markers": 0,
+      "non_self_markers": 600,
+      "coupons": 0,
+      "total_cc_earned": "3009.8553893914",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-29T18:05:33Z",
+      "last_seen": "2026-10-04T00:53:33Z",
+      "featured_since": "2026-09-29T16:52:22Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::FTP-validator-2::1220da867ceb28e1531ebfbea9ca9b25f75be06755999f48f0ec4b96f4174e3cd133"
+      ],
+      "host_party_ids": [
+        "FTP-validator-2::1220da867ceb28e1531ebfbea9ca9b25f75be06755999f48f0ec4b96f4174e3cd133"
+      ],
+      "topology_as_of": "2026-10-04T00:48:05Z",
+      "burn_party_id": "FTP-validator-2::1220da867ceb28e1531ebfbea9ca9b25f75be06755999f48f0ec4b96f4174e3cd133",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "bayzen-validator-1::1220618de8af3a43c95f7f9c6430f9a308152eb564f57b4c60c4c655f67fb867af1c",
+      "total_markers": 298,
+      "self_markers": 298,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "150.9107643119",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-10-03T15:40:22Z",
+      "last_seen": "2026-10-04T00:55:13Z",
+      "featured_since": "2026-10-03T14:00:11Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::bayzen-validator-1::1220618de8af3a43c95f7f9c6430f9a308152eb564f57b4c60c4c655f67fb867af1c"
+      ],
+      "host_party_ids": [
+        "bayzen-validator-1::1220618de8af3a43c95f7f9c6430f9a308152eb564f57b4c60c4c655f67fb867af1c"
+      ],
+      "topology_as_of": "2026-10-04T00:48:04Z",
+      "burn_party_id": "bayzen-validator-1::1220618de8af3a43c95f7f9c6430f9a308152eb564f57b4c60c4c655f67fb867af1c",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "Cancore-mainnet-1::1220076a94e0a7f0256a32ffab227db7788d8075677d8afcdaa8386df8f2fa659906",
+      "total_markers": 214,
+      "self_markers": 214,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "7910.2520670048",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-07T10:50:05Z",
+      "last_seen": "2026-10-01T10:53:36Z",
+      "featured_since": "2026-09-05T04:42:15Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::Cancore-mainnet-1::1220076a94e0a7f0256a32ffab227db7788d8075677d8afcdaa8386df8f2fa659906"
+      ],
+      "host_party_ids": [
+        "Cancore-mainnet-1::1220076a94e0a7f0256a32ffab227db7788d8075677d8afcdaa8386df8f2fa659906"
+      ],
+      "topology_as_of": "2026-10-04T00:48:04Z",
+      "burn_party_id": "Cancore-mainnet-1::1220076a94e0a7f0256a32ffab227db7788d8075677d8afcdaa8386df8f2fa659906",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "cypherock-mainnet-1::1220583c5b03a866fd8e5f09737cdb51818c7b4b52a8e8c9b0cc2f4d1b082e95b6d9",
+      "total_markers": 195,
+      "self_markers": 195,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "539.1672960025",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T06:09:48Z",
+      "last_seen": "2026-10-03T23:00:21Z",
+      "featured_since": "2025-11-15T05:46:11Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::cypherock-mainnet-1::1220583c5b03a866fd8e5f09737cdb51818c7b4b52a8e8c9b0cc2f4d1b082e95b6d9"
+      ],
+      "host_party_ids": [
+        "cypherock-mainnet-1::1220583c5b03a866fd8e5f09737cdb51818c7b4b52a8e8c9b0cc2f4d1b082e95b6d9"
+      ],
+      "topology_as_of": "2026-10-04T00:48:04Z",
+      "burn_party_id": "cypherock-mainnet-1::1220583c5b03a866fd8e5f09737cdb51818c7b4b52a8e8c9b0cc2f4d1b082e95b6d9",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "LoopID::1220940ccaf484be99fc67387ce461bd358aa6c76e43224e959a4bd20fe30a0b11c6",
+      "total_markers": 181,
+      "self_markers": 181,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "6800.7826789673",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:40:01Z",
+      "last_seen": "2026-10-04T00:50:01Z",
+      "featured_since": "2025-11-02T08:41:20Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::117a-mainnet-1::1220940ccaf484be99fc67387ce461bd358aa6c76e43224e959a4bd20fe30a0b11c6"
+      ],
+      "host_party_ids": [
+        "117a-mainnet-1::1220940ccaf484be99fc67387ce461bd358aa6c76e43224e959a4bd20fe30a0b11c6"
+      ],
+      "topology_as_of": "2026-10-04T00:48:06Z",
+      "burn_party_id": "117a-mainnet-1::1220940ccaf484be99fc67387ce461bd358aa6c76e43224e959a4bd20fe30a0b11c6",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "arccade-swap::122030810339fb89e6bd7debc41890cdd689df6818099c92f3b3d0c18548450c6122",
+      "total_markers": 118,
+      "self_markers": 118,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "58.4606926609",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T16:17:33Z",
+      "last_seen": "2026-09-18T18:39:49Z",
+      "featured_since": "2026-08-18T08:33:30Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::arccade-validator-1::1220ac8a00a3887fa2fa50bf1e674eb0480884c4e0dca1e20ffeeda42f0798ba581a"
+      ],
+      "host_party_ids": [
+        "arccade-validator-1::1220ac8a00a3887fa2fa50bf1e674eb0480884c4e0dca1e20ffeeda42f0798ba581a"
+      ],
+      "topology_as_of": "2026-10-04T00:48:03Z",
+      "burn_party_id": "arccade-validator-1::1220ac8a00a3887fa2fa50bf1e674eb0480884c4e0dca1e20ffeeda42f0798ba581a",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "ppbpffauvo::1220e9f5090242641b7a4aaad97e5d56ad40b4a65b69522fb9cd1b2443f6bfefb744",
+      "total_markers": 112,
+      "self_markers": 112,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "15004.5018064961",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T06:00:00Z",
+      "last_seen": "2026-10-03T12:00:00Z",
+      "featured_since": "2026-05-20T23:02:12Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::ccbridge-mainnet-1::12204cc92868f9d6e9756e0dd98554ff02a842e2dbf78b9ccdff1e1d875236e61573"
+      ],
+      "host_party_ids": [
+        "ccbridge-mainnet-1::12204cc92868f9d6e9756e0dd98554ff02a842e2dbf78b9ccdff1e1d875236e61573"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "ccbridge-mainnet-1::12204cc92868f9d6e9756e0dd98554ff02a842e2dbf78b9ccdff1e1d875236e61573",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "Ekiden-app-1::12209dbe4e2f483b6be8913b2f72690cd3486c7667b24d71c52e34816de78ac9482f",
+      "total_markers": 93,
+      "self_markers": 93,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "8923.5680203544",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-06T16:55:12Z",
+      "last_seen": "2026-10-03T11:06:05Z",
+      "featured_since": "2026-07-18T16:49:41Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::Ekiden-app::12209dbe4e2f483b6be8913b2f72690cd3486c7667b24d71c52e34816de78ac9482f"
+      ],
+      "host_party_ids": [
+        "Ekiden-app-1::12209dbe4e2f483b6be8913b2f72690cd3486c7667b24d71c52e34816de78ac9482f"
+      ],
+      "topology_as_of": "2026-10-04T00:48:05Z",
+      "burn_party_id": "Ekiden-app-1::12209dbe4e2f483b6be8913b2f72690cd3486c7667b24d71c52e34816de78ac9482f",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "ValaWallet-FA::122093ce879ca5d08db274937f9a2ec1eb7821d41ccfdce521d68a61ef3bf1b63463",
+      "total_markers": 74,
+      "self_markers": 74,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "20468.7412840469",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T00:55:20Z",
+      "last_seen": "2026-10-03T08:43:20Z",
+      "featured_since": "2026-05-01T17:06:20Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::FCS-10::12201339973af7bb4049bfff4046da2bd22be98176cfc9011617840684bc2ef781d4"
+      ],
+      "host_party_ids": [
+        "ValaWallet-validator-1::12201339973af7bb4049bfff4046da2bd22be98176cfc9011617840684bc2ef781d4"
+      ],
+      "topology_as_of": "2026-10-04T00:48:08Z",
+      "burn_party_id": "ValaWallet-validator-1::12201339973af7bb4049bfff4046da2bd22be98176cfc9011617840684bc2ef781d4",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "pixelplex-mainnet-1::1220347d4ca72661a87bf10a3f47014ad361c131dc3bdec2fb4533d54b9f27894876",
+      "total_markers": 42,
+      "self_markers": 42,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "4049.3464040574",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-22T09:15:50Z",
+      "last_seen": "2026-10-03T12:00:00Z",
+      "featured_since": "2026-09-20T22:02:18Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::pixelplex-mainnet-1::1220347d4ca72661a87bf10a3f47014ad361c131dc3bdec2fb4533d54b9f27894876"
+      ],
+      "host_party_ids": [
+        "pixelplex-mainnet-1::1220347d4ca72661a87bf10a3f47014ad361c131dc3bdec2fb4533d54b9f27894876"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "pixelplex-mainnet-1::1220347d4ca72661a87bf10a3f47014ad361c131dc3bdec2fb4533d54b9f27894876",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "openvector-mainnet-1::1220ab544a2d6cfd0b8c89af3e2b460f6999030ffb067e63dddd60ea265db3c7e3a5",
+      "total_markers": 39,
+      "self_markers": 39,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "2143.1515012151",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-07T10:22:15Z",
+      "last_seen": "2026-10-03T21:33:50Z",
+      "featured_since": "2025-11-22T15:46:12Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::openvector-mainnet-1::1220ab544a2d6cfd0b8c89af3e2b460f6999030ffb067e63dddd60ea265db3c7e3a5"
+      ],
+      "host_party_ids": [
+        "openvector-mainnet-1::1220ab544a2d6cfd0b8c89af3e2b460f6999030ffb067e63dddd60ea265db3c7e3a5"
+      ],
+      "topology_as_of": "2026-10-04T00:48:06Z",
+      "burn_party_id": "openvector-mainnet-1::1220ab544a2d6cfd0b8c89af3e2b460f6999030ffb067e63dddd60ea265db3c7e3a5",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "kairo-mainnet::1220423e47c7ac3735f6b3b27193fb6e412e83ada003edd61d595defd499a364366a",
+      "total_markers": 30,
+      "self_markers": 30,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "1333.9223637588",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-22T09:30:04Z",
+      "last_seen": "2026-10-03T22:05:02Z",
+      "featured_since": "2026-08-05T16:05:22Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::validator-angelhack-kairo::1220423e47c7ac3735f6b3b27193fb6e412e83ada003edd61d595defd499a364366a"
+      ],
+      "host_party_ids": [
+        "angelhack-kairo-1::1220423e47c7ac3735f6b3b27193fb6e412e83ada003edd61d595defd499a364366a"
+      ],
+      "topology_as_of": "2026-10-04T00:48:05Z",
+      "burn_party_id": "angelhack-kairo-1::1220423e47c7ac3735f6b3b27193fb6e412e83ada003edd61d595defd499a364366a",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "Obligate-validator-1::1220663cfdc370c3fc447072f3731a838a2a7de757bc29ee0d34b326f317b70db4aa",
+      "total_markers": 17,
+      "self_markers": 0,
+      "non_self_markers": 17,
+      "coupons": 0,
+      "total_cc_earned": "7816.4357861200",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-17T20:27:55Z",
+      "last_seen": "2026-10-03T02:37:03Z",
+      "featured_since": "2025-10-10T18:00:39Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::Obligate-validator-1::1220663cfdc370c3fc447072f3731a838a2a7de757bc29ee0d34b326f317b70db4aa"
+      ],
+      "host_party_ids": [
+        "Obligate-validator-1::1220663cfdc370c3fc447072f3731a838a2a7de757bc29ee0d34b326f317b70db4aa"
+      ],
+      "topology_as_of": "2026-10-04T00:48:06Z",
+      "burn_party_id": "Obligate-validator-1::1220663cfdc370c3fc447072f3731a838a2a7de757bc29ee0d34b326f317b70db4aa",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "edel-markets::122085b19d439b7e68abf7c94c3d9949f9e23aef3f1d4835ccbcb0993ed96fb53432",
+      "total_markers": 14,
+      "self_markers": 14,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "782.0386602347",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T06:32:11Z",
+      "last_seen": "2026-09-12T10:05:25Z",
+      "featured_since": "2026-07-05T18:00:54Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::edel-various-1::122085b19d439b7e68abf7c94c3d9949f9e23aef3f1d4835ccbcb0993ed96fb53432"
+      ],
+      "host_party_ids": [
+        "edel-various-1::122085b19d439b7e68abf7c94c3d9949f9e23aef3f1d4835ccbcb0993ed96fb53432"
+      ],
+      "topology_as_of": "2026-10-04T00:48:05Z",
+      "burn_party_id": "edel-various-1::122085b19d439b7e68abf7c94c3d9949f9e23aef3f1d4835ccbcb0993ed96fb53432",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "PlatformDex::122046c186f04d2e274820fef7464d4442e64328efa6b20f4eb7b1c871a777248ffa",
+      "total_markers": 8,
+      "self_markers": 0,
+      "non_self_markers": 8,
+      "coupons": 0,
+      "total_cc_earned": "6.5903784394",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-05T01:32:29Z",
+      "last_seen": "2026-09-28T23:56:49Z",
+      "featured_since": "2026-07-10T14:35:18Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::validator-MPCH-EREAL-1::122046c186f04d2e274820fef7464d4442e64328efa6b20f4eb7b1c871a777248ffa"
+      ],
+      "host_party_ids": [
+        "MPCH-EREALvalidator-1::122046c186f04d2e274820fef7464d4442e64328efa6b20f4eb7b1c871a777248ffa"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "MPCH-EREALvalidator-1::122046c186f04d2e274820fef7464d4442e64328efa6b20f4eb7b1c871a777248ffa",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "sanctum-mainnet::12205162445638c3f71c9942b74360134b4ebc953b5bea2c25adc99bff130bffd060",
+      "total_markers": 8,
+      "self_markers": 4,
+      "non_self_markers": 4,
+      "coupons": 0,
+      "total_cc_earned": "5.2334121687",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 2,
+      "first_seen": "2026-09-23T04:50:33Z",
+      "last_seen": "2026-09-23T08:50:41Z",
+      "featured_since": "2026-07-05T18:01:10Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::New3angelhack-mainnet-1::12205162445638c3f71c9942b74360134b4ebc953b5bea2c25adc99bff130bffd060"
+      ],
+      "host_party_ids": [
+        "angelhack-mainnet-1::12205162445638c3f71c9942b74360134b4ebc953b5bea2c25adc99bff130bffd060"
+      ],
+      "topology_as_of": "2026-10-04T00:48:07Z",
+      "burn_party_id": "angelhack-mainnet-1::12205162445638c3f71c9942b74360134b4ebc953b5bea2c25adc99bff130bffd060",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "cardiv::1220b43e4bb9e423ba07cbcc0f5ef0d4e9ebe5d2623cb277d30e6478b179ee0ca9c3",
+      "total_markers": 5,
+      "self_markers": 5,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "2.7148581536",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-30T07:46:58Z",
+      "last_seen": "2026-09-30T11:13:52Z",
+      "featured_since": "2026-09-29T16:52:22Z",
+      "hosting_type": "hosted",
+      "participant_ids": [
+        "PAR::wolfedgelabs-mainnet-2::1220b43e4bb9e423ba07cbcc0f5ef0d4e9ebe5d2623cb277d30e6478b179ee0ca9c3"
+      ],
+      "host_party_ids": [
+        "wolfedgelabs-mainnet-2::1220b43e4bb9e423ba07cbcc0f5ef0d4e9ebe5d2623cb277d30e6478b179ee0ca9c3"
+      ],
+      "topology_as_of": "2026-10-04T00:48:04Z",
+      "burn_party_id": "wolfedgelabs-mainnet-2::1220b43e4bb9e423ba07cbcc0f5ef0d4e9ebe5d2623cb277d30e6478b179ee0ca9c3",
+      "is_self_burn": false
+    },
+    {
+      "party_id": "cantonnodes-validator-1::12202aabb1637789bf00254a7893853860d8458c7c0235b06433611d6bf41e812b10",
+      "total_markers": 1,
+      "self_markers": 1,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "0.5975077823",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-07T21:28:40Z",
+      "last_seen": "2026-09-07T21:28:40Z",
+      "featured_since": "2025-09-25T20:13:30Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::cantonnodes-prod1::12202aabb1637789bf00254a7893853860d8458c7c0235b06433611d6bf41e812b10"
+      ],
+      "host_party_ids": [
+        "cantonnodes-validator-1::12202aabb1637789bf00254a7893853860d8458c7c0235b06433611d6bf41e812b10"
+      ],
+      "topology_as_of": "2026-10-04T00:48:04Z",
+      "burn_party_id": "cantonnodes-validator-1::12202aabb1637789bf00254a7893853860d8458c7c0235b06433611d6bf41e812b10",
+      "is_self_burn": true
+    },
+    {
+      "party_id": "HeliosFinance-Mainnet-1::12209b2f98a7cf41163b67c3aa980840f83f585a5aec8d11854f8d1387b3b8a98eb0",
+      "total_markers": 1,
+      "self_markers": 1,
+      "non_self_markers": 0,
+      "coupons": 0,
+      "total_cc_earned": "0.6260463512",
+      "unique_submitters": 1,
+      "unique_beneficiaries": 1,
+      "first_seen": "2026-09-07T06:18:41Z",
+      "last_seen": "2026-09-07T06:18:41Z",
+      "featured_since": "2026-04-14T14:00:22Z",
+      "hosting_type": "self",
+      "participant_ids": [
+        "PAR::HeliosFinance-Mainnet-1::12209b2f98a7cf41163b67c3aa980840f83f585a5aec8d11854f8d1387b3b8a98eb0"
+      ],
+      "host_party_ids": [
+        "HeliosFinance-Mainnet-1::12209b2f98a7cf41163b67c3aa980840f83f585a5aec8d11854f8d1387b3b8a98eb0"
+      ],
+      "topology_as_of": "2026-10-04T00:48:05Z",
+      "burn_party_id": "HeliosFinance-Mainnet-1::12209b2f98a7cf41163b67c3aa980840f83f585a5aec8d11854f8d1387b3b8a98eb0",
+      "is_self_burn": true
+    }
+  ]
+}

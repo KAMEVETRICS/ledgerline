@@ -1,0 +1,892 @@
+{
+  "stat_type": "transfer",
+  "sub_type": "all",
+  "period": "30d",
+  "granularity": "daily",
+  "totals": {
+    "command": {
+      "count": 28762883,
+      "total_volume": "244685064507.2201822137"
+    },
+    "external_command": {
+      "count": 2162854,
+      "total_volume": "3014030550128715.2325155559"
+    },
+    "instruction": {
+      "count": 525560,
+      "total_volume": "3392404623.7027228953"
+    },
+    "merge_split": {
+      "count": 2476936,
+      "total_volume": "3871961680.8721043430"
+    },
+    "preapproval": {
+      "count": 151028081,
+      "total_volume": "97489931928.9635437362"
+    },
+    "unknown": {
+      "count": 157808550,
+      "total_volume": "17324146969428.5514809639"
+    }
+  },
+  "series": [
+    {
+      "date": "2026-09-04",
+      "sub_type": "command",
+      "count": 108357,
+      "total_volume": "79589100.1154221205"
+    },
+    {
+      "date": "2026-09-04",
+      "sub_type": "external_command",
+      "count": 3,
+      "total_volume": "4860863.5373563420"
+    },
+    {
+      "date": "2026-09-04",
+      "sub_type": "merge_split",
+      "count": 20583,
+      "total_volume": "601649.3076307885"
+    },
+    {
+      "date": "2026-09-04",
+      "sub_type": "preapproval",
+      "count": 4273,
+      "total_volume": "11916960.1869269656"
+    },
+    {
+      "date": "2026-09-04",
+      "sub_type": "unknown",
+      "count": 32791,
+      "total_volume": "3265468343.3595101855"
+    },
+    {
+      "date": "2026-09-05",
+      "sub_type": "command",
+      "count": 88888,
+      "total_volume": "31627032.9788743322"
+    },
+    {
+      "date": "2026-09-05",
+      "sub_type": "merge_split",
+      "count": 20311,
+      "total_volume": "720406.2382468581"
+    },
+    {
+      "date": "2026-09-05",
+      "sub_type": "preapproval",
+      "count": 3742,
+      "total_volume": "6416283.9289198035"
+    },
+    {
+      "date": "2026-09-05",
+      "sub_type": "unknown",
+      "count": 29593,
+      "total_volume": "3400114468.5220817879"
+    },
+    {
+      "date": "2026-09-06",
+      "sub_type": "command",
+      "count": 79484,
+      "total_volume": "43248360.7014554877"
+    },
+    {
+      "date": "2026-09-06",
+      "sub_type": "merge_split",
+      "count": 19171,
+      "total_volume": "369147.4708615043"
+    },
+    {
+      "date": "2026-09-06",
+      "sub_type": "preapproval",
+      "count": 3327,
+      "total_volume": "5008858.3137721125"
+    },
+    {
+      "date": "2026-09-06",
+      "sub_type": "unknown",
+      "count": 38284,
+      "total_volume": "4198984701.1218819899"
+    },
+    {
+      "date": "2026-09-07",
+      "sub_type": "command",
+      "count": 76580,
+      "total_volume": "71272996.0176557316"
+    },
+    {
+      "date": "2026-09-07",
+      "sub_type": "external_command",
+      "count": 3,
+      "total_volume": "505.9438763676"
+    },
+    {
+      "date": "2026-09-07",
+      "sub_type": "merge_split",
+      "count": 19552,
+      "total_volume": "37295.0074211553"
+    },
+    {
+      "date": "2026-09-07",
+      "sub_type": "preapproval",
+      "count": 3850,
+      "total_volume": "4785738.5173505206"
+    },
+    {
+      "date": "2026-09-07",
+      "sub_type": "unknown",
+      "count": 41475,
+      "total_volume": "3587649721.0477274563"
+    },
+    {
+      "date": "2026-09-08",
+      "sub_type": "command",
+      "count": 91164,
+      "total_volume": "221575789.6245125038"
+    },
+    {
+      "date": "2026-09-08",
+      "sub_type": "merge_split",
+      "count": 19573,
+      "total_volume": "40417.6673681172"
+    },
+    {
+      "date": "2026-09-08",
+      "sub_type": "preapproval",
+      "count": 3942,
+      "total_volume": "5461489.5583888966"
+    },
+    {
+      "date": "2026-09-08",
+      "sub_type": "unknown",
+      "count": 46074,
+      "total_volume": "4033668710.3144840418"
+    },
+    {
+      "date": "2026-09-09",
+      "sub_type": "command",
+      "count": 81006,
+      "total_volume": "89512377.2535972356"
+    },
+    {
+      "date": "2026-09-09",
+      "sub_type": "external_command",
+      "count": 2,
+      "total_volume": "745.7885443141"
+    },
+    {
+      "date": "2026-09-09",
+      "sub_type": "merge_split",
+      "count": 22059,
+      "total_volume": "25777.3948762510"
+    },
+    {
+      "date": "2026-09-09",
+      "sub_type": "preapproval",
+      "count": 4087,
+      "total_volume": "12666734.2675951663"
+    },
+    {
+      "date": "2026-09-09",
+      "sub_type": "unknown",
+      "count": 210531,
+      "total_volume": "4082954681.2590897237"
+    },
+    {
+      "date": "2026-09-10",
+      "sub_type": "command",
+      "count": 61571,
+      "total_volume": "159756899.6647388527"
+    },
+    {
+      "date": "2026-09-10",
+      "sub_type": "merge_split",
+      "count": 23079,
+      "total_volume": "12581.2836700888"
+    },
+    {
+      "date": "2026-09-10",
+      "sub_type": "preapproval",
+      "count": 3399,
+      "total_volume": "7671840.0004294980"
+    },
+    {
+      "date": "2026-09-10",
+      "sub_type": "unknown",
+      "count": 209472,
+      "total_volume": "3443269253.3878478260"
+    },
+    {
+      "date": "2026-09-11",
+      "sub_type": "command",
+      "count": 72131,
+      "total_volume": "118223009.9054787724"
+    },
+    {
+      "date": "2026-09-11",
+      "sub_type": "external_command",
+      "count": 8,
+      "total_volume": "132080.4157315525"
+    },
+    {
+      "date": "2026-09-11",
+      "sub_type": "merge_split",
+      "count": 23076,
+      "total_volume": "18976.8932185768"
+    },
+    {
+      "date": "2026-09-11",
+      "sub_type": "preapproval",
+      "count": 2496,
+      "total_volume": "4639814.7665538481"
+    },
+    {
+      "date": "2026-09-11",
+      "sub_type": "unknown",
+      "count": 219995,
+      "total_volume": "3620320994.2365021576"
+    },
+    {
+      "date": "2026-09-12",
+      "sub_type": "command",
+      "count": 67659,
+      "total_volume": "27168935.0942274765"
+    },
+    {
+      "date": "2026-09-12",
+      "sub_type": "external_command",
+      "count": 1,
+      "total_volume": "5.0000000000"
+    },
+    {
+      "date": "2026-09-12",
+      "sub_type": "merge_split",
+      "count": 22273,
+      "total_volume": "14933.5152283757"
+    },
+    {
+      "date": "2026-09-12",
+      "sub_type": "preapproval",
+      "count": 2761,
+      "total_volume": "5514253.9448567573"
+    },
+    {
+      "date": "2026-09-12",
+      "sub_type": "unknown",
+      "count": 155624,
+      "total_volume": "3814357245.6171510175"
+    },
+    {
+      "date": "2026-09-13",
+      "sub_type": "command",
+      "count": 91229,
+      "total_volume": "34554595.6716699838"
+    },
+    {
+      "date": "2026-09-13",
+      "sub_type": "external_command",
+      "count": 2,
+      "total_volume": "51081.7500000000"
+    },
+    {
+      "date": "2026-09-13",
+      "sub_type": "merge_split",
+      "count": 22167,
+      "total_volume": "31869.2240037110"
+    },
+    {
+      "date": "2026-09-13",
+      "sub_type": "preapproval",
+      "count": 3283,
+      "total_volume": "5023609.7215789723"
+    },
+    {
+      "date": "2026-09-13",
+      "sub_type": "unknown",
+      "count": 185814,
+      "total_volume": "3514393317.0750992051"
+    },
+    {
+      "date": "2026-09-14",
+      "sub_type": "command",
+      "count": 60599,
+      "total_volume": "96013758.6364247370"
+    },
+    {
+      "date": "2026-09-14",
+      "sub_type": "external_command",
+      "count": 1,
+      "total_volume": "962.9382693467"
+    },
+    {
+      "date": "2026-09-14",
+      "sub_type": "merge_split",
+      "count": 22924,
+      "total_volume": "17193.7598310951"
+    },
+    {
+      "date": "2026-09-14",
+      "sub_type": "preapproval",
+      "count": 2933,
+      "total_volume": "5969018.6482168889"
+    },
+    {
+      "date": "2026-09-14",
+      "sub_type": "unknown",
+      "count": 235020,
+      "total_volume": "3048880540.3166459201"
+    },
+    {
+      "date": "2026-09-15",
+      "sub_type": "command",
+      "count": 42436,
+      "total_volume": "80329598.2934333364"
+    },
+    {
+      "date": "2026-09-15",
+      "sub_type": "external_command",
+      "count": 1,
+      "total_volume": "165158.3638747635"
+    },
+    {
+      "date": "2026-09-15",
+      "sub_type": "merge_split",
+      "count": 22307,
+      "total_volume": "9174.9038804883"
+    },
+    {
+      "date": "2026-09-15",
+      "sub_type": "preapproval",
+      "count": 2515,
+      "total_volume": "7195756.9651918030"
+    },
+    {
+      "date": "2026-09-15",
+      "sub_type": "unknown",
+      "count": 190075,
+      "total_volume": "2406417064.7203468181"
+    },
+    {
+      "date": "2026-09-16",
+      "sub_type": "command",
+      "count": 59589,
+      "total_volume": "677165562.9940955318"
+    },
+    {
+      "date": "2026-09-16",
+      "sub_type": "external_command",
+      "count": 2,
+      "total_volume": "57418.4287454386"
+    },
+    {
+      "date": "2026-09-16",
+      "sub_type": "merge_split",
+      "count": 23212,
+      "total_volume": "13253.5187159121"
+    },
+    {
+      "date": "2026-09-16",
+      "sub_type": "preapproval",
+      "count": 2342,
+      "total_volume": "12008569.4273172854"
+    },
+    {
+      "date": "2026-09-16",
+      "sub_type": "unknown",
+      "count": 186064,
+      "total_volume": "2860874579.3400788038"
+    },
+    {
+      "date": "2026-09-17",
+      "sub_type": "command",
+      "count": 84731,
+      "total_volume": "216118586.0143804922"
+    },
+    {
+      "date": "2026-09-17",
+      "sub_type": "external_command",
+      "count": 2,
+      "total_volume": "320.1699695221"
+    },
+    {
+      "date": "2026-09-17",
+      "sub_type": "merge_split",
+      "count": 23564,
+      "total_volume": "33325.5920493521"
+    },
+    {
+      "date": "2026-09-17",
+      "sub_type": "preapproval",
+      "count": 3019,
+      "total_volume": "6582792.2429750062"
+    },
+    {
+      "date": "2026-09-17",
+      "sub_type": "unknown",
+      "count": 198497,
+      "total_volume": "5880713285.5687750136"
+    },
+    {
+      "date": "2026-09-18",
+      "sub_type": "command",
+      "count": 91467,
+      "total_volume": "276000535.4599948231"
+    },
+    {
+      "date": "2026-09-18",
+      "sub_type": "merge_split",
+      "count": 22954,
+      "total_volume": "32133.1074848381"
+    },
+    {
+      "date": "2026-09-18",
+      "sub_type": "preapproval",
+      "count": 2714,
+      "total_volume": "7352278.0696175140"
+    },
+    {
+      "date": "2026-09-18",
+      "sub_type": "unknown",
+      "count": 178521,
+      "total_volume": "4420440377.9704849591"
+    },
+    {
+      "date": "2026-09-19",
+      "sub_type": "command",
+      "count": 66828,
+      "total_volume": "60867529.2405524692"
+    },
+    {
+      "date": "2026-09-19",
+      "sub_type": "external_command",
+      "count": 8,
+      "total_volume": "91.7650000000"
+    },
+    {
+      "date": "2026-09-19",
+      "sub_type": "merge_split",
+      "count": 22205,
+      "total_volume": "24974.5628729572"
+    },
+    {
+      "date": "2026-09-19",
+      "sub_type": "preapproval",
+      "count": 2247,
+      "total_volume": "7185826.8034055315"
+    },
+    {
+      "date": "2026-09-19",
+      "sub_type": "unknown",
+      "count": 169709,
+      "total_volume": "3590500546.8135928249"
+    },
+    {
+      "date": "2026-09-20",
+      "sub_type": "command",
+      "count": 38082,
+      "total_volume": "57945863.2989001608"
+    },
+    {
+      "date": "2026-09-20",
+      "sub_type": "external_command",
+      "count": 3,
+      "total_volume": "2888.3350000000"
+    },
+    {
+      "date": "2026-09-20",
+      "sub_type": "merge_split",
+      "count": 22342,
+      "total_volume": "10463.5608531915"
+    },
+    {
+      "date": "2026-09-20",
+      "sub_type": "preapproval",
+      "count": 41749,
+      "total_volume": "6707569.7261783418"
+    },
+    {
+      "date": "2026-09-20",
+      "sub_type": "unknown",
+      "count": 241698,
+      "total_volume": "3085181228.3342951694"
+    },
+    {
+      "date": "2026-09-21",
+      "sub_type": "command",
+      "count": 77374,
+      "total_volume": "222262948.6482252143"
+    },
+    {
+      "date": "2026-09-21",
+      "sub_type": "external_command",
+      "count": 3,
+      "total_volume": "988.6600000000"
+    },
+    {
+      "date": "2026-09-21",
+      "sub_type": "merge_split",
+      "count": 24360,
+      "total_volume": "27164.9283174596"
+    },
+    {
+      "date": "2026-09-21",
+      "sub_type": "preapproval",
+      "count": 55256,
+      "total_volume": "9407232.4858793748"
+    },
+    {
+      "date": "2026-09-21",
+      "sub_type": "unknown",
+      "count": 278532,
+      "total_volume": "2696959696.1228284120"
+    },
+    {
+      "date": "2026-09-22",
+      "sub_type": "command",
+      "count": 67969,
+      "total_volume": "442072347.3963387115"
+    },
+    {
+      "date": "2026-09-22",
+      "sub_type": "merge_split",
+      "count": 23801,
+      "total_volume": "34275350.3617273600"
+    },
+    {
+      "date": "2026-09-22",
+      "sub_type": "preapproval",
+      "count": 2653,
+      "total_volume": "7484213.4927975579"
+    },
+    {
+      "date": "2026-09-22",
+      "sub_type": "unknown",
+      "count": 196039,
+      "total_volume": "28489756.2156343927"
+    },
+    {
+      "date": "2026-09-23",
+      "sub_type": "command",
+      "count": 54291,
+      "total_volume": "415369409.9239866094"
+    },
+    {
+      "date": "2026-09-23",
+      "sub_type": "merge_split",
+      "count": 23406,
+      "total_volume": "116547055.9663064418"
+    },
+    {
+      "date": "2026-09-23",
+      "sub_type": "preapproval",
+      "count": 2237,
+      "total_volume": "9817092.6270694060"
+    },
+    {
+      "date": "2026-09-23",
+      "sub_type": "unknown",
+      "count": 133994,
+      "total_volume": "17159980.4333999828"
+    },
+    {
+      "date": "2026-09-24",
+      "sub_type": "command",
+      "count": 56233,
+      "total_volume": "102945143.2156953433"
+    },
+    {
+      "date": "2026-09-24",
+      "sub_type": "merge_split",
+      "count": 24613,
+      "total_volume": "125237743.8497238152"
+    },
+    {
+      "date": "2026-09-24",
+      "sub_type": "preapproval",
+      "count": 2351,
+      "total_volume": "6947752.3478111798"
+    },
+    {
+      "date": "2026-09-24",
+      "sub_type": "unknown",
+      "count": 187789,
+      "total_volume": "19490044.5109552251"
+    },
+    {
+      "date": "2026-09-25",
+      "sub_type": "command",
+      "count": 69215,
+      "total_volume": "238522456.5662839309"
+    },
+    {
+      "date": "2026-09-25",
+      "sub_type": "merge_split",
+      "count": 25911,
+      "total_volume": "544630977.2287272826"
+    },
+    {
+      "date": "2026-09-25",
+      "sub_type": "preapproval",
+      "count": 2390,
+      "total_volume": "9974206.1421725517"
+    },
+    {
+      "date": "2026-09-25",
+      "sub_type": "unknown",
+      "count": 254297,
+      "total_volume": "38877516.1822819799"
+    },
+    {
+      "date": "2026-09-26",
+      "sub_type": "command",
+      "count": 103259,
+      "total_volume": "44820167.4218420725"
+    },
+    {
+      "date": "2026-09-26",
+      "sub_type": "merge_split",
+      "count": 25336,
+      "total_volume": "419013595.2389908850"
+    },
+    {
+      "date": "2026-09-26",
+      "sub_type": "preapproval",
+      "count": 2336,
+      "total_volume": "6187808.8382865844"
+    },
+    {
+      "date": "2026-09-26",
+      "sub_type": "unknown",
+      "count": 239774,
+      "total_volume": "31820345.2003155177"
+    },
+    {
+      "date": "2026-09-27",
+      "sub_type": "command",
+      "count": 106556,
+      "total_volume": "21732406.3691285894"
+    },
+    {
+      "date": "2026-09-27",
+      "sub_type": "external_command",
+      "count": 1,
+      "total_volume": "1388.6400000000"
+    },
+    {
+      "date": "2026-09-27",
+      "sub_type": "merge_split",
+      "count": 24816,
+      "total_volume": "347929457.1295177689"
+    },
+    {
+      "date": "2026-09-27",
+      "sub_type": "preapproval",
+      "count": 2404,
+      "total_volume": "7606856.5873988989"
+    },
+    {
+      "date": "2026-09-27",
+      "sub_type": "unknown",
+      "count": 205161,
+      "total_volume": "20264114.9049046602"
+    },
+    {
+      "date": "2026-09-28",
+      "sub_type": "command",
+      "count": 101236,
+      "total_volume": "234492859.5177494478"
+    },
+    {
+      "date": "2026-09-28",
+      "sub_type": "external_command",
+      "count": 1,
+      "total_volume": "15395.6900000000"
+    },
+    {
+      "date": "2026-09-28",
+      "sub_type": "merge_split",
+      "count": 25004,
+      "total_volume": "412102570.9764943506"
+    },
+    {
+      "date": "2026-09-28",
+      "sub_type": "preapproval",
+      "count": 1922,
+      "total_volume": "13294356.6830244480"
+    },
+    {
+      "date": "2026-09-28",
+      "sub_type": "unknown",
+      "count": 226361,
+      "total_volume": "40624446.0619501939"
+    },
+    {
+      "date": "2026-09-29",
+      "sub_type": "command",
+      "count": 101241,
+      "total_volume": "316438803.5342762591"
+    },
+    {
+      "date": "2026-09-29",
+      "sub_type": "external_command",
+      "count": 348,
+      "total_volume": "5134.7100000000"
+    },
+    {
+      "date": "2026-09-29",
+      "sub_type": "merge_split",
+      "count": 26187,
+      "total_volume": "257731856.3008885770"
+    },
+    {
+      "date": "2026-09-29",
+      "sub_type": "preapproval",
+      "count": 2171,
+      "total_volume": "6434227.2126864337"
+    },
+    {
+      "date": "2026-09-29",
+      "sub_type": "unknown",
+      "count": 271568,
+      "total_volume": "53849404.6978017234"
+    },
+    {
+      "date": "2026-09-30",
+      "sub_type": "command",
+      "count": 104697,
+      "total_volume": "130557980.5867057800"
+    },
+    {
+      "date": "2026-09-30",
+      "sub_type": "external_command",
+      "count": 689,
+      "total_volume": "12671.4500000000"
+    },
+    {
+      "date": "2026-09-30",
+      "sub_type": "merge_split",
+      "count": 26843,
+      "total_volume": "513133468.2858362606"
+    },
+    {
+      "date": "2026-09-30",
+      "sub_type": "preapproval",
+      "count": 2628,
+      "total_volume": "9872782.0903028324"
+    },
+    {
+      "date": "2026-09-30",
+      "sub_type": "unknown",
+      "count": 287262,
+      "total_volume": "44914885.3127241176"
+    },
+    {
+      "date": "2026-10-01",
+      "sub_type": "command",
+      "count": 99927,
+      "total_volume": "139699588.7348652367"
+    },
+    {
+      "date": "2026-10-01",
+      "sub_type": "external_command",
+      "count": 136,
+      "total_volume": "1791.0409134986"
+    },
+    {
+      "date": "2026-10-01",
+      "sub_type": "merge_split",
+      "count": 26453,
+      "total_volume": "196416110.5736711280"
+    },
+    {
+      "date": "2026-10-01",
+      "sub_type": "preapproval",
+      "count": 1738,
+      "total_volume": "6740174.6390539725"
+    },
+    {
+      "date": "2026-10-01",
+      "sub_type": "unknown",
+      "count": 258692,
+      "total_volume": "49954578.6163331394"
+    },
+    {
+      "date": "2026-10-02",
+      "sub_type": "command",
+      "count": 117935,
+      "total_volume": "207258769.2673831607"
+    },
+    {
+      "date": "2026-10-02",
+      "sub_type": "external_command",
+      "count": 1,
+      "total_volume": "158.2900000000"
+    },
+    {
+      "date": "2026-10-02",
+      "sub_type": "merge_split",
+      "count": 27657,
+      "total_volume": "388676479.0338599850"
+    },
+    {
+      "date": "2026-10-02",
+      "sub_type": "preapproval",
+      "count": 1030,
+      "total_volume": "7900251.0384528393"
+    },
+    {
+      "date": "2026-10-02",
+      "sub_type": "unknown",
+      "count": 286977,
+      "total_volume": "78243118.4145247752"
+    },
+    {
+      "date": "2026-10-03",
+      "sub_type": "command",
+      "count": 101314,
+      "total_volume": "17719612.3148447630"
+    },
+    {
+      "date": "2026-10-03",
+      "sub_type": "merge_split",
+      "count": 25286,
+      "total_volume": "239604059.2226837962"
+    },
+    {
+      "date": "2026-10-03",
+      "sub_type": "preapproval",
+      "count": 1460,
+      "total_volume": "6350100.1336991084"
+    },
+    {
+      "date": "2026-10-03",
+      "sub_type": "unknown",
+      "count": 218505,
+      "total_volume": "33939838.2739547653"
+    },
+    {
+      "date": "2026-10-04",
+      "sub_type": "command",
+      "count": 4011,
+      "total_volume": "1547753.2477553121"
+    },
+    {
+      "date": "2026-10-04",
+      "sub_type": "merge_split",
+      "count": 947,
+      "total_volume": "8940110.0700350165"
+    },
+    {
+      "date": "2026-10-04",
+      "sub_type": "preapproval",
+      "count": 56,
+      "total_volume": "103804.4749594462"
+    },
+    {
+      "date": "2026-10-04",
+      "sub_type": "unknown",
+      "count": 6781,
+      "total_volume": "941322.7582272825"
+    }
+  ]
+}

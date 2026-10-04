@@ -1,0 +1,13 @@
+{
+  "total_balance": "23204.7480688846",
+  "unlocked_balance": "23204.7480688846",
+  "locked_balance": "0",
+  "amulet_count": 1,
+  "amulets": [
+    {
+      "contract_id": "0057dc50467aff6b53b16fd3762ff287c5927d0f6fc7ff739b1018528fce6f23fcca1212208dee51b297d9b5df3184d71cb306872fc9ed3bf7d283ae60dcb837a5656f4dcc",
+      "amount": "23204.7480688846",
+      "record_time": "2026-08-23T07:09:34.634499Z"
+    }
+  ]
+}
