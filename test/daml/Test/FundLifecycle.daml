@@ -36,7 +36,7 @@ payCall lp = do
   (noticeCid, _) <- single "capital call" =<< query @CapitalCallNotice lp
   (commitmentCid, _) <- commitmentOf lp
   (cashCid, _) <- single "cash holding" =<< query @Cash lp
-  _ <- submit lp do exerciseCmd noticeCid PayCall with commitmentCid; cashCid
+  _ <- submit lp do exerciseCmd noticeCid PayCall with commitmentCid; cashCid; valueDate = date 2026 Nov 13
   pure ()
 
 fundLifecycle : Script ()
@@ -84,6 +84,7 @@ fundLifecycle = script do
     exerciseCmd fundCid IssueCapitalCall with
       callId = "CC-1"
       totalAmount = 1000000.0
+      issuedOn = date 2026 Nov 13
       dueDate = date 2026 Nov 27
       purpose = "Initial loan portfolio"
       commitmentCids = [commitA, commitB, commitC]
@@ -95,7 +96,7 @@ fundLifecycle = script do
   -- LP B cannot pay (or even see) LP A's call.
   (cashB, _) <- single "cash holding" =<< query @Cash lpB
   submitMustFail lpB do
-    exerciseCmd noticeA PayCall with commitmentCid = commitB; cashCid = cashB
+    exerciseCmd noticeA PayCall with commitmentCid = commitB; cashCid = cashB; valueDate = date 2026 Nov 13
 
   forA_ [lpA, lpB, lpC] payCall
   (commitA', paidA) <- commitmentOf lpA
@@ -107,6 +108,7 @@ fundLifecycle = script do
       distributionId = "D-1"
       amount = 100000.0
       cashCid = gpCashCid
+      valueDate = date 2026 Nov 13
 
   -- Quarter-end NAV and statements.
   passTime (days 48)

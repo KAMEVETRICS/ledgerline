@@ -1,9 +1,9 @@
 module Demo.Setup where
 
-import DA.Date (Month(..), addDays, date, toDateUTC)
+import DA.Date (Month(..), addDays, date)
 import DA.Foldable (forA_)
 import DA.List (sortOn)
-import DA.Time (addRelTime, days, hours, seconds, time)
+import DA.Time (time)
 import Daml.Script
 
 import Cash
@@ -27,9 +27,10 @@ data Demo = Demo
     fund1 : ContractId Fund
     statsDesk : ContractId StatisticsDesk
 
--- | Seeds a running ledger (started with --static-time) for the dashboard demo.
--- `now` is the wall-clock time the demo starts; the script walks the ledger
--- clock through four quarters of fund history first, then stops at `now`.
+-- | Seeds a running ledger for the dashboard demo with four quarters of fund
+-- history. The ledger runs on the real clock; history is carried by business
+-- dates (call dates, payment and distribution value dates, NAV dates), which
+-- the contracts check are never in the future.
 --
 -- Three funds, three managers, one administrator:
 --   LL-I  Ledgerline Capital   LPs A, B, C
@@ -39,18 +40,19 @@ data Demo = Demo
 -- an administrator NAV with per-LP statements, and network statistics that
 -- clear the privacy threshold (3 funds, 5 LPs). MFN checks and audit access
 -- are left for the live demo.
-setup : Time -> Script ()
-setup now = do
-  _ <- setupDemoAt now
+setup : Script ()
+setup = do
+  _ <- seedHistory
   pure ()
 
--- | Fixed clock for Daml Script tests.
+-- | For Daml Script tests: fix the IDE ledger's clock first.
 setupDemo : Script Demo
-setupDemo = setupDemoAt (time (date 2026 Oct 3) 12 0 0)
+setupDemo = do
+  setTime (time (date 2026 Oct 3) 12 0 0)
+  seedHistory
 
-setupDemoAt : Time -> Script Demo
-setupDemoAt now = script do
-  setTime (at 2025 Sep 15)
+seedHistory : Script Demo
+seedHistory = script do
   bank <- allocateParty "Bank"
   gp <- allocateParty "GP"
   gp2 <- allocateParty "GP2"
@@ -114,23 +116,17 @@ setupDemoAt now = script do
     [("LL-I", 3620000.0), ("RW-II", 2830000.0), ("NW-I", 4450000.0)]
 
   -- Live: RW-II CC-3 is outstanding when the demo starts.
-  setTime (at 2026 Oct 1)
   rw <- fundCommitments gp2 "RW-II"
   _ <- sub gp2 do
     exerciseCmd fund2 IssueCapitalCall with
       callId = "CC-3"
       totalAmount = 500000.0
+      issuedOn = date 2026 Oct 1
       dueDate = date 2026 Oct 31
       purpose = "Final construction draw"
       commitmentCids = rw
-  t <- getTime
-  if now > t then setTime now else pure ()
 
   pure Demo with bank; gp; gp2; gp3; admin; lpA; lpB; lpC; lpD; lpE; auditor; ecosystem; fund1; statsDesk
-
--- | 10:00 UTC on a date: business hours, so dates read naturally.
-at : Int -> Month -> Int -> Time
-at y m d = time (date y m d) 10 0 0
 
 newFund : Party -> Party -> Party -> Text -> Text -> Int -> Script (ContractId Fund)
 newFund gp admin bank fundId name vintage = do
@@ -161,45 +157,41 @@ cashFor owner amount = do
     (cid, _) :: _ -> pure cid
     [] -> abort ("No single cash holding of " <> show owner <> " covers " <> show amount)
 
--- | Issue a call at 10:00 on `issued`, due 14 days later; each LP pays
--- `delay` days after issue (delays past 14 are late payments).
+-- | A call dated `issued`, due 14 days later; each LP's payment has a value
+-- date `delay` days after the call (delays past 14 are late payments).
 capitalCall : Party -> ContractId Fund -> Text -> Text -> Decimal -> Date -> Text -> [(Party, Int)] -> Script ()
 capitalCall gp fundCid fundId callId total issued purpose payments = do
-  let issuedAt = time issued 10 0 0
-  setTime issuedAt
   cids <- fundCommitments gp fundId
   _ <- sub gp do
     exerciseCmd fundCid IssueCapitalCall with
       callId
       totalAmount = total
+      issuedOn = issued
       dueDate = addDays issued 14
       purpose
       commitmentCids = cids
-  forA_ (sortOn snd payments) \(lp, delay) -> do
-    setTime (addRelTime issuedAt (days delay + hours 3))
-    payCall lp fundId callId
+  forA_ (sortOn snd payments) \(lp, delay) ->
+    payCall lp fundId callId (addDays issued delay)
 
-payCall : Party -> Text -> Text -> Script ()
-payCall lp fundId callId = do
+payCall : Party -> Text -> Text -> Date -> Script ()
+payCall lp fundId callId valueDate = do
   [(noticeCid, notice)] <- filter (\(_, n) -> n.fundId == fundId && n.callId == callId) <$> query @CapitalCallNotice lp
   (commitmentCid, _) <- commitmentIn lp fundId
   cashCid <- cashFor lp notice.amount
-  _ <- sub lp do exerciseCmd noticeCid PayCall with commitmentCid; cashCid
+  _ <- sub lp do exerciseCmd noticeCid PayCall with commitmentCid; cashCid; valueDate
   pure ()
 
 distribute : Party -> Text -> Text -> Date -> [(Party, Decimal)] -> Script ()
-distribute gp fundId distributionId on payouts = do
-  setTime (time on 10 0 0)
+distribute gp fundId distributionId on payouts =
   forA_ payouts \(lp, amount) -> do
     [(commitmentCid, _)] <- filter (\(_, c) -> c.fundId == fundId && c.lp == lp) <$> query @Commitment gp
     cashCid <- cashFor gp amount
-    sub gp do exerciseCmd commitmentCid Distribute with distributionId; amount; cashCid
+    sub gp do exerciseCmd commitmentCid Distribute with distributionId; amount; cashCid; valueDate = on
 
 -- | Quarter close: one NAV per fund (with LP statements), then network
 -- statistics over every fund, using payments made during the quarter.
 quarterEnd : Party -> ContractId StatisticsDesk -> Text -> Date -> Date -> [(Text, Decimal)] -> Script ()
 quarterEnd admin statsDesk period qStart qEnd navs = do
-  setTime (time qEnd 18 0 0)
   desks <- query @AdminDesk admin
   forA_ navs \(fundId, nav) -> do
     [(deskCid, _)] <- pure (filter (\(_, d) -> d.fundId == fundId) desks)
@@ -207,7 +199,7 @@ quarterEnd admin statsDesk period qStart qEnd navs = do
     sub admin do exerciseCmd deskCid PublishNav with asOf = qEnd; nav; commitmentCids = cids
   commitments <- map fst <$> query @Commitment admin
   navCids <- map fst . filter (\(_, n) -> n.asOf == qEnd) <$> query @NavStatement admin
-  receipts <- map fst . filter (\(_, r) -> let d = toDateUTC r.paidAt in d >= qStart && d <= qEnd)
+  receipts <- map fst . filter (\(_, r) -> r.valueDate >= qStart && r.valueDate <= qEnd)
     <$> query @ContributionReceipt admin
   _ <- sub admin do
     exerciseCmd statsDesk PublishStatistics with
@@ -218,19 +210,6 @@ quarterEnd admin statsDesk period qStart qEnd navs = do
       receiptCids = receipts
   pure ()
 
--- | Submit, retrying briefly. On a static-time ledger the participant can
--- need a moment after a clock jump before it can route the next command;
--- a rejected submission has no effect, so retrying is safe.
+-- | All seed submissions go through here.
 sub : Party -> Commands a -> Script a
-sub = retrySubmit 10
-
-retrySubmit : Int -> Party -> Commands a -> Script a
-retrySubmit n p cmds = do
-  r <- trySubmit p cmds
-  case r of
-    Right x -> pure x
-    Left e
-      | n > 0 -> do
-          passTime (seconds 1)
-          retrySubmit (n - 1) p cmds
-      | otherwise -> abort ("Submission failed after retries: " <> show e)
+sub = submit

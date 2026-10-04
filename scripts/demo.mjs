@@ -6,12 +6,11 @@
 //   node scripts/demo.mjs            fresh ledger (or reuse one already running)
 //   node scripts/demo.mjs --no-build skip `dpm build --all`
 //   node scripts/demo.mjs --ci-dars  use DARs built by GitHub Actions (scripts/fetch-dars.mjs)
-//
-// The ledger runs on static time: the seed walks the clock through four
-// quarters of fund history, then stops at the moment the demo starts.
+
 
 import { spawn, spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, createWriteStream, writeFileSync } from "node:fs";
+import net from "node:net";
+import { existsSync, mkdirSync, createWriteStream } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { CI_DARS, fetchDars } from "./fetch-dars.mjs";
@@ -102,7 +101,6 @@ async function startSandbox() {
     "sandbox",
     "--dar", dars.main,
     "--json-api-port", "7575",
-    "--static-time",
     "--canton-port-file", ".sandbox-ports.json",
   ]);
   sandbox.stdout.pipe(out);
@@ -120,8 +118,6 @@ async function startSandbox() {
 // and party allocation fails until it has. Retry only on that error.
 async function seed() {
   log("Seeding four quarters of history: three funds, three managers, five LPs…");
-  const input = path.join(ROOT, "log", "seed-now.json");
-  writeFileSync(input, JSON.stringify(new Date().toISOString()));
   for (let attempt = 1; attempt <= 20; attempt++) {
     const r = capture(DPM, [
       "script",
@@ -129,8 +125,6 @@ async function seed() {
       "--script-name", "Demo.Setup:setup",
       "--ledger-host", "localhost",
       "--ledger-port", String(LEDGER_PORT),
-      "--static-time",
-      "--input-file", input,
     ]);
     if (r.ok) return;
     if (!r.out.includes("PARTY_ALLOCATION_WITHOUT_CONNECTED_SYNCHRONIZER")) {
@@ -142,7 +136,15 @@ async function seed() {
   fail("Sandbox never connected to its synchronizer.");
 }
 
+const portFree = (port) =>
+  new Promise((resolve) => {
+    const srv = net.createServer().once("error", () => resolve(false)).once("listening", () => srv.close(() => resolve(true)));
+    srv.listen(port);
+  });
+
 async function main() {
+  if (!(await portFree(5173))) fail("Port 5173 is already in use, probably a dashboard left over from an earlier run. Stop it and try again.");
+
   const useCi = () => {
     log("Fetching DARs built by GitHub Actions…");
     try {

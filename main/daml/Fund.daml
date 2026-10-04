@@ -1,5 +1,6 @@
 module Fund where
 
+import DA.Date (toDateUTC)
 import DA.Foldable (forA_)
 import DA.List (unique)
 
@@ -66,18 +67,23 @@ template Fund
       with
         callId : Text
         totalAmount : Decimal
+        -- Business date of the call notice; not in the future.
+        issuedOn : Date
         dueDate : Date
         purpose : Text
         commitmentCids : [ContractId Commitment]
       controller gp
       do
         assertMsg "Call amount must be positive" (totalAmount > 0.0)
+        today <- toDateUTC <$> getTime
+        assertMsg "A call cannot be dated in the future" (issuedOn <= today)
+        assertMsg "Due date must be on or after the call date" (dueDate >= issuedOn)
         assertMsg "Commitments must be distinct" (unique commitmentCids)
         commitments <- mapA fetch commitmentCids
         forA_ commitments \c ->
           assertMsg "Commitment belongs to another fund" (c.gp == gp && c.fundId == fundId)
         let shares = proRata totalAmount (map (\c -> c.committed) commitments)
-        mapA (issueNotice callId dueDate purpose) (zip commitments shares)
+        mapA (issueNotice callId issuedOn dueDate purpose) (zip commitments shares)
 
 template CommitmentOffer
   with
@@ -151,9 +157,13 @@ template Commitment
         distributionId : Text
         amount : Decimal
         cashCid : ContractId Cash
+        -- When the cash moved; not in the future.
+        valueDate : Date
       controller gp
       do
         assertMsg "Distribution must be positive" (amount > 0.0)
+        today <- toDateUTC <$> getTime
+        assertMsg "Value date cannot be in the future" (valueDate <= today)
         cash <- fetch cashCid
         assertMsg "Cash must be the fund's settlement asset held by the GP"
           (cash.issuer == cashIssuer && cash.owner == gp)
@@ -168,13 +178,13 @@ template Commitment
           fundId
           distributionId
           amount
-          paidAt = now
+          valueDate
+          recordedAt = now
         pure (commitmentCid, receiptCid)
 
-issueNotice : Text -> Date -> Text -> (Commitment, Decimal) -> Update (ContractId CapitalCallNotice)
-issueNotice callId dueDate purpose (c, share) = do
+issueNotice : Text -> Date -> Date -> Text -> (Commitment, Decimal) -> Update (ContractId CapitalCallNotice)
+issueNotice callId issuedOn dueDate purpose (c, share) = do
   assertMsg ("Call exceeds unfunded commitment for " <> show c.lp) (share <= unfundedOf c)
-  now <- getTime
   create CapitalCallNotice with
     gp = c.gp
     lp = c.lp
@@ -185,7 +195,7 @@ issueNotice callId dueDate purpose (c, share) = do
     amount = share
     dueDate
     purpose
-    issuedAt = now
+    issuedOn
 
 template CapitalCallNotice
   with
@@ -198,7 +208,7 @@ template CapitalCallNotice
     amount : Decimal
     dueDate : Date
     purpose : Text
-    issuedAt : Time
+    issuedOn : Date
   where
     signatory gp
     observer lp, administrator
@@ -209,8 +219,14 @@ template CapitalCallNotice
       with
         commitmentCid : ContractId Commitment
         cashCid : ContractId Cash
+        -- When the LP sent the cash. Asserted by the payer here; a production
+        -- deployment would take it from the settlement rail.
+        valueDate : Date
       controller lp
       do
+        today <- toDateUTC <$> getTime
+        assertMsg "Value date must fall between the call date and today"
+          (valueDate >= issuedOn && valueDate <= today)
         commitment <- fetch commitmentCid
         assertMsg "Commitment does not match this call"
           (commitment.gp == gp && commitment.lp == lp && commitment.fundId == fundId)
@@ -228,9 +244,10 @@ template CapitalCallNotice
           fundId
           callId
           amount
-          calledAt = issuedAt
+          calledOn = issuedOn
           dueDate
-          paidAt = now
+          valueDate
+          recordedAt = now
         pure (newCommitmentCid, receiptCid)
 
 template ContributionReceipt
@@ -241,9 +258,10 @@ template ContributionReceipt
     fundId : Text
     callId : Text
     amount : Decimal
-    calledAt : Time
+    calledOn : Date
     dueDate : Date
-    paidAt : Time
+    valueDate : Date
+    recordedAt : Time
   where
     signatory gp, lp
     observer administrator
@@ -256,7 +274,8 @@ template DistributionReceipt
     fundId : Text
     distributionId : Text
     amount : Decimal
-    paidAt : Time
+    valueDate : Date
+    recordedAt : Time
   where
     signatory gp, lp
     observer administrator

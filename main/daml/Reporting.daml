@@ -1,10 +1,9 @@
 module Reporting where
 
-import DA.Date (toDateUTC)
+import DA.Date (subDate)
 import DA.Foldable (forA_, maximum, minimum)
 import DA.List ((!!), dedup, sort, unique)
 import DA.Optional (mapOptional)
-import DA.Time (convertRelTimeToMicroseconds, subTime)
 
 import Fund
 
@@ -264,8 +263,8 @@ template StatisticsDesk
           (unique (map (\n -> n.fundId) navs) && all (\n -> n.fundId `elem` fundIds) navs)
 
         let tvpis = mapOptional (fundTvpi commitments) navs
-            days = map (\r -> daysBetween r.calledAt r.paidAt) receipts
-            onTime = length (filter (\r -> toDateUTC r.paidAt <= r.dueDate) receipts)
+            days = map (\r -> intToDecimal (subDate r.valueDate r.calledOn)) receipts
+            onTime = length (filter (\r -> r.valueDate <= r.dueDate) receipts)
         now <- getTime
         create FundStatistics with
           administrator
@@ -326,9 +325,6 @@ fundTvpi commitments n =
       contributed = total (\c -> c.contributed) cs
       distributed = total (\c -> c.distributed) cs
   in if contributed > 0.0 then Some ((distributed + n.nav) / contributed) else None
-
-daysBetween : Time -> Time -> Decimal
-daysBetween from to = intToDecimal (convertRelTimeToMicroseconds (subTime to from)) / 86400000000.0
 
 median : [Decimal] -> Optional Decimal
 median [] = None

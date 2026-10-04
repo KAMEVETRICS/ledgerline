@@ -62,8 +62,8 @@ statisticsFigures = script do
   q4.callsPaid === 8
   -- Two of eight payments came after the due date.
   q4.paidOnTimePct === Some 75.0
-  -- Delays 2,2,3,4,5,9,16,20 days (+3h each): median of 4 and 5, plus 0.125.
-  q4.medianDaysToPay === Some 4.625
+  -- Value dates 2,2,3,4,5,9,16,20 days after the call: median of 4 and 5.
+  q4.medianDaysToPay === Some 4.5
 
   q3 <- statsFor eco "2026-Q3"
   q3.callsPaid === 3
