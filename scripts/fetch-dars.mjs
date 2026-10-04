@@ -3,8 +3,7 @@
 // workflow for the current branch (latest successful run) into .ci-dars/.
 // Used on machines that cannot build the test package locally.
 //
-//   node scripts/fetch-dars.mjs            current branch
-//   node scripts/fetch-dars.mjs main       a named branch
+//   node scripts/fetch-dars.mjs
 
 import { spawnSync } from "node:child_process";
 import { existsSync, rmSync } from "node:fs";
@@ -24,23 +23,25 @@ function sh(cmd, args) {
   return r.stdout.trim();
 }
 
-export function fetchDars(branch = sh("git", ["branch", "--show-current"])) {
+// The DARs depend only on the Daml sources, so use the CI run for the last
+// commit that changed them, whichever branch it ran on.
+export function fetchDars() {
+  const damlSha = sh("git", ["log", "-1", "--format=%H", "--", "main", "test", "multi-package.yaml"]);
   const id = sh("gh", [
-    "run", "list", "--workflow", "daml.yml", "--branch", branch,
-    "--status", "success", "--limit", "1", "--json", "databaseId,headSha", "--jq", ".[0].databaseId",
+    "run", "list", "--workflow", "daml.yml", "--commit", damlSha,
+    "--status", "success", "--limit", "1", "--json", "databaseId", "--jq", ".[0].databaseId",
   ]);
-  if (!id) throw new Error(`No successful Daml CI run on branch ${branch}. Push your Daml changes first.`);
+  if (!id) throw new Error(`No successful Daml CI run for commit ${damlSha.slice(0, 7)}, the last one that changed Daml. Push it and wait for CI.`);
   const sha = sh("gh", ["run", "view", id, "--json", "headSha", "--jq", ".headSha"]);
   rmSync(OUT, { recursive: true, force: true });
   sh("gh", ["run", "download", id, "--name", "dars", "--dir", OUT]);
   for (const dar of Object.values(CI_DARS)) if (!existsSync(dar)) throw new Error(`Artifact is missing ${dar}`);
-  const local = sh("git", ["rev-parse", "HEAD"]);
-  return { id, sha, stale: sha !== local };
+  return { id, sha, stale: sha !== damlSha };
 }
 
 if (import.meta.url === `file://${process.argv[1].replace(/\\/g, "/")}` || process.argv[1]?.endsWith("fetch-dars.mjs")) {
   try {
-    const { id, sha, stale } = fetchDars(process.argv[2]);
+    const { id, sha, stale } = fetchDars();
     console.log(`Downloaded DARs from CI run ${id} (commit ${sha.slice(0, 7)}) into .ci-dars/`);
     if (stale) console.log("Note: that run is for a different commit than your checkout. Push and wait for CI to get your latest Daml.");
   } catch (e) {

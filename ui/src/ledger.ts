@@ -56,11 +56,20 @@ export async function me(): Promise<Session> {
   return res.json();
 }
 
-export async function login(username: string, password: string): Promise<Session> {
+export type Identity = Session & { description: string };
+
+/** Demo identities the server offers (no passwords). */
+export async function identities(): Promise<Identity[]> {
+  const res = await fetch("/api/identities");
+  if (!res.ok) throw new LedgerError(`Server unavailable (${res.status})`);
+  return res.json();
+}
+
+export async function login(username: string): Promise<Session> {
   const res = await fetch("/api/login", {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({ username, password }),
+    body: JSON.stringify({ username }),
   });
   const body = await res.json().catch(() => ({}));
   if (!res.ok) throw new LedgerError(body.error ?? "Sign-in failed");

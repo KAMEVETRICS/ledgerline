@@ -1,0 +1,185 @@
+{
+  "meta": {
+    "source": "ccspace",
+    "network": "mainnet",
+    "asOf": "2026-10-04T10:27:14.092Z",
+    "note": "CC price and supply histories are unavailable. Transfer volume is publicly indexed CC volume; hidden amounts are excluded. Pools come from OneSwap's anonymous read API; TVL is not supplied and remains null. Recorded live response for UI development."
+  },
+  "cc": {
+    "priceUsd": [],
+    "supply": [],
+    "transferVolumeDailyCC": [
+      {
+        "t": "2026-09-05",
+        "v": 3438878191.668123
+      },
+      {
+        "t": "2026-09-06",
+        "v": 4247611067.607971
+      },
+      {
+        "t": "2026-09-07",
+        "v": 3663746256.5340314
+      },
+      {
+        "t": "2026-09-08",
+        "v": 4260746407.1647534
+      },
+      {
+        "t": "2026-09-09",
+        "v": 4185160315.963703
+      },
+      {
+        "t": "2026-09-10",
+        "v": 3610710574.336686
+      },
+      {
+        "t": "2026-09-11",
+        "v": 3743334876.217485
+      },
+      {
+        "t": "2026-09-12",
+        "v": 3847055373.1714635
+      },
+      {
+        "t": "2026-09-13",
+        "v": 3554054473.442352
+      },
+      {
+        "t": "2026-09-14",
+        "v": 3150881474.299388
+      },
+      {
+        "t": "2026-09-15",
+        "v": 2494116753.2467275
+      },
+      {
+        "t": "2026-09-16",
+        "v": 3550119383.708953
+      },
+      {
+        "t": "2026-09-17",
+        "v": 6103448309.58815
+      },
+      {
+        "t": "2026-09-18",
+        "v": 4703825324.607582
+      },
+      {
+        "t": "2026-09-19",
+        "v": 3658578969.185424
+      },
+      {
+        "t": "2026-09-20",
+        "v": 3149848013.255227
+      },
+      {
+        "t": "2026-09-21",
+        "v": 2928658030.8452506
+      },
+      {
+        "t": "2026-09-22",
+        "v": 512321667.466498
+      },
+      {
+        "t": "2026-09-23",
+        "v": 558893538.9507625
+      },
+      {
+        "t": "2026-09-24",
+        "v": 254620683.92418554
+      },
+      {
+        "t": "2026-09-25",
+        "v": 832005156.1194658
+      },
+      {
+        "t": "2026-09-26",
+        "v": 501841916.6994351
+      },
+      {
+        "t": "2026-09-27",
+        "v": 397534223.6309499
+      },
+      {
+        "t": "2026-09-28",
+        "v": 700529628.9292184
+      },
+      {
+        "t": "2026-09-29",
+        "v": 634459426.455653
+      },
+      {
+        "t": "2026-09-30",
+        "v": 698491787.725569
+      },
+      {
+        "t": "2026-10-01",
+        "v": 392812243.604837
+      },
+      {
+        "t": "2026-10-02",
+        "v": 682078776.0442208
+      },
+      {
+        "t": "2026-10-03",
+        "v": 297613609.94518244
+      },
+      {
+        "t": "2026-10-04",
+        "v": 153001305.18306398
+      }
+    ]
+  },
+  "pools": [
+    {
+      "id": "rt-36o279",
+      "venue": "OneSwap",
+      "pair": "CC/CBTC",
+      "tvlUsd": null,
+      "volume24hUsd": null
+    },
+    {
+      "id": "rt-i5h9xy",
+      "venue": "OneSwap",
+      "pair": "CC/EDELx",
+      "tvlUsd": null,
+      "volume24hUsd": null
+    },
+    {
+      "id": "rt-u8y4x7",
+      "venue": "OneSwap",
+      "pair": "CC/HECTO",
+      "tvlUsd": null,
+      "volume24hUsd": null
+    },
+    {
+      "id": "rt-l4xayw",
+      "venue": "OneSwap",
+      "pair": "CC/USDCx",
+      "tvlUsd": null,
+      "volume24hUsd": null
+    },
+    {
+      "id": "rt-qakljp",
+      "venue": "OneSwap",
+      "pair": "CC/HANDL",
+      "tvlUsd": null,
+      "volume24hUsd": null
+    },
+    {
+      "id": "rt-z0ing2",
+      "venue": "OneSwap",
+      "pair": "HECTO/cETH",
+      "tvlUsd": null,
+      "volume24hUsd": null
+    },
+    {
+      "id": "rt-aymsf4",
+      "venue": "OneSwap",
+      "pair": "HECTO/TUSDT",
+      "tvlUsd": null,
+      "volume24hUsd": null
+    }
+  ]
+}

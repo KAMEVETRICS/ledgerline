@@ -1,56 +1,65 @@
 {
-  "_note": "Demo accounts for the local sandbox and the HackCanton judges. Not real credentials; every account shares the demo password below.",
-  "password": "canton-demo-2026",
+  "_note": "Demo identities. No password: choosing one starts a session bound to that Canton party, and the server enforces that party's visibility on every request.",
   "users": [
     {
       "username": "judge",
       "role": "Judge",
-      "name": "Judge (all views, demo only)"
+      "name": "Judge (all views, demo only)",
+      "description": "Every party side by side, plus the holdings matrix"
     },
     {
       "username": "ledgerline-gp",
       "role": "GP",
-      "name": "Ledgerline Capital"
+      "name": "Ledgerline Capital",
+      "description": "Fund manager, Ledgerline Credit Fund I"
     },
     {
       "username": "ridgeway-gp",
       "role": "GP2",
-      "name": "Ridgeway Partners"
+      "name": "Ridgeway Partners",
+      "description": "Fund manager, Ridgeway Real Estate Debt II"
     },
     {
       "username": "northwind-gp",
       "role": "GP3",
-      "name": "Northwind Credit"
+      "name": "Northwind Credit",
+      "description": "Fund manager, Northwind Infrastructure Credit I"
     },
     {
       "username": "admin",
       "role": "Administrator",
-      "name": "Fund administrator"
+      "name": "Fund administrator",
+      "description": "Fund administrator for all three funds"
     },
     {
       "username": "harbor",
       "role": "LP_A",
-      "name": "Harbor Pension Plan"
+      "name": "Harbor Pension Plan",
+      "description": "Pension plan invested in two funds"
     },
     {
       "username": "mesa",
       "role": "LP_B",
-      "name": "Mesa Family Office"
+      "name": "Mesa Family Office",
+      "description": "Family office invested in two funds"
     },
     {
       "username": "northfield",
       "role": "LP_C",
-      "name": "Northfield Endowment"
+      "name": "Northfield Endowment",
+      "description": "Endowment invested in two funds"
     },
     {
       "username": "auditor",
       "role": "Auditor",
-      "name": "Auditor"
+      "name": "Auditor",
+      "description": "Sees only what is disclosed to it"
     },
     {
       "username": "ecosystem",
       "role": "Ecosystem",
-      "name": "Ecosystem viewer"
+      "name": "Ecosystem viewer",
+      "description": "Network-wide private-markets statistics only"
     }
   ]
 }

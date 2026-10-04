@@ -1,0 +1,919 @@
+{
+  "meta": {
+    "source": "ccspace",
+    "network": "mainnet",
+    "asOf": "2026-10-04T10:27:23.055Z",
+    "note": "Holdings cover CC only; token-standard holdings and market valuations are unavailable. Private transfer amounts and pending rewards remain null. Recent operations are limited to the newest 100 source rows. Recorded live response for UI development."
+  },
+  "party": "twmain-kms-01::12200ada298fab88ca8f3a0ea7b9c2817240ce33d038e24b0283536cab042743c6e4",
+  "holdings": [
+    {
+      "instrument": "CC",
+      "admin": null,
+      "amount": 336887860.9422698,
+      "valueUsd": null
+    }
+  ],
+  "recent": [
+    {
+      "id": "1220c9d4e9043781221f260b1c43db5fb29aa1aca0fa5212a9503374ddd29378219b:3",
+      "at": "2026-10-04T10:09:57.220Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12204b080a17c96b77fe0ae70c65f03610fe5f688adbc38d755717d3ad7dfe04f175:3",
+      "at": "2026-10-04T09:55:15.432Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220778d918fcfd942847700cee31cc12472d536a1f0f83ddce71ab77f66be3028f6:3",
+      "at": "2026-10-04T09:39:58.679Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220a6806ba33dedfbe80610708a91fd1787b0e951b5c369a1cc862ac241647f8f87:3",
+      "at": "2026-10-04T09:38:24.617Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220237687a7cfb9fc99854c88dffcd6314114b2fcfbd88e63ff5c68db55c5da3220:3",
+      "at": "2026-10-04T09:28:24.301Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220288c4e3f3b5eefa459a4cbf5c8d98070435a67f6daf460ddc4850da90d442aac:3",
+      "at": "2026-10-04T09:12:16.826Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12203149c92fe65a69637f1beb167e87ff43ae7222e07b6a0a232078cb878e9e9630:3",
+      "at": "2026-10-04T09:02:43.792Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12202f41cef589fe320a84bdffbf8ce4861e8ed13ed971fabfd83d22112b142aa7a2:3",
+      "at": "2026-10-04T08:52:02.059Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220ec3df4544c58cc1137e2a0b7333e48b40d7c14364d08dfb94c40ac5aacf9126d:3",
+      "at": "2026-10-04T08:47:54.203Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220659731f0c26d5490652552ca1d5122ccce3f9fc20c3973e2875ba2b8a425914d:3",
+      "at": "2026-10-04T08:30:32.324Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12200096918dd22e0981f5f7e7a29079a277181284c0aa44f398bfeaebdd0b71acf7:3",
+      "at": "2026-10-04T08:24:18.138Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220e6c20dd72cfaebce620e6df15a7d133be4fad3ada0021e420e3083fabc947241:3",
+      "at": "2026-10-04T08:07:43.599Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220ac4c6f6303af7800e2070be576eebacc078c7fd9db14546a06fe8a74512ae6f5:3",
+      "at": "2026-10-04T08:04:05.960Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12200e821c9f5ca648f693348190a2ca5ed4548231712e41a6f0b6177c79fd44fc76:3",
+      "at": "2026-10-04T07:48:24.724Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220e6760502c3f1572bd9abe2e8fa0e485b7c27ddcc272ae463d9da862efd7a3be9:3",
+      "at": "2026-10-04T07:38:34.481Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220eac3e374488969bbb3791ed5eac36327f85363a88ca6ce9084fadce9f9bfbede:3",
+      "at": "2026-10-04T07:31:00.475Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220dc213e741afbfbf878073d2a56e583bb4ea3610b494df17c5c8cc9fd47abafff:3",
+      "at": "2026-10-04T07:15:15.612Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220e8f0374e3a109f85b717a6f005dddb68ceb025a75468bf9715a2fd21b21c43e7:3",
+      "at": "2026-10-04T07:05:03.722Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220259a2d6470f52a54439624f1bcb4a210fff8e5661ac6c89979b1d8e9631cd41c:3",
+      "at": "2026-10-04T07:01:13.249Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220d95c8179be979a14e4da98750bdc8345b333333ac4b6e23e61a7a1710e5a3e6f:3",
+      "at": "2026-10-04T06:45:32.334Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12204f656479cb4a03d50af93b4a3b1acad27b656d9523e049df4b10aaabe2a7f5bc:3",
+      "at": "2026-10-04T06:34:44.694Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12203ed6609d9fcc23c908c7dba25ab92f98af4ab83ebacfb35ab444ac92a96c3f62:3",
+      "at": "2026-10-04T06:30:56.930Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220eab80a8e76f6ff51dc8b5c21d695300c8adc80f9dd2274228b21411e0b45305e:3",
+      "at": "2026-10-04T06:14:49.410Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12207c08dd2ca5b27a1900108618680cd7baa6ea0d1db5c2d376d1e46b27218cc1b4:3",
+      "at": "2026-10-04T06:06:19.247Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "122044a4db13b407ba31940549285a4ffb08ccec40f53d61e9aaedf6fefe75afa6f4:3",
+      "at": "2026-10-04T06:00:25.684Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220f7753d38398bbbe363ea32fbd04c537ee51b667911f1628e44dcb6615c9d330f:3",
+      "at": "2026-10-04T05:44:14.712Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220926ebb53b081a95212609d54f35246777b4a970809e57676b7c6d2399c80745f:3",
+      "at": "2026-10-04T05:35:08.220Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "122065946bce1e69b44b98f190ef5e30a8ec0a748e743beb8c3f1876daba33269075:3",
+      "at": "2026-10-04T05:22:55.406Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12200b5da6deb97d4c2b58f9f967195a63b4d5501436dfa08e670745e43f43455df5:3",
+      "at": "2026-10-04T05:18:42.216Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220ce1ff3b3255eb0f53ba5417c8d3472d99d01147ada49e2e6c3b2bacbe23625fe:3",
+      "at": "2026-10-04T05:09:25.958Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12202b3d5cb0b878590ee12c571f3eeb1515d1cb2ac40b3a265f21a4447e5aa9a0f2:3",
+      "at": "2026-10-04T04:55:22.074Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12208713aa13262233584919d978e77d2d6162ce8545934574f77bd0ced0539ae1a5:3",
+      "at": "2026-10-04T04:45:18.107Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220365c56b71c4a06543b4b6cbb9817953d177ff085a67a89fe769f25e37b8bad5e:3",
+      "at": "2026-10-04T04:32:49.890Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220e04981e0a6a2cd5da046ae41df89fab57c35ccc2b0592db17763e036aab334f5:3",
+      "at": "2026-10-04T04:25:11.288Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12209c2cc2255e2861f19f5d04ead506c0bef740dbd0a389b57ae83ca886656af353:3",
+      "at": "2026-10-04T04:13:31.568Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "122021db370cd6967d403835ec42896faf34486bbcbc521e9a2ec4715acd4caa0e7b:3",
+      "at": "2026-10-04T04:06:37.539Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220446fc1080f7e4dc3a37d6f46aeddaa1fb77d74c9a1c51f47ee1fba4449566fb4:3",
+      "at": "2026-10-04T03:55:02.216Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "122012f682ef441e8d0918467cc9c6126678cbd1e9198341a7becb149f66f8717cb8:3",
+      "at": "2026-10-04T03:43:18.567Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220582e2abacd8370856ab1f19180eed4918bf708235844ffe501f1f328c3aece52:3",
+      "at": "2026-10-04T03:34:00.895Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12209005a1c4853267277a5be39e8030345290512c9636beaa191ac61e0a45b9be49:3",
+      "at": "2026-10-04T03:18:55.114Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "122066b82844b8fb82a667264265f8733efc0fbcc7619521b4e4464ecc0ead1f13a3:3",
+      "at": "2026-10-04T03:11:03.224Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "122017604b8e5f1cafcf0ff95fbf4345499d9beae2ddd198cf050b3173f52a7c9d4c:3",
+      "at": "2026-10-04T03:04:42.880Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220da26d820e2b2b5b54ec78da383fde0bb06c463f2ac0b59f339f3a419e2551d24:3",
+      "at": "2026-10-04T02:55:19.393Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "122062b2988003cf772fb0d9d4f314e937e7b0d7676ae45a84be97fdc25ad7730478:3",
+      "at": "2026-10-04T02:38:02.663Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12209de7593c99cb6ffcf3898dd673d491d4cad71b9f6321ebf061c5272ce46de3fc:3",
+      "at": "2026-10-04T02:26:25.860Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220861903708ab1c3df607df2e24c288499b4fe4a7bf77df21a8860bb114099ac06:3",
+      "at": "2026-10-04T02:19:04.713Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12206305dc916c68d94129a0776d689265c1d9634e2e1ea3da8ce5d077f9063fd345:3",
+      "at": "2026-10-04T02:09:38.067Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "122075d5e62661570cf342e82ca180dd61297cac8842bcd0fd511f84309bb6149ac9:3",
+      "at": "2026-10-04T01:55:50.892Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12207d6c42ca7af115f46b3da040ee6be7f7aa9912e41eb2822055a09cacdeb90848:3",
+      "at": "2026-10-04T01:51:11.274Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12209dcf494635a5660e84bb4f2c13169861258fe41e76ce1a03094b806f5a1a4102:3",
+      "at": "2026-10-04T01:43:29.688Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12202290c4d7d7fa81533c4356da15a84199d506764e892f329dd1dd68c4218a199f:3",
+      "at": "2026-10-04T01:31:09.891Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220179f74831b43e3c3b1a9cf17c7e132fe4fb61b25ce362bbf644bdde8d898eb41:3",
+      "at": "2026-10-04T01:15:08.623Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12208453798ba7ffbb99ac61f507b3816ddd5ce38103bfdc681ec8b82477af056fd5:3",
+      "at": "2026-10-04T01:03:33.196Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "122057de25006cfc7da2072421c7123e3723d75e974767e555591bde095fdcac9076:3",
+      "at": "2026-10-04T01:03:03.932Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "122049751ae11aed40095f7983d09387034ec717ff3794b7f5a2170aeb7ed4300e55:3",
+      "at": "2026-10-04T00:48:27.080Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220ed1a43bc375ba88e9c5218d88a53b9f84fd080168129c0d3d6df293842580de8:3",
+      "at": "2026-10-04T00:34:52.843Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12205a6838e04c86a1a2019f26bd2baadeadc4c53531f16a1ad260cfe3e4f3d93c2b:3",
+      "at": "2026-10-04T00:25:44.232Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12203bbbc5afde3ab4e85d1a9201d1432c767a83aef458e4b616dd8dcfe4171d4850:3",
+      "at": "2026-10-04T00:20:44.020Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220c0f207a98b7d8062c3083e73f7070e0772ce461cb13f457835af0251301032e6:3",
+      "at": "2026-10-04T00:11:12.714Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12204e10d772a0388afc7165186f58ce789b1c89bf6c979583b46d9dd38fe971595a:3",
+      "at": "2026-10-03T23:54:49.487Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220ebb760d8037bed86b3856aae2b30cc8bc5962f1955879d3f751e0949cbcb6008:3",
+      "at": "2026-10-03T23:50:15.785Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "122083e568219a7948ac17dea46050347c9ae856b1724c24149108e6a0db9fc511bb:3",
+      "at": "2026-10-03T23:33:53.842Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220ad934db9176beeb5b3386d356fd046820f26c232a1ad6168da0756c05b3341d0:3",
+      "at": "2026-10-03T23:25:57.944Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12208ef6a14f35de3b9e64dd9758951095dc9fddf31649d0a8b3a8d8c4347b84ca26:3",
+      "at": "2026-10-03T23:14:29.961Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220c9721994c75494057e65b6e18cc6c94a0c175d1cbfd3f55fd784128547e7a4f9:3",
+      "at": "2026-10-03T23:05:31.392Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12206a2ec8014f117d97727b0b03408c50ac8e3cd081ae5f31039543da8666b21a9c:3",
+      "at": "2026-10-03T22:54:48.700Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220b5913527b2c956ea2635927375cc003aa822d6b2882fb4e0efe1b0263eac3a82:3",
+      "at": "2026-10-03T22:46:41.066Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12205d13ddd7ff1e6f6e82f852b75c39a1b300db5a0861cc22574da2292d402b99e9:3",
+      "at": "2026-10-03T22:28:31.857Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12205c035ad1a66570baaaf7f7ba0f98b8826a106843ce3178e2077979e7d7b6b5b1:3",
+      "at": "2026-10-03T22:28:09.631Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220c6d602d6d1027dfe249b3f7d6f7a0b04385614827816ba4975bcaea7c799867c:3",
+      "at": "2026-10-03T22:10:06.449Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "122095cf92b3e146085478d4581553261c9d4e68e3eb6b0c29694fd05b491adb8566:3",
+      "at": "2026-10-03T22:01:10.325Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220c5cf723f0f300b014f4213d06523f70b4f5dcc5bf50bf00b69efaea5b749bf7d:3",
+      "at": "2026-10-03T21:51:57.216Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220283b730dd883945ddd324c83803e0a83f856d74a541bff26d1097a79f680b57d:3",
+      "at": "2026-10-03T21:42:53.928Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220a714ce46c8a3ade905e3a90556bebcbbf80ff2aedfa19eb8c8e7cbb240e1d71b:3",
+      "at": "2026-10-03T21:27:01.736Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220e0362f83c4a549b71f2e20a3ed680951afbd6983c2bfb183a9c63fc772f5cad1:3",
+      "at": "2026-10-03T21:25:32.316Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "122072e09446bc0876bdcc34c2167e3b3e523a1ad822834f47b4b9cfb90457208fd7:3",
+      "at": "2026-10-03T21:14:35.072Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220932a589aad821038c33efcc87012f90a917be819f392e19dd6bc71ea072c329b:3",
+      "at": "2026-10-03T20:57:43.404Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220b6f6ad42c33122b030f6fc6a681d555f5d7db261c0d1efc9b1a93bcd6b755a4d:3",
+      "at": "2026-10-03T20:47:53.020Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "122088f0f85e3c4390c72c19166cfbb0889df2fb47129f51868dbb9b4465d9933ecf:3",
+      "at": "2026-10-03T20:38:41.841Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12203d2f141233bd626ab8b07d7f3d627cb7acf9ba3d5ba976ac4f0dc2335d0dc651:3",
+      "at": "2026-10-03T20:28:49.579Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220b5189e27d2873d7b1d031fa3082531418432fd1c5fa0dcc64f528dbce71cc2be:3",
+      "at": "2026-10-03T20:22:58.457Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12208f68adeb264034cf228711f5f2d99b0988d3148bfb8605f9dcfef3d1a9f7096d:3",
+      "at": "2026-10-03T20:11:48.485Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12203a57d229fefd026ef8ee6a30bf1bac57158d6b2f23029971d3aa0c8484922dce:3",
+      "at": "2026-10-03T19:55:39.736Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12202be65292b736404999c7a2af4cd54d5c2b34169a49ed54d855cfa0e455a288be:3",
+      "at": "2026-10-03T19:43:57.287Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12206841f9c23604ee6b9a91a97905b4350aaca8cc44533cf645b6482044d6400626:3",
+      "at": "2026-10-03T19:43:28.467Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220f8a30e751e77cb9bfd8fe352da0a7a404e1601afb35fde432fe4ee14030e6be2:3",
+      "at": "2026-10-03T19:30:20.918Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220ced0d895478df390c02ef5bce1de4ae39018317f3789750ba5954bde8ead8a70:3",
+      "at": "2026-10-03T19:16:31.836Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "122054e15fec393fe639933cc1675b4b6452ca0dc5d89ff135373981567d6a87fe96:3",
+      "at": "2026-10-03T19:05:34.903Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "122043d38fc37811b46fc47956cd631c5edb6f7a4c17e8880d2c8023471ded3889e3:3",
+      "at": "2026-10-03T18:54:42.850Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220d0872d2cf353cb497817e3a412c5cf0d1b260aa162d9b6b14eabe992b5feedb8:3",
+      "at": "2026-10-03T18:50:50.108Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220fe09edbdd7c245a6cdab315393b5381a68c1163a80b1ed37179ae001af38a721:3",
+      "at": "2026-10-03T18:32:48.438Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220ac57ec4c8f97039ce3d1feace488971671603e5f569a2e5538989b083042ad36:3",
+      "at": "2026-10-03T18:27:19.648Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "122075e4e7b9229e5f5a8672d1dcb84b8ba77e71df44b8535b385ddb865defbede11:3",
+      "at": "2026-10-03T18:18:28.666Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220b11bc186ff6be2b2d8cc4ad06e49a356338d64cc07f4f86db48ebc93e80e3799",
+      "at": "2026-10-03T18:17:32.811Z",
+      "type": "private_transfer",
+      "direction": "in",
+      "counterparty": "Tradeweb-Markets-1::12203cd253ff9f6526c871dd6a9b3af8d1f0484ff0910e6cae75e9bcf76d1be5ff99",
+      "instrument": null,
+      "amount": null
+    },
+    {
+      "id": "12207bc31232ac49bb71b96489664805cf8ef950bf168fe60362f656ae28e3372d50:3",
+      "at": "2026-10-03T18:01:59.989Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220e95aaabebefe6b49e940aa7b39fc382b363830e117c3d73b02b28b593124dc69:3",
+      "at": "2026-10-03T17:54:04.716Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12209c873c394b3321a861b23155fe42d82082b95ce747c337a4e7aac163602ff057:3",
+      "at": "2026-10-03T17:45:09.049Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12202b8551b965f65cb87c38e9d8e5f32e9b53a2a8df73d5a59a7a5be863ad3b6224:3",
+      "at": "2026-10-03T17:30:44.395Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "12207f6638c5fb68449e463904c3e0cf1cccc0d4dfaef7ab54d4258c6db3a8aa892c:3",
+      "at": "2026-10-03T17:29:19.381Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    },
+    {
+      "id": "1220a6d0210621db12ac97253b7bb97c7b8018c1ee46156bff6938214c2223a8c6da:3",
+      "at": "2026-10-03T17:14:27.692Z",
+      "type": "reward",
+      "direction": "in",
+      "counterparty": null,
+      "instrument": "CC",
+      "amount": 960.77509
+    }
+  ]
+}

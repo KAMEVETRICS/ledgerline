@@ -16,7 +16,7 @@ type Toast = { id: number; kind: "ok" | "error"; text: string };
 type Store = {
   status: "loading" | "signedout" | "ready" | "offline";
   session: Session | null;
-  signIn: (username: string, password: string) => Promise<string | null>;
+  signIn: (username: string) => Promise<string | null>;
   signOut: () => Promise<void>;
   parties: Partial<Record<Role, string>>;
   /** Snapshots per role. Only the signed-in party's, except for the judge view. */
@@ -91,9 +91,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     return () => clearInterval(t);
   }, [session, refresh]);
 
-  const signIn = useCallback<Store["signIn"]>(async (username, password) => {
+  const signIn = useCallback<Store["signIn"]>(async (username) => {
     try {
-      setSession(await login(username, password));
+      setSession(await login(username));
       setStatus("loading");
       return null;
     } catch (e) {

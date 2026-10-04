@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "source": "ccspace",
+    "network": "mainnet",
+    "asOf": "2026-10-04T10:25:21.275Z",
+    "note": "Reward history is bounded by the request budget; activity shows only UTC days with proven coverage. Unknown attribution is omitted. Daily validator activity is unavailable when the coupon feed supplies no liveness markers. Per-round rewards are unavailable because coupon record times are not round close times. 3 validators have unknown liveness; the active count includes confirmed live validators only. CC price is the DSO/SV governance price, not an exchange quote. CC supply and rolling 24-hour transfer counts are unavailable. Featured-app count is providers with markers in the 30-UTC-day window. Recorded live response for UI development."
+  },
+  "latestRound": 115940,
+  "validators": {
+    "total": 1427,
+    "active": 787
+  },
+  "featuredApps": 100,
+  "ccPriceUsd": 0.122891,
+  "ccSupply": null,
+  "transfers24h": null,
+  "series": {
+    "transfersDaily": [
+      {
+        "t": "2026-09-05",
+        "v": 142534
+      },
+      {
+        "t": "2026-09-06",
+        "v": 140266
+      },
+      {
+        "t": "2026-09-07",
+        "v": 141460
+      },
+      {
+        "t": "2026-09-08",
+        "v": 160753
+      },
+      {
+        "t": "2026-09-09",
+        "v": 317685
+      },
+      {
+        "t": "2026-09-10",
+        "v": 297521
+      },
+      {
+        "t": "2026-09-11",
+        "v": 317706
+      },
+      {
+        "t": "2026-09-12",
+        "v": 248318
+      },
+      {
+        "t": "2026-09-13",
+        "v": 302495
+      },
+      {
+        "t": "2026-09-14",
+        "v": 321477
+      },
+      {
+        "t": "2026-09-15",
+        "v": 257334
+      },
+      {
+        "t": "2026-09-16",
+        "v": 271209
+      },
+      {
+        "t": "2026-09-17",
+        "v": 309813
+      },
+      {
+        "t": "2026-09-18",
+        "v": 295656
+      },
+      {
+        "t": "2026-09-19",
+        "v": 260997
+      },
+      {
+        "t": "2026-09-20",
+        "v": 343874
+      },
+      {
+        "t": "2026-09-21",
+        "v": 435525
+      },
+      {
+        "t": "2026-09-22",
+        "v": 290462
+      },
+      {
+        "t": "2026-09-23",
+        "v": 213928
+      },
+      {
+        "t": "2026-09-24",
+        "v": 270986
+      },
+      {
+        "t": "2026-09-25",
+        "v": 351813
+      },
+      {
+        "t": "2026-09-26",
+        "v": 370705
+      },
+      {
+        "t": "2026-09-27",
+        "v": 338938
+      },
+      {
+        "t": "2026-09-28",
+        "v": 354524
+      },
+      {
+        "t": "2026-09-29",
+        "v": 401515
+      },
+      {
+        "t": "2026-09-30",
+        "v": 422119
+      },
+      {
+        "t": "2026-10-01",
+        "v": 386946
+      },
+      {
+        "t": "2026-10-02",
+        "v": 433600
+      },
+      {
+        "t": "2026-10-03",
+        "v": 346565
+      },
+      {
+        "t": "2026-10-04",
+        "v": 177180
+      }
+    ],
+    "activeValidatorsDaily": []
+  }
+}

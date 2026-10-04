@@ -42,7 +42,7 @@ UI only, against sample data (no Daml SDK needed):
 cd ui && npm install && npm run dev
 ```
 
-Open http://localhost:5173 and sign in as `ecosystem` (password in `ui/demo-users.json`). The Network section works without a ledger.
+Open http://localhost:5173. The Network section is public (no sign-in) and works without a ledger. Private views use passwordless demo identities ("View as a party"). Set `NETWORK_FIXTURE_SET=live` to serve recorded live CC Space responses from `ui/scripts/network/fixtures-live/` instead of the generic samples.
 
 Everything, including the Canton sandbox (needs Daml SDK 3.4.10 via `dpm` and Java 17+):
 

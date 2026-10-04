@@ -2,7 +2,12 @@
 // Canton party, and every JSON Ledger API call is checked against it here,
 // so the browser cannot read or act as any other party. The "Judge" account
 // is the exception: it sees every party side by side for the demo.
-import { randomBytes, timingSafeEqual } from "node:crypto";
+//
+// Demo identities need no password: choosing one starts a session bound to
+// that party. The privacy rules below are what matter, and they are enforced
+// on every request. A production deployment would sign in through a Canton
+// wallet instead.
+import { randomBytes } from "node:crypto";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
@@ -10,12 +15,6 @@ const config = JSON.parse(readFileSync(path.resolve("demo-users.json"), "utf8"))
 const users = new Map(config.users.map((u) => [u.username, u]));
 const sessions = new Map(); // token -> user
 const COOKIE = "ll_session";
-
-function sameText(a, b) {
-  const x = Buffer.from(String(a));
-  const y = Buffer.from(String(b));
-  return x.length === y.length && timingSafeEqual(x, y);
-}
 
 function sessionOf(req) {
   const cookie = req.headers.cookie ?? "";
@@ -47,9 +46,7 @@ export async function handleApi(req, res) {
       return json(res, 400, { error: "Bad request" }), true;
     }
     const user = users.get(String(body.username ?? "").trim().toLowerCase());
-    if (!user || !sameText(body.password ?? "", config.password)) {
-      return json(res, 401, { error: "Wrong username or password" }), true;
-    }
+    if (!user) return json(res, 401, { error: "Unknown demo identity" }), true;
     const token = randomBytes(24).toString("hex");
     sessions.set(token, user);
     json(res, 200, publicUser(user), {
@@ -61,6 +58,10 @@ export async function handleApi(req, res) {
     const token = (req.headers.cookie ?? "").match(new RegExp(`${COOKIE}=([0-9a-f]+)`))?.[1];
     if (token) sessions.delete(token);
     json(res, 200, {}, { "set-cookie": `${COOKIE}=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0` });
+    return true;
+  }
+  if (req.url === "/api/identities") {
+    json(res, 200, config.users.map((u) => ({ ...publicUser(u), description: u.description ?? "" })));
     return true;
   }
   if (req.url === "/api/me") {

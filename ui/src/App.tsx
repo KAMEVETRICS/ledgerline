@@ -1,15 +1,15 @@
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useState } from "react";
 import { shortRole } from "./components";
+import { identities, type Identity, type SessionRole } from "./ledger";
 import { ROLES, ROLE_INFO, TEMPLATE_LABELS, type Role } from "./model";
 import { NetworkSection } from "./network/NetworkSection";
 import { Pane } from "./panes";
 import { EcosystemPrivateMarkets } from "./private/EcosystemPrivateMarkets";
 import { useStore } from "./store";
-import type { SessionRole } from "./ledger";
 
 const DEFAULT_PANES: Role[] = ["GP", "GP2", "LP_A", "LP_B"];
 
-// Hash routes: #/network/<page>, #/me, #/parties, #/matrix, #/private-markets
+// Hash routes: #/network/<page>, #/view-as, #/me, #/parties, #/matrix, #/private-markets
 function useRoute(): [string, (r: string) => void] {
   const read = () => window.location.hash.replace(/^#\/?/, "");
   const [route, setRoute] = useState(read);
@@ -23,49 +23,47 @@ function useRoute(): [string, (r: string) => void] {
 
 type NavItem = { route: string; label: string };
 
-function navFor(role: SessionRole): NavItem[] {
-  const network = { route: "network/overview", label: "Network" };
+const NETWORK: NavItem = { route: "network/overview", label: "Network" };
+
+// The network dashboard is public. Private views need a demo identity.
+function navFor(role: SessionRole | null): NavItem[] {
+  if (role === null) return [NETWORK, { route: "view-as", label: "Private views" }];
   if (role === "Judge")
-    return [
-      { route: "parties", label: "Party views" },
-      { route: "matrix", label: "Who holds what" },
-      network,
-    ];
-  if (role === "Ecosystem") return [network, { route: "private-markets", label: "Private markets" }];
-  return [{ route: "me", label: "My dashboard" }, network];
+    return [{ route: "parties", label: "Party views" }, { route: "matrix", label: "Who holds what" }, NETWORK];
+  if (role === "Ecosystem") return [{ route: "private-markets", label: "Private markets" }, NETWORK];
+  return [{ route: "me", label: "My dashboard" }, NETWORK];
 }
 
 export default function App() {
   const { status, session, toasts } = useStore();
   const [route, go] = useRoute();
-  const nav = session ? navFor(session.role) : [];
+  const nav = navFor(session?.role ?? null);
   const active = nav.find((n) => route.split("/")[0] === n.route.split("/")[0]) ?? nav[0];
+  const onNetwork = active.route.startsWith("network");
 
   return (
     <div className="app">
       <header className="topbar">
         <Brand />
-        {session && nav.length > 0 && (
-          <nav className="tabs" aria-label="Sections">
-            {nav.map((n) => (
-              <button key={n.route} className={n === active ? "on" : ""} aria-current={n === active ? "page" : undefined} onClick={() => go(n.route)}>
-                {n.label}
-              </button>
-            ))}
-          </nav>
-        )}
-        {session && <UserChip />}
+        <nav className="tabs" aria-label="Sections">
+          {nav.map((n) => (
+            <button key={n.route} className={n === active ? "on" : ""} aria-current={n === active ? "page" : undefined} onClick={() => go(n.route)}>
+              {n.label}
+            </button>
+          ))}
+        </nav>
+        {session ? <UserChip /> : <button className="btn primary" onClick={() => go("view-as")}>View as a party</button>}
         <span className={`status ${status}`}>
           <span className="dot" />
-          {status === "ready" ? "Canton ledger connected" : status === "offline" ? "Ledger offline" : status === "signedout" ? "Signed out" : "Connecting…"}
+          {status === "ready" ? "Canton ledger connected" : status === "offline" ? "Ledger offline" : session ? "Connecting…" : "Public view"}
         </span>
       </header>
 
-      {status === "signedout" && <SignIn />}
-      {/* Network pages use public data, so they work even when the local ledger is down. */}
-      {session && active?.route.startsWith("network") && <NetworkSection page={route.split("/")[1] ?? "overview"} go={go} />}
-      {status === "offline" && !active?.route.startsWith("network") && <Offline />}
-      {status === "ready" && session && active && (
+      {/* Public network data: works for everyone, with or without the local ledger. */}
+      {onNetwork && <NetworkSection page={route.split("/")[1] ?? "overview"} go={go} />}
+      {!session && active.route === "view-as" && <ViewAs onChosen={(r) => go(r === "Judge" ? "parties" : r === "Ecosystem" ? "private-markets" : "me")} />}
+      {session && !onNetwork && status === "offline" && <Offline />}
+      {session && status === "ready" && (
         <>
           {active.route === "parties" && <JudgeView />}
           {active.route === "matrix" && <Matrix />}
@@ -99,7 +97,7 @@ function Brand() {
       </span>
       <div>
         <h1>Ledgerline</h1>
-        <p>Private-markets data on Canton. Every party sees only its own truth.</p>
+        <p>Canton data for institutions. Every party sees only its own truth.</p>
       </div>
     </div>
   );
@@ -110,71 +108,75 @@ function UserChip() {
   return (
     <div className="user">
       <span className="user-name">{session!.name}</span>
-      <button className="btn ghost" onClick={() => signOut()}>
-        Sign out
+      <button className="btn ghost" onClick={() => signOut().then(() => (window.location.hash = "/network/overview"))}>
+        Leave view
       </button>
     </div>
   );
 }
 
-const DEMO_USERS: [string, string][] = [
-  ["harbor", "LP, two funds"],
-  ["mesa", "LP, two funds"],
-  ["ledgerline-gp", "Fund manager"],
-  ["ridgeway-gp", "Fund manager"],
-  ["northwind-gp", "Fund manager"],
-  ["admin", "Fund administrator"],
-  ["auditor", "Auditor"],
-  ["ecosystem", "Network statistics"],
-  ["judge", "All views side by side"],
+// Groups for the picker, in the order a judge would explore them.
+const GROUPS: { title: string; roles: SessionRole[] }[] = [
+  { title: "Investors", roles: ["LP_A", "LP_B", "LP_C"] },
+  { title: "Fund managers", roles: ["GP", "GP2", "GP3"] },
+  { title: "Operators", roles: ["Administrator", "Auditor", "Ecosystem"] },
+  { title: "Demo", roles: ["Judge"] },
 ];
 
-function SignIn() {
+function ViewAs({ onChosen }: { onChosen: (role: SessionRole) => void }) {
   const { signIn } = useStore();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [list, setList] = useState<Identity[] | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [pending, setPending] = useState(false);
+  const [pending, setPending] = useState<string | null>(null);
 
-  const submit = async (e: FormEvent) => {
-    e.preventDefault();
-    setPending(true);
-    setError(await signIn(username, password));
-    setPending(false);
+  useEffect(() => {
+    identities().then(setList).catch((e) => setError(e instanceof Error ? e.message : String(e)));
+  }, []);
+
+  const choose = async (who: Identity) => {
+    setPending(who.username);
+    const err = await signIn(who.username);
+    setPending(null);
+    if (err) setError(err);
+    else onChosen(who.role);
   };
 
   return (
-    <main className="signin">
-      <form className="signin-card" onSubmit={submit}>
-        <h2>Sign in</h2>
-        <p className="muted">Each account is bound to one Canton party. The server only lets it read and act as that party.</p>
-        <label className="field">
-          <span>Username</span>
-          <input autoComplete="username" value={username} onChange={(e) => setUsername(e.target.value)} autoFocus />
-        </label>
-        <label className="field">
-          <span>Password</span>
-          <input type="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </label>
-        {error && <p className="signin-error" role="alert">{error}</p>}
-        <button className="btn primary" type="submit" disabled={pending || !username || !password}>
-          {pending ? "Signing in…" : "Sign in"}
-        </button>
-      </form>
-      <section className="signin-demo">
-        <h3>Demo accounts</h3>
-        <p className="muted small">Pick one to fill the username. The demo password is in the README.</p>
-        <ul>
-          {DEMO_USERS.map(([u, label]) => (
-            <li key={u}>
-              <button type="button" className="chip" onClick={() => setUsername(u)}>
-                {u}
-              </button>
-              <span className="muted small">{label}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
+    <main className="viewas">
+      <header className="page-head">
+        <div>
+          <h2>View the ledger as a party</h2>
+          <p className="muted">
+            Each identity is one Canton party. The server lets it read and act only as that party, so what you see is exactly what
+            that party's node holds. No password: these are demo identities.
+          </p>
+        </div>
+      </header>
+      {error && <p className="signin-error" role="alert">{error}</p>}
+      {!list && !error && <p className="empty">Loading identities…</p>}
+      {list &&
+        GROUPS.map((g) => (
+          <section key={g.title} className="viewas-group">
+            <h3>{g.title}</h3>
+            <div className="viewas-grid">
+              {list
+                .filter((u) => g.roles.includes(u.role))
+                .map((u) => (
+                  <button
+                    key={u.username}
+                    className="viewas-card"
+                    style={u.role !== "Judge" ? { ["--hue" as string]: ROLE_INFO[u.role as Role].hue } : undefined}
+                    disabled={pending !== null}
+                    onClick={() => choose(u)}
+                  >
+                    <strong>{u.name}</strong>
+                    <span className="muted small">{u.description}</span>
+                    <span className="viewas-go">{pending === u.username ? "Opening…" : "View as →"}</span>
+                  </button>
+                ))}
+            </div>
+          </section>
+        ))}
     </main>
   );
 }
