@@ -5,6 +5,7 @@ import { fetchApps, useLoad } from "../api";
 import { LoadState, NetworkPage } from "../NetworkSection";
 import type { App, AppsReport } from "../types";
 import { DASH, ccAmount, cmp, fmt, nextSort, rewardsPerK, sumKnown, trend7d, type SortState } from "./wpb/format";
+import { PartyLabel } from "./wpb/party";
 import { SortTh } from "./wpb/sort";
 import "./wpb/wpb.css";
 
@@ -40,25 +41,12 @@ function trendLabel(t: number): string {
   return `${sign}${pct.toFixed(1)}%`;
 }
 
-function MoverRow({ app }: { app: Row }) {
-  const t = app.trend;
-  if (t == null) return null;
+function RankRow({ app, value }: { app: Row; value: string }) {
   return (
     <li>
-      <span>{app.name}</span>
-      <span className={trendClass(t)}>{trendLabel(t)}</span>
+      <PartyLabel id={app.name} />
+      <span className="num">{value}</span>
     </li>
-  );
-}
-
-function PartyCopy({ party, copied, onCopy }: { party: string; copied: boolean; onCopy: (party: string) => void }) {
-  return (
-    <>
-      <span className="party">{party}</span>
-      <button type="button" className="btn ghost" onClick={() => onCopy(party)}>
-        {copied ? "Copied" : "Copy"}
-      </button>
-    </>
   );
 }
 
@@ -66,16 +54,18 @@ function AppsBody({ data }: { data: AppsReport }) {
   const [featuredOnly, setFeaturedOnly] = useState(false);
   const [sort, setSort] = useState<SortState>({ col: "activity", dir: "desc" });
   const [selected, setSelected] = useState<string | null>(null);
-  const [copied, setCopied] = useState(false);
 
   const rowsAll = data.apps.map(asRow);
   const featured = rowsAll.filter((a) => a.featured).length;
   const activity = sumKnown(rowsAll.map((a) => a.activity30d));
   const rewards = sumKnown(rowsAll.map((a) => a.rewards30dCC));
+  const hasDaily = rowsAll.some((a) => a.activityDaily.length > 0);
 
   const ranked = rowsAll.filter((a) => a.trend != null).sort((a, b) => (b.trend ?? 0) - (a.trend ?? 0));
   const growing = ranked.slice(0, 3);
   const slowing = [...ranked].slice(-3).reverse();
+  const earners = [...rowsAll].sort((a, b) => cmp(a.rewards30dCC, b.rewards30dCC, "desc")).slice(0, 5);
+  const busiest = [...rowsAll].sort((a, b) => cmp(a.activity30d, b.activity30d, "desc")).slice(0, 5);
 
   const rows = [...(featuredOnly ? rowsAll.filter((a) => a.featured) : rowsAll)].sort((a, b) => {
     if (sort.col === "name") return cmp(a.name, b.name, sort.dir);
@@ -89,13 +79,6 @@ function AppsBody({ data }: { data: AppsReport }) {
 
   const selectedApp = rowsAll.find((a) => a.id === selected);
   const onSort = (col: string, first: "asc" | "desc") => setSort((s) => nextSort(s, col, first));
-
-  const copyParty = async (party: string) => {
-    await navigator.clipboard.writeText(party);
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 1500);
-  };
-
   const openRow = (id: string) => setSelected((cur) => (cur === id ? null : id));
 
   return (
@@ -128,7 +111,7 @@ function AppsBody({ data }: { data: AppsReport }) {
                 <tr>
                   <SortTh label="Name" col="name" sort={sort} onSort={onSort} first="asc" />
                   <SortTh label="Provider" col="provider" sort={sort} onSort={onSort} first="asc" />
-                  <th scope="col">Activity</th>
+                  {hasDaily && <th scope="col">Activity</th>}
                   <SortTh label="30-day activity" col="activity" sort={sort} onSort={onSort} numeric />
                   <SortTh label="Rewards (30d)" col="rewards" sort={sort} onSort={onSort} numeric />
                   <SortTh label="Rewards / 1k activity" col="rpk" sort={sort} onSort={onSort} numeric />
@@ -150,19 +133,20 @@ function AppsBody({ data }: { data: AppsReport }) {
                       }
                     }}
                   >
-                    <td>
-                      {a.name}
-                      {a.featured && (
-                        <>
-                          {" "}
-                          <Badge tone="neutral">Featured</Badge>
-                        </>
-                      )}
+                    <td className="wpb-clip">
+                      <span className="wpb-named">
+                        <PartyLabel id={a.name} />
+                        {a.featured && <Badge tone="neutral">Featured</Badge>}
+                      </span>
                     </td>
-                    <td>{a.provider}</td>
-                    <td>
-                      <Sparkline points={a.activityDaily} />
+                    <td className="wpb-clip">
+                      <PartyLabel id={a.provider} />
                     </td>
+                    {hasDaily && (
+                      <td>
+                        <Sparkline points={a.activityDaily} />
+                      </td>
+                    )}
                     <td className="r num">{fmt(a.activity30d, compact)}</td>
                     <td className="r num">{fmt(a.rewards30dCC, ccAmount)}</td>
                     <td className="r num">{fmt(a.rpk, ccAmount)}</td>
@@ -179,14 +163,18 @@ function AppsBody({ data }: { data: AppsReport }) {
 
       {selectedApp && (
         <div className="panel wpb-detail">
-          <h3>{selectedApp.name}</h3>
-          <TimeSeriesChart area series={[{ name: "Activity", points: selectedApp.activityDaily }]} />
+          <h3>
+            <PartyLabel id={selectedApp.name} />
+          </h3>
+          {selectedApp.activityDaily.length > 0 && (
+            <TimeSeriesChart area series={[{ name: "Activity", points: selectedApp.activityDaily }]} />
+          )}
           <div className="wpb-party">
             <span className="muted">Party</span>
             {selectedApp.party == null ? (
               <span className="num">{DASH}</span>
             ) : (
-              <PartyCopy party={selectedApp.party} copied={copied} onCopy={copyParty} />
+              <PartyLabel id={selectedApp.party} copy />
             )}
           </div>
           {selectedApp.url && (
@@ -200,28 +188,54 @@ function AppsBody({ data }: { data: AppsReport }) {
       )}
 
       <div className="panel">
-        <h3>Movers</h3>
-        {ranked.length === 0 ? (
-          <Empty>Not enough daily activity to compute a 7-day trend.</Empty>
+        {hasDaily ? (
+          <>
+            <h3>Movers</h3>
+            {ranked.length === 0 ? (
+              <Empty>Not enough daily activity to compute a 7-day trend.</Empty>
+            ) : (
+              <div className="wpb-movers">
+                <div>
+                  <h4>Top 3 by 7-day growth</h4>
+                  <ul className="list">
+                    {growing.map((a) => (
+                      <RankRow key={a.id} app={a} value={a.trend == null ? DASH : trendLabel(a.trend)} />
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h4>Bottom 3 by 7-day growth</h4>
+                  <ul className="list">
+                    {slowing.map((a) => (
+                      <RankRow key={a.id} app={a} value={a.trend == null ? DASH : trendLabel(a.trend)} />
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            )}
+          </>
         ) : (
-          <div className="wpb-movers">
-            <div>
-              <h4>Top 3 by 7-day growth</h4>
-              <ul className="list">
-                {growing.map((a) => (
-                  <MoverRow key={a.id} app={a} />
-                ))}
-              </ul>
+          <>
+            <h3>Top earners and most active</h3>
+            <div className="wpb-movers">
+              <div>
+                <h4>Top earners</h4>
+                <ul className="list">
+                  {earners.map((a) => (
+                    <RankRow key={a.id} app={a} value={fmt(a.rewards30dCC, ccAmount)} />
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h4>Most active</h4>
+                <ul className="list">
+                  {busiest.map((a) => (
+                    <RankRow key={a.id} app={a} value={fmt(a.activity30d, compact)} />
+                  ))}
+                </ul>
+              </div>
             </div>
-            <div>
-              <h4>Bottom 3 by 7-day growth</h4>
-              <ul className="list">
-                {slowing.map((a) => (
-                  <MoverRow key={a.id} app={a} />
-                ))}
-              </ul>
-            </div>
-          </div>
+          </>
         )}
       </div>
     </div>

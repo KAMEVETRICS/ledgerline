@@ -87,3 +87,21 @@ export function nextSort(sort: SortState, col: string, first: "asc" | "desc"): S
   if (sort.col === col) return { col, dir: sort.dir === "asc" ? "desc" : "asc" };
   return { col, dir: first };
 }
+
+/** Party ids look like `hint::1220abcd…`. Hint is the party's own label; never invent a company name. */
+export function parseParty(id: string): { hint: string; fingerprint: string | null; full: string } {
+  const i = id.indexOf("::");
+  if (i <= 0) return { hint: id, fingerprint: null, full: id };
+  const rest = id.slice(i + 2);
+  const fingerprint = rest.length <= 8 ? rest : `${rest.slice(0, 6)}…${rest.slice(-2)}`;
+  return { hint: id.slice(0, i), fingerprint, full: id };
+}
+
+/** First sentence of `meta.note` that mentions `needle`. Used under metrics shown as "—". */
+export function noteLine(note: string | undefined, needle: string): string | undefined {
+  if (!note) return;
+  const hit = needle.toLowerCase();
+  for (const part of note.split(". ")) {
+    if (part.toLowerCase().includes(hit)) return part.endsWith(".") ? part : `${part}.`;
+  }
+}

@@ -3,7 +3,7 @@ import { Stat } from "../../components";
 import { fetchOverview, useLoad } from "../api";
 import { LoadState, NetworkPage } from "../NetworkSection";
 import type { NetworkOverview } from "../types";
-import { ccAmount, fmt, usd4 } from "./wpb/format";
+import { ccAmount, fmt, noteLine, usd4 } from "./wpb/format";
 import "./wpb/wpb.css";
 
 export function Overview() {
@@ -22,6 +22,8 @@ export function Overview() {
 
 function OverviewBody({ data }: { data: NetworkOverview }) {
   const v = data.validators;
+  const stale = v.total - v.active;
+  const note = data.meta.note;
   return (
     <div className="wpb-stack">
       <div className="stats">
@@ -29,8 +31,16 @@ function OverviewBody({ data }: { data: NetworkOverview }) {
         <Stat label="Validators" value={<span className="num">{`${v.active} / ${v.total}`}</span>} sub="active / total" />
         <Stat label="Featured apps" value={<span className="num">{data.featuredApps.toLocaleString("en-US")}</span>} />
         <Stat label="CC price" value={<span className="num">{fmt(data.ccPriceUsd, usd4)}</span>} />
-        <Stat label="CC supply" value={<span className="num">{fmt(data.ccSupply, ccAmount)}</span>} />
-        <Stat label="Transfers (24h)" value={<span className="num">{fmt(data.transfers24h, compact)}</span>} />
+        <Stat
+          label="CC supply"
+          value={<span className="num">{fmt(data.ccSupply, ccAmount)}</span>}
+          sub={data.ccSupply == null ? noteLine(note, "CC supply") : undefined}
+        />
+        <Stat
+          label="Transfers (24h)"
+          value={<span className="num">{fmt(data.transfers24h, compact)}</span>}
+          sub={data.transfers24h == null ? noteLine(note, "24-hour transfer") : undefined}
+        />
       </div>
 
       <div className="grid-2">
@@ -38,10 +48,27 @@ function OverviewBody({ data }: { data: NetworkOverview }) {
           <h3>Transfers per day</h3>
           <BarSeriesChart name="Transfers" points={data.series.transfersDaily} />
         </div>
-        <div className="panel">
-          <h3>Active validators per day</h3>
-          <TimeSeriesChart series={[{ name: "Active validators", points: data.series.activeValidatorsDaily }]} />
-        </div>
+        {data.series.activeValidatorsDaily.length > 0 ? (
+          <div className="panel">
+            <h3>Active validators per day</h3>
+            <TimeSeriesChart series={[{ name: "Active validators", points: data.series.activeValidatorsDaily }]} />
+          </div>
+        ) : (
+          <div className="panel">
+            <h3>Validator liveness</h3>
+            <div
+              className="wpb-split"
+              role="img"
+              aria-label={`${v.active} active, ${stale} stale`}
+            >
+              <span className="wpb-split-a" style={{ flexGrow: v.active }} />
+              <span className="wpb-split-b" style={{ flexGrow: stale }} />
+            </div>
+            <p className="muted">
+              {v.active.toLocaleString("en-US")} active · {stale.toLocaleString("en-US")} stale
+            </p>
+          </div>
+        )}
       </div>
 
       <div className="wpb-links">
