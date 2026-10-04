@@ -24,6 +24,16 @@ Do not edit any other file. Read `AGENTS.md` first.
 - CC Space API: base URL `https://cc-api.itrocket.space/api/v1`, header `Authorization: Bearer <key>`. Reference: https://cc.itrocket.space/api-reference. Guide: https://github.com/itrocket-team/testnet_guides/blob/main/canton/CC_Space.md. Paging is cursor-based (`before=`), not offset. Calls cost credits, so cache.
 - The key is in `ui/.env.local` as `CCSPACE_API_KEY=...` (loaded by `ui/scripts/env.mjs`). Optional `CCSPACE_NETWORK=mainnet|testnet|devnet` (default `mainnet`).
 
+## Credit budget (read before your first call)
+
+The account has **500 credits in total**, for development **and** the live demo. Budget:
+
+- **At most 150 credits for all of your development and testing.** Check `GET /credits/balance` (free, never billed) before you start and after each test session, and report both numbers in your PR.
+- Find each endpoint's credit cost in the API reference **before** calling it. Prefer the cheapest endpoints that satisfy a field.
+- Record a response once into `__fixtures__/` and develop against the recording. Don't re-call the API to iterate on mapping code.
+- Never call the API in a loop, from tests, or from `check-contract.mjs` more than once per route per run.
+- If 150 credits isn't enough to finish, stop and say so in the PR rather than spending more.
+
 ## Steps
 
 1. Read `AGENTS.md`, `ui/src/network/types.ts`, `ui/scripts/network/index.mjs` and the fixtures.
