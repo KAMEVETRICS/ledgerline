@@ -50,6 +50,8 @@ Everything, including the Canton sandbox (needs Daml SDK 3.4.10 via `dpm` and Ja
 node scripts/demo.mjs
 ```
 
+Daml builds and tests also run in GitHub Actions (`.github/workflows/daml.yml`) on every push that touches `main/` or `test/`. On the Windows dev machine the test package cannot build locally (Smart App Control blocks an SDK helper), so `demo.mjs` falls back to the CI-built DARs automatically; `node scripts/demo.mjs --ci-dars` forces that. Push your Daml changes and wait for CI before running the demo.
+
 ## Before you open a pull request
 
 - `cd ui && npx tsc --noEmit` passes.
