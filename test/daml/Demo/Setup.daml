@@ -1,7 +1,9 @@
 module Demo.Setup where
 
-import DA.Date (Month(..), date)
+import DA.Date (Month(..), addDays, date, toDateUTC)
 import DA.Foldable (forA_)
+import DA.List (sortOn)
+import DA.Time (addRelTime, days, hours, time)
 import Daml.Script
 
 import Cash
@@ -13,106 +15,129 @@ data Demo = Demo
     bank : Party
     gp : Party
     gp2 : Party
+    gp3 : Party
     admin : Party
     lpA : Party
     lpB : Party
     lpC : Party
+    lpD : Party
+    lpE : Party
     auditor : Party
+    ecosystem : Party
+    fund1 : ContractId Fund
+    statsDesk : ContractId StatisticsDesk
 
--- | Seeds a running ledger for the dashboard demo.
+-- | Seeds a running ledger (started with --static-time) for the dashboard demo.
+-- `now` is the wall-clock time the demo starts; the script walks the ledger
+-- clock through four quarters of fund history first, then stops at `now`.
 --
--- Fund LL-I (GP): three LPs, CC-1 paid. NAV, MFN, distributions and audit
--- access are left for the live demo.
--- Fund RW-II (GP2): LP A and LP B only, CC-1 paid, a distribution, a NAV, and
--- CC-2 outstanding, so the LP portfolio view spans two managers who cannot
--- see each other.
-setup : Script ()
-setup = do
-  _ <- setupDemo
+-- Three funds, three managers, one administrator:
+--   LL-I  Ledgerline Capital   LPs A, B, C
+--   RW-II Ridgeway Partners    LPs A, B       (CC-3 left outstanding)
+--   NW-I  Northwind Credit     LPs C, D, E
+-- Each quarter: calls paid with realistic delays (some late), distributions,
+-- an administrator NAV with per-LP statements, and network statistics that
+-- clear the privacy threshold (3 funds, 5 LPs). MFN checks and audit access
+-- are left for the live demo.
+setup : Time -> Script ()
+setup now = do
+  _ <- setupDemoAt now
   pure ()
 
+-- | Fixed clock for Daml Script tests.
 setupDemo : Script Demo
-setupDemo = script do
+setupDemo = setupDemoAt (time (date 2026 Oct 3) 12 0 0)
+
+setupDemoAt : Time -> Script Demo
+setupDemoAt now = script do
+  setTime (at 2025 Sep 15)
   bank <- allocateParty "Bank"
   gp <- allocateParty "GP"
   gp2 <- allocateParty "GP2"
+  gp3 <- allocateParty "GP3"
   admin <- allocateParty "Administrator"
   lpA <- allocateParty "LP_A"
   lpB <- allocateParty "LP_B"
   lpC <- allocateParty "LP_C"
+  -- Background investors: real participants in NW-I, without demo logins.
+  lpD <- allocateParty "LP_D"
+  lpE <- allocateParty "LP_E"
   auditor <- allocateParty "Auditor"
   -- Read-only viewer of network-wide statistics; holds no fund records.
-  _ <- allocateParty "Ecosystem"
+  ecosystem <- allocateParty "Ecosystem"
 
-  forA_ [lpA, lpB, lpC] \lp ->
-    submit bank do createCmd Cash with issuer = bank; owner = lp; amount = 3000000.0
-  _ <- submit bank do createCmd Cash with issuer = bank; owner = gp; amount = 1000000.0
-  gp2Cash <- submit bank do createCmd Cash with issuer = bank; owner = gp2; amount = 500000.0
+  forA_ [lpA, lpB, lpC, lpD, lpE] \lp ->
+    submit bank do createCmd Cash with issuer = bank; owner = lp; amount = 20000000.0
+  forA_ [gp, gp2, gp3] \m ->
+    submit bank do createCmd Cash with issuer = bank; owner = m; amount = 1000000.0
 
-  -- Fund LL-I
-  fund1 <- submit gp do
-    createCmd Fund with
-      gp
-      administrator = admin
-      cashIssuer = bank
-      fundId = "LL-I"
-      name = "Ledgerline Credit Fund I"
-      vintage = 2026
-  _ <- submit admin do createCmd AdminDesk with administrator = admin; gp; fundId = "LL-I"
-  a1 <- commit fund1 gp lpA 5000000.0 200 True
-  b1 <- commit fund1 gp lpB 3000000.0 150 True
-  c1 <- commit fund1 gp lpC 2000000.0 200 False
-  _ <- submit gp do
-    exerciseCmd fund1 IssueCapitalCall with
-      callId = "CC-1"
-      totalAmount = 1000000.0
-      dueDate = date 2026 Nov 27
-      purpose = "Initial loan portfolio"
-      commitmentCids = [a1, b1, c1]
-  forA_ [lpA, lpB, lpC] \lp -> payCall lp "LL-I" "CC-1"
+  fund1 <- newFund gp admin bank "LL-I" "Ledgerline Credit Fund I" 2025
+  fund2 <- newFund gp2 admin bank "RW-II" "Ridgeway Real Estate Debt II" 2025
+  fund3 <- newFund gp3 admin bank "NW-I" "Northwind Infrastructure Credit I" 2025
+  statsDesk <- submit admin do createCmd StatisticsDesk with administrator = admin; viewer = ecosystem
 
-  -- Fund RW-II: a different manager, same administrator.
-  fund2 <- submit gp2 do
-    createCmd Fund with
-      gp = gp2
-      administrator = admin
-      cashIssuer = bank
-      fundId = "RW-II"
-      name = "Ridgeway Real Estate Debt II"
-      vintage = 2025
-  desk2 <- submit admin do createCmd AdminDesk with administrator = admin; gp = gp2; fundId = "RW-II"
-  a2 <- commit fund2 gp2 lpA 4000000.0 175 False
-  b2 <- commit fund2 gp2 lpB 1000000.0 150 False
+  _ <- commit fund1 gp lpA 5000000.0 200 True
+  _ <- commit fund1 gp lpB 3000000.0 150 True
+  _ <- commit fund1 gp lpC 2000000.0 200 False
+  _ <- commit fund2 gp2 lpA 4000000.0 175 False
+  _ <- commit fund2 gp2 lpB 1000000.0 150 False
+  _ <- commit fund3 gp3 lpC 3000000.0 175 False
+  _ <- commit fund3 gp3 lpD 4000000.0 150 False
+  _ <- commit fund3 gp3 lpE 3000000.0 200 False
+
+  -- 2025 Q4
+  capitalCall gp fund1 "LL-I" "CC-1" 1000000.0 (date 2025 Oct 10) "Initial loan portfolio" [(lpA, 2), (lpB, 5), (lpC, 16)]
+  capitalCall gp2 fund2 "RW-II" "CC-1" 2000000.0 (date 2025 Oct 27) "Bridge loan book" [(lpA, 3), (lpB, 9)]
+  capitalCall gp3 fund3 "NW-I" "CC-1" 1500000.0 (date 2025 Nov 12) "Solar portfolio debt" [(lpD, 2), (lpC, 4), (lpE, 20)]
+  quarterEnd admin statsDesk "2025-Q4" (date 2025 Oct 1) (date 2025 Dec 31)
+    [("LL-I", 1020000.0), ("RW-II", 2060000.0), ("NW-I", 1520000.0)]
+
+  -- 2026 Q1
+  capitalCall gp fund1 "LL-I" "CC-2" 1500000.0 (date 2026 Jan 12) "Second lending tranche" [(lpA, 1), (lpB, 3), (lpC, 6)]
+  capitalCall gp3 fund3 "NW-I" "CC-2" 2000000.0 (date 2026 Feb 9) "Wind farm refinancing" [(lpD, 3), (lpC, 5), (lpE, 11)]
+  distribute gp2 "RW-II" "D-1" (date 2026 Mar 10) [(lpA, 96000.0), (lpB, 24000.0)]
+  quarterEnd admin statsDesk "2026-Q1" (date 2026 Jan 1) (date 2026 Mar 31)
+    [("LL-I", 2600000.0), ("RW-II", 2120000.0), ("NW-I", 3600000.0)]
+
+  -- 2026 Q2
+  capitalCall gp2 fund2 "RW-II" "CC-2" 750000.0 (date 2026 Apr 14) "Construction draw" [(lpA, 2), (lpB, 18)]
+  capitalCall gp fund1 "LL-I" "CC-3" 1000000.0 (date 2026 May 11) "Mid-market loans" [(lpB, 2), (lpA, 3), (lpC, 9)]
+  distribute gp3 "NW-I" "D-1" (date 2026 Jun 15) [(lpC, 90000.0), (lpD, 120000.0), (lpE, 90000.0)]
+  quarterEnd admin statsDesk "2026-Q2" (date 2026 Apr 1) (date 2026 Jun 30)
+    [("LL-I", 3700000.0), ("RW-II", 2950000.0), ("NW-I", 3300000.0)]
+
+  -- 2026 Q3
+  distribute gp "LL-I" "D-1" (date 2026 Jul 20) [(lpA, 150000.0), (lpB, 90000.0), (lpC, 60000.0)]
+  capitalCall gp3 fund3 "NW-I" "CC-3" 1000000.0 (date 2026 Aug 10) "Grid storage loans" [(lpC, 3), (lpD, 4), (lpE, 7)]
+  distribute gp2 "RW-II" "D-2" (date 2026 Sep 8) [(lpA, 160000.0), (lpB, 40000.0)]
+  quarterEnd admin statsDesk "2026-Q3" (date 2026 Jul 1) (date 2026 Sep 30)
+    [("LL-I", 3620000.0), ("RW-II", 2830000.0), ("NW-I", 4450000.0)]
+
+  -- Live: RW-II CC-3 is outstanding when the demo starts.
+  setTime (at 2026 Oct 1)
+  rw <- fundCommitments gp2 "RW-II"
   _ <- submit gp2 do
     exerciseCmd fund2 IssueCapitalCall with
-      callId = "CC-1"
-      totalAmount = 2000000.0
-      dueDate = date 2026 Oct 15
-      purpose = "Bridge loan book"
-      commitmentCids = [a2, b2]
-  forA_ [lpA, lpB] \lp -> payCall lp "RW-II" "CC-1"
-
-  (a2', _) <- commitmentIn lpA "RW-II"
-  _ <- submit gp2 do
-    exerciseCmd a2' Distribute with
-      distributionId = "D-1"
-      amount = 120000.0
-      cashCid = gp2Cash
-  fund2Commitments <- map fst . filter (\(_, c) -> c.fundId == "RW-II") <$> query @Commitment gp2
-  _ <- submit admin do
-    exerciseCmd desk2 PublishNav with
-      asOf = date 2026 Sep 30
-      nav = 2180000.0
-      commitmentCids = fund2Commitments
-  _ <- submit gp2 do
-    exerciseCmd fund2 IssueCapitalCall with
-      callId = "CC-2"
-      totalAmount = 750000.0
+      callId = "CC-3"
+      totalAmount = 500000.0
       dueDate = date 2026 Oct 31
-      purpose = "Construction draw"
-      commitmentCids = fund2Commitments
+      purpose = "Final construction draw"
+      commitmentCids = rw
+  t <- getTime
+  if now > t then setTime now else pure ()
 
-  pure Demo with bank; gp; gp2; admin; lpA; lpB; lpC; auditor
+  pure Demo with bank; gp; gp2; gp3; admin; lpA; lpB; lpC; lpD; lpE; auditor; ecosystem; fund1; statsDesk
+
+-- | 10:00 UTC on a date: business hours, so dates read naturally.
+at : Int -> Month -> Int -> Time
+at y m d = time (date y m d) 10 0 0
+
+newFund : Party -> Party -> Party -> Text -> Text -> Int -> Script (ContractId Fund)
+newFund gp admin bank fundId name vintage = do
+  fundCid <- submit gp do
+    createCmd Fund with gp; administrator = admin; cashIssuer = bank; fundId; name; vintage
+  _ <- submit admin do createCmd AdminDesk with administrator = admin; gp; fundId
+  pure fundCid
 
 commit : ContractId Fund -> Party -> Party -> Decimal -> Int -> Bool -> Script (ContractId Commitment)
 commit fundCid gp lp amount fee mfn = do
@@ -120,15 +145,75 @@ commit fundCid gp lp amount fee mfn = do
   offerCid <- submit gp do exerciseCmd fundCid OfferCommitment with lp; amount; terms
   submit lp do exerciseCmd offerCid AcceptCommitment
 
+fundCommitments : Party -> Text -> Script [ContractId Commitment]
+fundCommitments p fundId = map fst . filter (\(_, c) -> c.fundId == fundId) <$> query @Commitment p
+
 commitmentIn : Party -> Text -> Script (ContractId Commitment, Commitment)
 commitmentIn lp fundId = do
   [found] <- filter (\(_, c) -> c.fundId == fundId) <$> query @Commitment lp
   pure found
 
+-- | The largest cash holding of `owner` that covers `amount`.
+cashFor : Party -> Decimal -> Script (ContractId Cash)
+cashFor owner amount = do
+  holdings <- filter (\(_, h) -> h.owner == owner && h.amount >= amount) <$> query @Cash owner
+  case sortOn (\(_, h) -> negate h.amount) holdings of
+    (cid, _) :: _ -> pure cid
+    [] -> abort ("No single cash holding of " <> show owner <> " covers " <> show amount)
+
+-- | Issue a call at 10:00 on `issued`, due 14 days later; each LP pays
+-- `delay` days after issue (delays past 14 are late payments).
+capitalCall : Party -> ContractId Fund -> Text -> Text -> Decimal -> Date -> Text -> [(Party, Int)] -> Script ()
+capitalCall gp fundCid fundId callId total issued purpose payments = do
+  let issuedAt = time issued 10 0 0
+  setTime issuedAt
+  cids <- fundCommitments gp fundId
+  _ <- submit gp do
+    exerciseCmd fundCid IssueCapitalCall with
+      callId
+      totalAmount = total
+      dueDate = addDays issued 14
+      purpose
+      commitmentCids = cids
+  forA_ (sortOn snd payments) \(lp, delay) -> do
+    setTime (addRelTime issuedAt (days delay + hours 3))
+    payCall lp fundId callId
+
 payCall : Party -> Text -> Text -> Script ()
 payCall lp fundId callId = do
-  [(noticeCid, _)] <- filter (\(_, n) -> n.fundId == fundId && n.callId == callId) <$> query @CapitalCallNotice lp
+  [(noticeCid, notice)] <- filter (\(_, n) -> n.fundId == fundId && n.callId == callId) <$> query @CapitalCallNotice lp
   (commitmentCid, _) <- commitmentIn lp fundId
-  [(cashCid, _)] <- query @Cash lp
+  cashCid <- cashFor lp notice.amount
   _ <- submit lp do exerciseCmd noticeCid PayCall with commitmentCid; cashCid
+  pure ()
+
+distribute : Party -> Text -> Text -> Date -> [(Party, Decimal)] -> Script ()
+distribute gp fundId distributionId on payouts = do
+  setTime (time on 10 0 0)
+  forA_ payouts \(lp, amount) -> do
+    [(commitmentCid, _)] <- filter (\(_, c) -> c.fundId == fundId && c.lp == lp) <$> query @Commitment gp
+    cashCid <- cashFor gp amount
+    submit gp do exerciseCmd commitmentCid Distribute with distributionId; amount; cashCid
+
+-- | Quarter close: one NAV per fund (with LP statements), then network
+-- statistics over every fund, using payments made during the quarter.
+quarterEnd : Party -> ContractId StatisticsDesk -> Text -> Date -> Date -> [(Text, Decimal)] -> Script ()
+quarterEnd admin statsDesk period qStart qEnd navs = do
+  setTime (time qEnd 18 0 0)
+  desks <- query @AdminDesk admin
+  forA_ navs \(fundId, nav) -> do
+    [(deskCid, _)] <- pure (filter (\(_, d) -> d.fundId == fundId) desks)
+    cids <- fundCommitments admin fundId
+    submit admin do exerciseCmd deskCid PublishNav with asOf = qEnd; nav; commitmentCids = cids
+  commitments <- map fst <$> query @Commitment admin
+  navCids <- map fst . filter (\(_, n) -> n.asOf == qEnd) <$> query @NavStatement admin
+  receipts <- map fst . filter (\(_, r) -> let d = toDateUTC r.paidAt in d >= qStart && d <= qEnd)
+    <$> query @ContributionReceipt admin
+  _ <- submit admin do
+    exerciseCmd statsDesk PublishStatistics with
+      period
+      asOf = qEnd
+      commitmentCids = commitments
+      navCids
+      receiptCids = receipts
   pure ()

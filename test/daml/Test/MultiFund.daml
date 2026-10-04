@@ -1,6 +1,7 @@
 module Test.MultiFund where
 
 import DA.Assert ((===))
+import DA.Date (Month(..), date)
 import DA.List (sort)
 import Daml.Script
 
@@ -11,30 +12,76 @@ import Demo.Setup
 fundsSeenBy : Party -> Script [Text]
 fundsSeenBy p = sort . map (\(_, c) -> c.fundId) <$> query @Commitment p
 
--- Each manager sees only its own fund; the LP is the only party whose node
--- holds both, so the portfolio view can only be assembled on its side.
+statsFor : Party -> Text -> Script FundStatistics
+statsFor p period = do
+  found <- filter (\(_, s) -> s.period == period) <$> query @FundStatistics p
+  case found of
+    [(_, s)] -> pure s
+    _ -> abort ("Expected one statistics record for " <> period)
+
+-- Each manager sees only its own fund; an LP's node is the only place its
+-- positions across managers meet; the ecosystem party sees aggregates only.
 multiFundPrivacy : Script ()
 multiFundPrivacy = script do
   d <- setupDemo
-  let Demo{gp, gp2, admin, lpA, lpB, lpC, auditor} = d
+  let Demo{gp, gp2, gp3, admin, lpA, lpC, auditor, ecosystem} = d
 
   fundsSeenBy gp >>= (=== ["LL-I", "LL-I", "LL-I"])
   fundsSeenBy gp2 >>= (=== ["RW-II", "RW-II"])
+  fundsSeenBy gp3 >>= (=== ["NW-I", "NW-I", "NW-I"])
   fundsSeenBy lpA >>= (=== ["LL-I", "RW-II"])
-  fundsSeenBy lpB >>= (=== ["LL-I", "RW-II"])
-  fundsSeenBy lpC >>= (=== ["LL-I"])
+  fundsSeenBy lpC >>= (=== ["LL-I", "NW-I"])
   fundsSeenBy auditor >>= (=== [])
-  length <$> fundsSeenBy admin >>= (=== 5)
+  fundsSeenBy ecosystem >>= (=== [])
+  length <$> fundsSeenBy admin >>= (=== 8)
 
-  -- RW-II reporting never reaches the LL-I manager, and vice versa.
-  map (\(_, s) -> s.fundId) <$> query @LpStatement gp >>= (=== [])
-  length <$> query @LpStatement gp2 >>= (=== 2)
-  length <$> query @NavStatement gp >>= (=== 0)
+  -- Four quarters of statements, each visible only to its fund's parties.
+  length <$> query @LpStatement lpA >>= (=== 8)
+  gpStatements <- query @LpStatement gp
+  length gpStatements === 12
+  all (\(_, s) -> s.fundId == "LL-I") gpStatements === True
 
-  -- RW-II numbers as seeded: CC-1 2.0M pro rata, D-1 120K to A, NAV 2.18M.
-  [(_, statementA)] <- query @LpStatement lpA
-  statementA.contributed === 1600000.0
-  statementA.navShare === 1744000.0
-  statementA.tvpi === Some 1.165
-  [(_, callA)] <- query @CapitalCallNotice lpA
-  callA.amount === 600000.0
+  -- The ecosystem party holds statistics and nothing else.
+  stats <- query @FundStatistics ecosystem
+  sort (map (\(_, s) -> s.period) stats) === ["2025-Q4", "2026-Q1", "2026-Q2", "2026-Q3"]
+  length <$> query @Fund ecosystem >>= (=== 0)
+  length <$> query @NavStatement ecosystem >>= (=== 0)
+  length <$> query @LpStatement ecosystem >>= (=== 0)
+  length <$> query @ContributionReceipt ecosystem >>= (=== 0)
+
+-- Statistics figures match the seeded history exactly.
+statisticsFigures : Script ()
+statisticsFigures = script do
+  d <- setupDemo
+  let eco = d.ecosystem
+
+  q4 <- statsFor eco "2025-Q4"
+  q4.funds === 3
+  q4.lps === 5
+  q4.called === 4500000.0
+  q4.callsPaid === 8
+  -- Two of eight payments came after the due date.
+  q4.paidOnTimePct === Some 75.0
+  -- Delays 2,2,3,4,5,9,16,20 days (+3h each): median of 4 and 5, plus 0.125.
+  q4.medianDaysToPay === Some 4.625
+
+  q3 <- statsFor eco "2026-Q3"
+  q3.callsPaid === 3
+  q3.paidOnTimePct === Some 100.0
+  -- RW-II D-1 120K + NW-I D-1 300K + LL-I D-1 300K + RW-II D-2 200K, cumulative.
+  q3.distributed === 920000.0
+  -- Fund TVPIs 1.12 (LL-I), 1.1454… (RW-II), 1.0555… (NW-I).
+  q3.tvpiMedian === Some 1.12
+
+-- Below the threshold the administrator cannot publish at all.
+statisticsThreshold : Script ()
+statisticsThreshold = script do
+  d <- setupDemo
+  oneFund <- map fst . filter (\(_, c) -> c.fundId == "LL-I") <$> query @Commitment d.admin
+  submitMustFail d.admin do
+    exerciseCmd d.statsDesk PublishStatistics with
+      period = "too-small"
+      asOf = date 2026 Oct 3
+      commitmentCids = oneFund
+      navCids = []
+      receiptCids = []
