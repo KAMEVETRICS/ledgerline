@@ -45,6 +45,7 @@ import {
   type NavStatement,
   type Role,
 } from "./model";
+import { FundHealth, FundTrend, LpCashFlows, LpPerformance } from "./private/FundCharts";
 import { useStore } from "./store";
 
 const lpName = partyName;
@@ -168,6 +169,8 @@ function GpView({ role }: { role: Role }) {
         </table>
         <p className="hint">Side-letter terms differ per LP. Each LP sees only its own row.</p>
       </Section>
+
+      <FundTrend mine={mine} fundId={fund.payload.fundId} />
 
       <Section
         title="Capital calls"
@@ -347,6 +350,7 @@ function AdminFund({ desk }: { desk: Contract<AdminDesk> }) {
         {commitments[0]?.payload.fundName ?? fundId}
         <span className="muted"> · {partyName(gp)}</span>
       </h3>
+      <FundHealth mine={mine} fundId={fundId} />
       <Section
         title="Net asset value"
         action={
@@ -609,6 +613,9 @@ function LpView({ role }: { role: Role }) {
         </table>
         <p className="hint">Value is the administrator's latest NAV mark plus capital called since, at cost.</p>
       </Section>
+
+      <LpPerformance mine={mine} />
+      <LpCashFlows mine={mine} />
 
       <Section
         title="Capital calls"

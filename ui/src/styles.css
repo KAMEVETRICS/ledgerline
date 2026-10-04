@@ -298,3 +298,5 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .viewas-card:disabled { opacity: 0.6; cursor: wait; }
 .viewas-go { margin-top: 6px; font-size: 12.5px; font-weight: 600; color: var(--hue, var(--text)); }
 @media (max-width: 640px) { .viewas { padding: 16px; } }
+
+.fund-health { padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-2); }

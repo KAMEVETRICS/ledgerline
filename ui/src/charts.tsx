@@ -78,7 +78,7 @@ export function TimeSeriesChart({
         <Chart data={data} margin={{ top: 8, right: 8, bottom: 0, left: 0 }}>
           <CartesianGrid stroke="var(--border)" vertical={false} />
           <XAxis dataKey="t" tickFormatter={shortDate} minTickGap={28} {...axis} />
-          <YAxis tickFormatter={format} width={52} {...axis} />
+          <YAxis tickFormatter={format} width={52} domain={[0, "auto"]} {...axis} />
           <Tooltip content={<TooltipBox format={format} />} />
           {series.length > 1 && <Legend iconType="plainline" wrapperStyle={{ fontSize: 11, color: "var(--muted)" }} />}
           {series.map((s, i) =>
@@ -113,7 +113,7 @@ export function BarSeriesChart({
         <BarChart data={rows([{ name, points }])} margin={{ top: 8, right: 8, bottom: 0, left: 0 }}>
           <CartesianGrid stroke="var(--border)" vertical={false} />
           <XAxis dataKey="t" tickFormatter={shortDate} minTickGap={28} {...axis} />
-          <YAxis tickFormatter={format} width={52} {...axis} />
+          <YAxis tickFormatter={format} width={52} domain={[0, "auto"]} {...axis} />
           <Tooltip content={<TooltipBox format={format} />} cursor={{ fill: "var(--surface-2)" }} />
           <Bar dataKey={name} fill={SERIES_COLORS[0]} radius={[3, 3, 0, 0]} isAnimationActive={false} />
         </BarChart>
