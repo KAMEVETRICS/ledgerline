@@ -38,7 +38,7 @@ await ctx.rebuild().catch(() => {});
 let pending;
 watch("src", { recursive: true }, () => {
   clearTimeout(pending);
-  pending = setTimeout(() => ctx.rebuild().catch(() => {}), 100);
+  pending = setTimeout(() => ctx.rebuild().catch(() => {}), 300);
 });
 
 function ledgerFetch(urlPath) {
