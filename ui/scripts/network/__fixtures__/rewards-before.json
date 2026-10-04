@@ -1,0 +1,1008 @@
+{
+  "has_more": true,
+  "next_cursor": "eyJ0IjoiMjAyNi0xMC0wNFQwMDo1Mzo1MS45NDM4NzlaIiwiZSI6IjEyMjBjZjg0NTg0NGYzN2U1M2MyZTE5ZTAxMGU5YWM1NDU3MTQ4Y2ZmZjBjOTJjOTY3MGEwODEyYzA3MGM5NDA0ZjZmOjMifQ==",
+  "rewards": [
+    {
+      "event_id": "12205c4021e971c6f6613f2737949bb9b289b8487b4893cff028d561f5ee4c09e086:4",
+      "update_id": "12205c4021e971c6f6613f2737949bb9b289b8487b4893cff028d561f5ee4c09e086",
+      "record_time": "2026-10-04T00:54:28.44677Z",
+      "reward_type": "sv",
+      "beneficiary": "auth0_007c6882116872613fe1d8b0aeb6::12204783725aa3adcd787311531134baed8b9b28ccf76b100c62b8d4995842aabd6b",
+      "provider": "",
+      "weight": "10000.0000000000",
+      "round_number": 115884
+    },
+    {
+      "event_id": "12205c4021e971c6f6613f2737949bb9b289b8487b4893cff028d561f5ee4c09e086:3",
+      "update_id": "12205c4021e971c6f6613f2737949bb9b289b8487b4893cff028d561f5ee4c09e086",
+      "record_time": "2026-10-04T00:54:28.44677Z",
+      "reward_type": "sv",
+      "beneficiary": "auth0_007c69dcad2a0dc0711745bca087::12209d133c58ab06046413890cf9e82473d72a821fa49f3acd4b15fb7bae3c39aba5",
+      "provider": "",
+      "weight": "7000.0000000000",
+      "round_number": 115884
+    },
+    {
+      "event_id": "12205c4021e971c6f6613f2737949bb9b289b8487b4893cff028d561f5ee4c09e086:12",
+      "update_id": "12205c4021e971c6f6613f2737949bb9b289b8487b4893cff028d561f5ee4c09e086",
+      "record_time": "2026-10-04T00:54:28.44677Z",
+      "reward_type": "sv",
+      "beneficiary": "CantonStrategicHoldings-SVrewards-1::12202e772b031912f34492b914d683b07edc6bbb656df6f9b75eda8c336e8ef5de5d",
+      "provider": "",
+      "weight": "65000.0000000000",
+      "round_number": 115884
+    },
+    {
+      "event_id": "12205c4021e971c6f6613f2737949bb9b289b8487b4893cff028d561f5ee4c09e086:11",
+      "update_id": "12205c4021e971c6f6613f2737949bb9b289b8487b4893cff028d561f5ee4c09e086",
+      "record_time": "2026-10-04T00:54:28.44677Z",
+      "reward_type": "sv",
+      "beneficiary": "HexTrust-ghost-1::12202639480c7e95ab18e696d83cdaa87cb5b92b935698ae4e69fb9cbfa2808d47ff",
+      "provider": "",
+      "weight": "20000.0000000000",
+      "round_number": 115884
+    },
+    {
+      "event_id": "12205c4021e971c6f6613f2737949bb9b289b8487b4893cff028d561f5ee4c09e086:10",
+      "update_id": "12205c4021e971c6f6613f2737949bb9b289b8487b4893cff028d561f5ee4c09e086",
+      "record_time": "2026-10-04T00:54:28.44677Z",
+      "reward_type": "sv",
+      "beneficiary": "auth0_007c66f47b4f7dbebab8f2af6967::12204783725aa3adcd787311531134baed8b9b28ccf76b100c62b8d4995842aabd6b",
+      "provider": "",
+      "weight": "3000.0000000000",
+      "round_number": 115884
+    },
+    {
+      "event_id": "12209d55ce36c1e569cff1261466c4bf26a600d8b7320d34c85b37f17bf24c10b6a5:3",
+      "update_id": "12209d55ce36c1e569cff1261466c4bf26a600d8b7320d34c85b37f17bf24c10b6a5",
+      "record_time": "2026-10-04T00:54:26.246817Z",
+      "reward_type": "app",
+      "beneficiary": "vault-1::12203092a509823a6b229b6e3be49e3f49c469c0689c9c25f0dfdfa93f4a6f4d6ef3",
+      "provider": "Modulo-Issuer::1220bbd47c5a10d5540c420e1f8f0f1fd513464ec6110dbd5123970dbe3b538805d3",
+      "amount": "368.1571887980",
+      "round_number": 115884
+    },
+    {
+      "event_id": "12205e1745af02cad4b2375f15ab1b137c96f4cc0f337d909833fe84071d2e74748b:3",
+      "update_id": "12205e1745af02cad4b2375f15ab1b137c96f4cc0f337d909833fe84071d2e74748b",
+      "record_time": "2026-10-04T00:54:25.804869Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "1220ed161dd19fda334265f76fb4d9fde553f69ee2607ecce2334f3dc820b2840c65:4",
+      "update_id": "1220ed161dd19fda334265f76fb4d9fde553f69ee2607ecce2334f3dc820b2840c65",
+      "record_time": "2026-10-04T00:54:24.879068Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "122099950fc3d8204a13d770c637f1fcf13a4ad9b08fa10cdcda0103d4b45b14c51a:3",
+      "update_id": "122099950fc3d8204a13d770c637f1fcf13a4ad9b08fa10cdcda0103d4b45b14c51a",
+      "record_time": "2026-10-04T00:54:24.598078Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "kaiko-app-rewards::12200c178d1f0bbefe2337e1c63a8bc3017ea14b3e773b918dae2f2d426340e58491",
+      "provider": "kaiko-app-rewards::12200c178d1f0bbefe2337e1c63a8bc3017ea14b3e773b918dae2f2d426340e58491",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "1220e013cf93827e9f17800c80df8700bf4e55d57c37af89c2174c1ac595e314236a:3",
+      "update_id": "1220e013cf93827e9f17800c80df8700bf4e55d57c37af89c2174c1ac595e314236a",
+      "record_time": "2026-10-04T00:54:23.416167Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "122036efa3effb5d7cdfa3beda177ee96ceb0be470caef07a8dcfaed9adddd1031fa:3",
+      "update_id": "122036efa3effb5d7cdfa3beda177ee96ceb0be470caef07a8dcfaed9adddd1031fa",
+      "record_time": "2026-10-04T00:54:23.097137Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "1220febded002f9133f3bf503eaf40e564196e580d3e0e33c2644687478d4eeecf7b:4",
+      "update_id": "1220febded002f9133f3bf503eaf40e564196e580d3e0e33c2644687478d4eeecf7b",
+      "record_time": "2026-10-04T00:54:23.097136Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "122080b20118f72ddf42384ce6c9322ca85a0338e286438574762faba7c741fdcdc2:14",
+      "update_id": "122080b20118f72ddf42384ce6c9322ca85a0338e286438574762faba7c741fdcdc2",
+      "record_time": "2026-10-04T00:54:22.500099Z",
+      "reward_type": "app",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "23.8804069221",
+      "round_number": 115884
+    },
+    {
+      "event_id": "122080b20118f72ddf42384ce6c9322ca85a0338e286438574762faba7c741fdcdc2:13",
+      "update_id": "122080b20118f72ddf42384ce6c9322ca85a0338e286438574762faba7c741fdcdc2",
+      "record_time": "2026-10-04T00:54:22.500099Z",
+      "reward_type": "app",
+      "beneficiary": "mainnet-bd-4::12202e25210b96a0f362d59f1e1d2794e8c3cc041c95d86138ccba017fe85a8c33d6",
+      "provider": "bitdynamicsab-mainnet-1::1220ea322b53b7f031e5e2e99796d02cb84e3fef257c63e89204622dc174f552c1d6",
+      "amount": "7.9601356407",
+      "round_number": 115884
+    },
+    {
+      "event_id": "122080b20118f72ddf42384ce6c9322ca85a0338e286438574762faba7c741fdcdc2:12",
+      "update_id": "122080b20118f72ddf42384ce6c9322ca85a0338e286438574762faba7c741fdcdc2",
+      "record_time": "2026-10-04T00:54:22.500099Z",
+      "reward_type": "app",
+      "beneficiary": "consolewallet-vippers1993::12205de2455e155ea366182ff591b7e4e04a9ef2b1bcc4a1bfe90972ee202c1aa211",
+      "provider": "Modulo-Issuer::1220bbd47c5a10d5540c420e1f8f0f1fd513464ec6110dbd5123970dbe3b538805d3",
+      "amount": "606.5673507068",
+      "round_number": 115884
+    },
+    {
+      "event_id": "122080b20118f72ddf42384ce6c9322ca85a0338e286438574762faba7c741fdcdc2:11",
+      "update_id": "122080b20118f72ddf42384ce6c9322ca85a0338e286438574762faba7c741fdcdc2",
+      "record_time": "2026-10-04T00:54:22.500099Z",
+      "reward_type": "app",
+      "beneficiary": "Modulo-Issuer::1220bbd47c5a10d5540c420e1f8f0f1fd513464ec6110dbd5123970dbe3b538805d3",
+      "provider": "Modulo-Issuer::1220bbd47c5a10d5540c420e1f8f0f1fd513464ec6110dbd5123970dbe3b538805d3",
+      "amount": "601.7018371985",
+      "round_number": 115884
+    },
+    {
+      "event_id": "122080b20118f72ddf42384ce6c9322ca85a0338e286438574762faba7c741fdcdc2:10",
+      "update_id": "122080b20118f72ddf42384ce6c9322ca85a0338e286438574762faba7c741fdcdc2",
+      "record_time": "2026-10-04T00:54:22.500099Z",
+      "reward_type": "app",
+      "beneficiary": "8a72dd81-b8a4-425a-9061-31ed663d4450::1220d572036d26e3f8ef2fe127184d812a00e0b1b36e129acf990a82a06651e735a1",
+      "provider": "8a72dd81-b8a4-425a-9061-31ed663d4450::1220d572036d26e3f8ef2fe127184d812a00e0b1b36e129acf990a82a06651e735a1",
+      "amount": "15.9202712814",
+      "round_number": 115884
+    },
+    {
+      "event_id": "1220207d01402c40a2a0df6fd1e9a667866e19a202115f3133173c2082f39eb6875e:4",
+      "update_id": "1220207d01402c40a2a0df6fd1e9a667866e19a202115f3133173c2082f39eb6875e",
+      "record_time": "2026-10-04T00:54:22.147532Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "1220928d915d49fe99029c260ee5cfb65a9cbc59d84e69767d413d51c0a0ea439398:5",
+      "update_id": "1220928d915d49fe99029c260ee5cfb65a9cbc59d84e69767d413d51c0a0ea439398",
+      "record_time": "2026-10-04T00:54:22.147531Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "12207b81cfda7a7fc583371c964dd4f4e1255265e7016df507e9f7f6fcd5e9321c1c:6",
+      "update_id": "12207b81cfda7a7fc583371c964dd4f4e1255265e7016df507e9f7f6fcd5e9321c1c",
+      "record_time": "2026-10-04T00:54:21.713301Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "12204095da31047c2385eb3a451bfee495cc321cc8a20f1c81061f84b3ebb7025e74:3",
+      "update_id": "12204095da31047c2385eb3a451bfee495cc321cc8a20f1c81061f84b3ebb7025e74",
+      "record_time": "2026-10-04T00:54:21.37216Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "1220286b2bee76c71ad64f87af5e4d74fa7461edc988483db910ab4096596e8c9d84:11",
+      "update_id": "1220286b2bee76c71ad64f87af5e4d74fa7461edc988483db910ab4096596e8c9d84",
+      "record_time": "2026-10-04T00:54:21.08126Z",
+      "reward_type": "app",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "47.7608138442",
+      "round_number": 115884
+    },
+    {
+      "event_id": "1220286b2bee76c71ad64f87af5e4d74fa7461edc988483db910ab4096596e8c9d84:10",
+      "update_id": "1220286b2bee76c71ad64f87af5e4d74fa7461edc988483db910ab4096596e8c9d84",
+      "record_time": "2026-10-04T00:54:21.08126Z",
+      "reward_type": "app",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "15.9202712814",
+      "round_number": 115884
+    },
+    {
+      "event_id": "1220554b28a0b1dae0e2ace0517c73543958b53ee20356b434109f0ef4486d63a3f8:9",
+      "update_id": "1220554b28a0b1dae0e2ace0517c73543958b53ee20356b434109f0ef4486d63a3f8",
+      "record_time": "2026-10-04T00:54:20.771684Z",
+      "reward_type": "app",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "39.8006782035",
+      "round_number": 115884
+    },
+    {
+      "event_id": "1220554b28a0b1dae0e2ace0517c73543958b53ee20356b434109f0ef4486d63a3f8:8",
+      "update_id": "1220554b28a0b1dae0e2ace0517c73543958b53ee20356b434109f0ef4486d63a3f8",
+      "record_time": "2026-10-04T00:54:20.771684Z",
+      "reward_type": "app",
+      "beneficiary": "8a72dd81-b8a4-425a-9061-31ed663d4450::1220d572036d26e3f8ef2fe127184d812a00e0b1b36e129acf990a82a06651e735a1",
+      "provider": "8a72dd81-b8a4-425a-9061-31ed663d4450::1220d572036d26e3f8ef2fe127184d812a00e0b1b36e129acf990a82a06651e735a1",
+      "amount": "7.9601356407",
+      "round_number": 115884
+    },
+    {
+      "event_id": "1220df5f8a4b5c309d635459499ad3d451293594c1b1d66f1423d4a0ae0f428d2ccf:5",
+      "update_id": "1220df5f8a4b5c309d635459499ad3d451293594c1b1d66f1423d4a0ae0f428d2ccf",
+      "record_time": "2026-10-04T00:54:19.885677Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "1220e1d968e5a3fd5287f986cf37f950713d27713240a0420c0deb2f2b6a6e32ce21:4",
+      "update_id": "1220e1d968e5a3fd5287f986cf37f950713d27713240a0420c0deb2f2b6a6e32ce21",
+      "record_time": "2026-10-04T00:54:19.599846Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "12204c9cf120803c471b5a1ccddc503c3d4e8b3c1aac8000ed548ee7598c8f34cd62:3",
+      "update_id": "12204c9cf120803c471b5a1ccddc503c3d4e8b3c1aac8000ed548ee7598c8f34cd62",
+      "record_time": "2026-10-04T00:54:19.319568Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "122081a4bd2f6887bd6c28db63c0f0bd4a5b6e9b8bd744a41dd592dd2190ae6ceefc:3",
+      "update_id": "122081a4bd2f6887bd6c28db63c0f0bd4a5b6e9b8bd744a41dd592dd2190ae6ceefc",
+      "record_time": "2026-10-04T00:54:19.011103Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "12209422306ed9b66e5ff4f082885722a4af833b896724a0309fc69b673b9fc0e499:8",
+      "update_id": "12209422306ed9b66e5ff4f082885722a4af833b896724a0309fc69b673b9fc0e499",
+      "record_time": "2026-10-04T00:54:18.709388Z",
+      "reward_type": "app",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "23.8804069221",
+      "round_number": 115884
+    },
+    {
+      "event_id": "12209422306ed9b66e5ff4f082885722a4af833b896724a0309fc69b673b9fc0e499:7",
+      "update_id": "12209422306ed9b66e5ff4f082885722a4af833b896724a0309fc69b673b9fc0e499",
+      "record_time": "2026-10-04T00:54:18.709388Z",
+      "reward_type": "app",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "15.9202712814",
+      "round_number": 115884
+    },
+    {
+      "event_id": "1220feae1833f62c23773077abbc6147c31d137b89f442b9e162e90d74e915ef597e:3",
+      "update_id": "1220feae1833f62c23773077abbc6147c31d137b89f442b9e162e90d74e915ef597e",
+      "record_time": "2026-10-04T00:54:18.074992Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "1220c3033fa73c8e21bbf1f87488fa68d9a4ffc14e4ddc25a9380b86bbe5d4eeb112:3",
+      "update_id": "1220c3033fa73c8e21bbf1f87488fa68d9a4ffc14e4ddc25a9380b86bbe5d4eeb112",
+      "record_time": "2026-10-04T00:54:18.074988Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "1220af9a7db06bf7876a3742f987cea36059c1aa57322bb66b5bda9f69b1ea9362c3:7",
+      "update_id": "1220af9a7db06bf7876a3742f987cea36059c1aa57322bb66b5bda9f69b1ea9362c3",
+      "record_time": "2026-10-04T00:54:18.074984Z",
+      "reward_type": "app",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "23.8804069221",
+      "round_number": 115884
+    },
+    {
+      "event_id": "1220af9a7db06bf7876a3742f987cea36059c1aa57322bb66b5bda9f69b1ea9362c3:6",
+      "update_id": "1220af9a7db06bf7876a3742f987cea36059c1aa57322bb66b5bda9f69b1ea9362c3",
+      "record_time": "2026-10-04T00:54:18.074984Z",
+      "reward_type": "app",
+      "beneficiary": "Cantex-validator-1::122038c015864f106cfed48bb9106b7c89982368d27956ffcdfda6c38328f0909b8c",
+      "provider": "Modulo-Issuer::1220bbd47c5a10d5540c420e1f8f0f1fd513464ec6110dbd5123970dbe3b538805d3",
+      "amount": "45.4114594112",
+      "round_number": 115884
+    },
+    {
+      "event_id": "12205f9ab224f1db66c1aa9af6612c895fd1d2d80c857c6a06d8893fc17d02ad2e8d:5",
+      "update_id": "12205f9ab224f1db66c1aa9af6612c895fd1d2d80c857c6a06d8893fc17d02ad2e8d",
+      "record_time": "2026-10-04T00:54:18.074981Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "1220bc028f382711a71362eeb67246a920f62fa9c5fbb8ba63e2da46551571316c04:9",
+      "update_id": "1220bc028f382711a71362eeb67246a920f62fa9c5fbb8ba63e2da46551571316c04",
+      "record_time": "2026-10-04T00:54:17.632602Z",
+      "reward_type": "app",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "23.8804069221",
+      "round_number": 115884
+    },
+    {
+      "event_id": "1220bc028f382711a71362eeb67246a920f62fa9c5fbb8ba63e2da46551571316c04:8",
+      "update_id": "1220bc028f382711a71362eeb67246a920f62fa9c5fbb8ba63e2da46551571316c04",
+      "record_time": "2026-10-04T00:54:17.632602Z",
+      "reward_type": "app",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "7.9601356407",
+      "round_number": 115884
+    },
+    {
+      "event_id": "1220bc028f382711a71362eeb67246a920f62fa9c5fbb8ba63e2da46551571316c04:7",
+      "update_id": "1220bc028f382711a71362eeb67246a920f62fa9c5fbb8ba63e2da46551571316c04",
+      "record_time": "2026-10-04T00:54:17.632602Z",
+      "reward_type": "app",
+      "beneficiary": "8a72dd81-b8a4-425a-9061-31ed663d4450::1220d572036d26e3f8ef2fe127184d812a00e0b1b36e129acf990a82a06651e735a1",
+      "provider": "8a72dd81-b8a4-425a-9061-31ed663d4450::1220d572036d26e3f8ef2fe127184d812a00e0b1b36e129acf990a82a06651e735a1",
+      "amount": "7.9601356407",
+      "round_number": 115884
+    },
+    {
+      "event_id": "12209a2d9e5cb35d9103cac605b856af24fba9bb7611607e58e6604c881c6ab19364:3",
+      "update_id": "12209a2d9e5cb35d9103cac605b856af24fba9bb7611607e58e6604c881c6ab19364",
+      "record_time": "2026-10-04T00:54:16.678605Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "12206f77e059c39e52a2f934ef01bcccb4948346841ddc0e517322bc97027ab6d080:4",
+      "update_id": "12206f77e059c39e52a2f934ef01bcccb4948346841ddc0e517322bc97027ab6d080",
+      "record_time": "2026-10-04T00:54:15.770678Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "1220ace7c56bd793b95257909fa796d1a0d6df0256f40b22c068c5d2bd137133efbf:3",
+      "update_id": "1220ace7c56bd793b95257909fa796d1a0d6df0256f40b22c068c5d2bd137133efbf",
+      "record_time": "2026-10-04T00:54:15.182995Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "122012a24542cd3d6c1c6dcbb438f994829db67b4835690170fed72e2b077e2fcb21:3",
+      "update_id": "122012a24542cd3d6c1c6dcbb438f994829db67b4835690170fed72e2b077e2fcb21",
+      "record_time": "2026-10-04T00:54:14.597832Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "1220724dbbcd6613a7148fdd70cc4e7351ee1c47959cc69575987d7d05d659e448ce:9",
+      "update_id": "1220724dbbcd6613a7148fdd70cc4e7351ee1c47959cc69575987d7d05d659e448ce",
+      "record_time": "2026-10-04T00:54:13.945503Z",
+      "reward_type": "app",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "7.9601356407",
+      "round_number": 115884
+    },
+    {
+      "event_id": "1220724dbbcd6613a7148fdd70cc4e7351ee1c47959cc69575987d7d05d659e448ce:10",
+      "update_id": "1220724dbbcd6613a7148fdd70cc4e7351ee1c47959cc69575987d7d05d659e448ce",
+      "record_time": "2026-10-04T00:54:13.945503Z",
+      "reward_type": "app",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "47.7608138442",
+      "round_number": 115884
+    },
+    {
+      "event_id": "12201e23ac51de73567b599b3d864b6f9ee8edfbced48dbd30b61ed79864a44d663b:3",
+      "update_id": "12201e23ac51de73567b599b3d864b6f9ee8edfbced48dbd30b61ed79864a44d663b",
+      "record_time": "2026-10-04T00:54:13.945501Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "1220c805d448007251646a5117b544c94d0532c421b3a73adafbfe6febe8cde55304:7",
+      "update_id": "1220c805d448007251646a5117b544c94d0532c421b3a73adafbfe6febe8cde55304",
+      "record_time": "2026-10-04T00:54:13.9455Z",
+      "reward_type": "app",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "23.8804069221",
+      "round_number": 115884
+    },
+    {
+      "event_id": "1220c805d448007251646a5117b544c94d0532c421b3a73adafbfe6febe8cde55304:6",
+      "update_id": "1220c805d448007251646a5117b544c94d0532c421b3a73adafbfe6febe8cde55304",
+      "record_time": "2026-10-04T00:54:13.9455Z",
+      "reward_type": "app",
+      "beneficiary": "nodetech-mainnet-1::122091e990ffc729fcd266b4dd5b03320daba234c7d1c5470f50f21a7720a6d1c278",
+      "provider": "nodetech-mainnet-1::122091e990ffc729fcd266b4dd5b03320daba234c7d1c5470f50f21a7720a6d1c278",
+      "amount": "7.9601356407",
+      "round_number": 115884
+    },
+    {
+      "event_id": "1220e31f7ff29ebf6e35e62769fbdf91424c55139988b3749a5b00e96d47ae93581a:9",
+      "update_id": "1220e31f7ff29ebf6e35e62769fbdf91424c55139988b3749a5b00e96d47ae93581a",
+      "record_time": "2026-10-04T00:54:13.502869Z",
+      "reward_type": "validator",
+      "beneficiary": "Cancore-mainnet-1::1220076a94e0a7f0256a32ffab227db7788d8075677d8afcdaa8386df8f2fa659906",
+      "provider": "",
+      "amount": "573.1297661312",
+      "round_number": 115884
+    },
+    {
+      "event_id": "1220af84c8a2f66bbe0b854801392814ba6997c8fdab4710719627fcc28cba4b8d15:7",
+      "update_id": "1220af84c8a2f66bbe0b854801392814ba6997c8fdab4710719627fcc28cba4b8d15",
+      "record_time": "2026-10-04T00:54:13.502865Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "1220d2e222eb5bfbb1e4d6efb0322a676412dfc815ab8312fc05d56eb20c71157a18:5",
+      "update_id": "1220d2e222eb5bfbb1e4d6efb0322a676412dfc815ab8312fc05d56eb20c71157a18",
+      "record_time": "2026-10-04T00:54:13.164683Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "122013ac45f3b18bfa56b80def2c0f6c9f0298ffd030f318bed167af152967933751:4",
+      "update_id": "122013ac45f3b18bfa56b80def2c0f6c9f0298ffd030f318bed167af152967933751",
+      "record_time": "2026-10-04T00:54:12.88091Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "1220005fc165bc0e7c1bd9678f5e98910f6b6055c94586a46463363268400f8e7a3e:1",
+      "update_id": "1220005fc165bc0e7c1bd9678f5e98910f6b6055c94586a46463363268400f8e7a3e",
+      "record_time": "2026-10-04T00:54:12.289458Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "NGC-Ventures-1::1220b89a95fa875dc18dde64309134812da64787d1625297723c0af109088dbd7f0f",
+      "provider": "NGC-Ventures-1::1220b89a95fa875dc18dde64309134812da64787d1625297723c0af109088dbd7f0f",
+      "weight": "7.5191000000"
+    },
+    {
+      "event_id": "1220be7cf7bf13bb297b295b93cbd290e340ddfc5fb85e268ede3b54aa5e1cc4a1dd:4",
+      "update_id": "1220be7cf7bf13bb297b295b93cbd290e340ddfc5fb85e268ede3b54aa5e1cc4a1dd",
+      "record_time": "2026-10-04T00:54:12.02189Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "1220e51a150cdd6d34580b7c1ae1b29c671368fccab5bf83a56c3971401ce7a81b83:4",
+      "update_id": "1220e51a150cdd6d34580b7c1ae1b29c671368fccab5bf83a56c3971401ce7a81b83",
+      "record_time": "2026-10-04T00:54:12.021889Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "1220c959485b9228e7406574e1c1fe4e675f44b7dcd8b0b2855d2165e892f631257b:14",
+      "update_id": "1220c959485b9228e7406574e1c1fe4e675f44b7dcd8b0b2855d2165e892f631257b",
+      "record_time": "2026-10-04T00:54:07.893542Z",
+      "reward_type": "unclaimed",
+      "beneficiary": "DSO::1220b1431ef217342db44d516bb9befde802be7d8899637d290895fa58880f19accc",
+      "provider": "",
+      "amount": "1509745083.6271704076"
+    },
+    {
+      "event_id": "1220a05e09fd6279e452e6ad2f752f033c842c4e83f831ab1103138e4288af47b5ff:15",
+      "update_id": "1220a05e09fd6279e452e6ad2f752f033c842c4e83f831ab1103138e4288af47b5ff",
+      "record_time": "2026-10-04T00:54:07.283184Z",
+      "reward_type": "app",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "47.7608138442",
+      "round_number": 115884
+    },
+    {
+      "event_id": "1220a05e09fd6279e452e6ad2f752f033c842c4e83f831ab1103138e4288af47b5ff:14",
+      "update_id": "1220a05e09fd6279e452e6ad2f752f033c842c4e83f831ab1103138e4288af47b5ff",
+      "record_time": "2026-10-04T00:54:07.283184Z",
+      "reward_type": "app",
+      "beneficiary": "lattice-app::12203159b906cc358eb649f0b70c0a2ba87420fe933d669034e6d8ba7a582efdf3cf",
+      "provider": "lattice-app::12203159b906cc358eb649f0b70c0a2ba87420fe933d669034e6d8ba7a582efdf3cf",
+      "amount": "54.3040453409",
+      "round_number": 115884
+    },
+    {
+      "event_id": "1220a05e09fd6279e452e6ad2f752f033c842c4e83f831ab1103138e4288af47b5ff:13",
+      "update_id": "1220a05e09fd6279e452e6ad2f752f033c842c4e83f831ab1103138e4288af47b5ff",
+      "record_time": "2026-10-04T00:54:07.283184Z",
+      "reward_type": "app",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "15.9202712814",
+      "round_number": 115884
+    },
+    {
+      "event_id": "1220a05e09fd6279e452e6ad2f752f033c842c4e83f831ab1103138e4288af47b5ff:12",
+      "update_id": "1220a05e09fd6279e452e6ad2f752f033c842c4e83f831ab1103138e4288af47b5ff",
+      "record_time": "2026-10-04T00:54:07.283184Z",
+      "reward_type": "app",
+      "beneficiary": "8a72dd81-b8a4-425a-9061-31ed663d4450::1220d572036d26e3f8ef2fe127184d812a00e0b1b36e129acf990a82a06651e735a1",
+      "provider": "8a72dd81-b8a4-425a-9061-31ed663d4450::1220d572036d26e3f8ef2fe127184d812a00e0b1b36e129acf990a82a06651e735a1",
+      "amount": "7.9601356407",
+      "round_number": 115884
+    },
+    {
+      "event_id": "122074d49d7b2c7ef70872659b133642df1ac40079e0fbe0be69ac5be201bc05c2d3:7",
+      "update_id": "122074d49d7b2c7ef70872659b133642df1ac40079e0fbe0be69ac5be201bc05c2d3",
+      "record_time": "2026-10-04T00:54:06.411832Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "CantonSwap::122096fe076cc065af0cb38f94caa60e8ddfecbe8f0cfe10655ae7aa06fab99c66b7",
+      "provider": "CantonSwap::122096fe076cc065af0cb38f94caa60e8ddfecbe8f0cfe10655ae7aa06fab99c66b7",
+      "weight": "1.0000000000"
+    },
+    {
+      "event_id": "122026f7cbc58121d34d9fc6a7ef0b95f8e6d99648d18cecb01cabea9df23ee30f8b:5",
+      "update_id": "122026f7cbc58121d34d9fc6a7ef0b95f8e6d99648d18cecb01cabea9df23ee30f8b",
+      "record_time": "2026-10-04T00:54:04.424583Z",
+      "reward_type": "app",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "23.8804069221",
+      "round_number": 115884
+    },
+    {
+      "event_id": "1220520719e8c7a41a677f2a3b2beeb439ab79f72da7b764f4011877c3a594ece6ab:9",
+      "update_id": "1220520719e8c7a41a677f2a3b2beeb439ab79f72da7b764f4011877c3a594ece6ab",
+      "record_time": "2026-10-04T00:54:01.981875Z",
+      "reward_type": "app",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "39.8006782035",
+      "round_number": 115884
+    },
+    {
+      "event_id": "1220520719e8c7a41a677f2a3b2beeb439ab79f72da7b764f4011877c3a594ece6ab:8",
+      "update_id": "1220520719e8c7a41a677f2a3b2beeb439ab79f72da7b764f4011877c3a594ece6ab",
+      "record_time": "2026-10-04T00:54:01.981875Z",
+      "reward_type": "app",
+      "beneficiary": "8a72dd81-b8a4-425a-9061-31ed663d4450::1220d572036d26e3f8ef2fe127184d812a00e0b1b36e129acf990a82a06651e735a1",
+      "provider": "8a72dd81-b8a4-425a-9061-31ed663d4450::1220d572036d26e3f8ef2fe127184d812a00e0b1b36e129acf990a82a06651e735a1",
+      "amount": "7.9601356407",
+      "round_number": 115884
+    },
+    {
+      "event_id": "1220f8ae9834bef17a5f19c38fd49075fe85df98f43a0a107136b99d6b3fc0a9757e:14",
+      "update_id": "1220f8ae9834bef17a5f19c38fd49075fe85df98f43a0a107136b99d6b3fc0a9757e",
+      "record_time": "2026-10-04T00:54:01.638615Z",
+      "reward_type": "unclaimed_development_fund",
+      "beneficiary": "DSO::1220b1431ef217342db44d516bb9befde802be7d8899637d290895fa58880f19accc",
+      "provider": "",
+      "amount": "9512.9375951294"
+    },
+    {
+      "event_id": "1220f8ae9834bef17a5f19c38fd49075fe85df98f43a0a107136b99d6b3fc0a9757e:13",
+      "update_id": "1220f8ae9834bef17a5f19c38fd49075fe85df98f43a0a107136b99d6b3fc0a9757e",
+      "record_time": "2026-10-04T00:54:01.638615Z",
+      "reward_type": "unclaimed",
+      "beneficiary": "DSO::1220b1431ef217342db44d516bb9befde802be7d8899637d290895fa58880f19accc",
+      "provider": "",
+      "amount": "18860.0810181099"
+    },
+    {
+      "event_id": "1220178fed977c501747c7a26a1fcbfffa6721e5be5d847023e1b5b50376653f5f36:6",
+      "update_id": "1220178fed977c501747c7a26a1fcbfffa6721e5be5d847023e1b5b50376653f5f36",
+      "record_time": "2026-10-04T00:54:00.267738Z",
+      "reward_type": "app",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "31.8405425628",
+      "round_number": 115884
+    },
+    {
+      "event_id": "12203ef77a9d0150ae4ae34b153005b7c4c30ff5f903641e623f481cd0a74d6efd84:2",
+      "update_id": "12203ef77a9d0150ae4ae34b153005b7c4c30ff5f903641e623f481cd0a74d6efd84",
+      "record_time": "2026-10-04T00:54:00.267735Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "117.7298283400",
+      "weight": "200.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "1220ec4818c8648a5f1beea9edf51e9d6d8fd392cac0c24da2f18a0b885fe92589d7:3",
+      "update_id": "1220ec4818c8648a5f1beea9edf51e9d6d8fd392cac0c24da2f18a0b885fe92589d7",
+      "record_time": "2026-10-04T00:53:59.701094Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "122008e398d6b8eff671fc744f343ddc84de8d92ad0633da06a2f393a946f222f6de:3",
+      "update_id": "122008e398d6b8eff671fc744f343ddc84de8d92ad0633da06a2f393a946f222f6de",
+      "record_time": "2026-10-04T00:53:59.359493Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "12208235ca01fa0c38115469c932e8a5ffd0fc1e108e0ed7655d0d0ef6ddfb700850:3",
+      "update_id": "12208235ca01fa0c38115469c932e8a5ffd0fc1e108e0ed7655d0d0ef6ddfb700850",
+      "record_time": "2026-10-04T00:53:58.471622Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "1220836ccda606d3efc1d3fbae9d2aae2117f8d1901f3a5f5f0bffbfd727f5dd1bab:4",
+      "update_id": "1220836ccda606d3efc1d3fbae9d2aae2117f8d1901f3a5f5f0bffbfd727f5dd1bab",
+      "record_time": "2026-10-04T00:53:57.880242Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "122096ed74ce54a3a16dead1a3bfd1d5c82981a02f5fbecf637dd518058b0e068769:3",
+      "update_id": "122096ed74ce54a3a16dead1a3bfd1d5c82981a02f5fbecf637dd518058b0e068769",
+      "record_time": "2026-10-04T00:53:57.88024Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "12202dc755a5cbb021de7dfe575462cd050f23897b9fdfb95677686f761d3f84a7ca:6",
+      "update_id": "12202dc755a5cbb021de7dfe575462cd050f23897b9fdfb95677686f761d3f84a7ca",
+      "record_time": "2026-10-04T00:53:56.474955Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "1220fe205fc054972bbf278a825d6a8e717497e8106d30813d06679cb66103ed8129:3",
+      "update_id": "1220fe205fc054972bbf278a825d6a8e717497e8106d30813d06679cb66103ed8129",
+      "record_time": "2026-10-04T00:53:56.160265Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "122073b83fac2b47840a7e44b3cf7e3634f65b2a5398751ba2eb098d4256298e5d79:5",
+      "update_id": "122073b83fac2b47840a7e44b3cf7e3634f65b2a5398751ba2eb098d4256298e5d79",
+      "record_time": "2026-10-04T00:53:54.921417Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "12202c3e49b4dce519b288f14cc007ea52794f43fb1f021904319fc73f7a25c3e222:6",
+      "update_id": "12202c3e49b4dce519b288f14cc007ea52794f43fb1f021904319fc73f7a25c3e222",
+      "record_time": "2026-10-04T00:53:54.647917Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "1220629426b84f8750952e59cbe962ea9c43e18a9bb442c4aa2cbe5c49e9aba9e6e1:5",
+      "update_id": "1220629426b84f8750952e59cbe962ea9c43e18a9bb442c4aa2cbe5c49e9aba9e6e1",
+      "record_time": "2026-10-04T00:53:54.340866Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "12203bfb9a201cb4e44c2ad0a79782d499ac80b91a0014f02b405cfd97f5a0b15ce5:1",
+      "update_id": "12203bfb9a201cb4e44c2ad0a79782d499ac80b91a0014f02b405cfd97f5a0b15ce5",
+      "record_time": "2026-10-04T00:53:53.38883Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "lattice-app::12203159b906cc358eb649f0b70c0a2ba87420fe933d669034e6d8ba7a582efdf3cf",
+      "provider": "lattice-app::12203159b906cc358eb649f0b70c0a2ba87420fe933d669034e6d8ba7a582efdf3cf",
+      "amount": "4.0157644447",
+      "weight": "6.8220000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "1220b7f79cfb449215a2ddb2e3d89fadd2622f6317d0bae93d3ee4343b97cc30630b:5",
+      "update_id": "1220b7f79cfb449215a2ddb2e3d89fadd2622f6317d0bae93d3ee4343b97cc30630b",
+      "record_time": "2026-10-04T00:53:53.388826Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "1220562b2fd51d041166e42fa92f31dacf3be7aa7246dd8d7ba8cf8e8625024b76f1:3",
+      "update_id": "1220562b2fd51d041166e42fa92f31dacf3be7aa7246dd8d7ba8cf8e8625024b76f1",
+      "record_time": "2026-10-04T00:53:53.388824Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "12207a5538e50d8697ec4c98edacc45ca7b046977a89b36f378ea508aebeb7c6405a:3",
+      "update_id": "12207a5538e50d8697ec4c98edacc45ca7b046977a89b36f378ea508aebeb7c6405a",
+      "record_time": "2026-10-04T00:53:52.594899Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "12207a5538e50d8697ec4c98edacc45ca7b046977a89b36f378ea508aebeb7c6405a:11",
+      "update_id": "12207a5538e50d8697ec4c98edacc45ca7b046977a89b36f378ea508aebeb7c6405a",
+      "record_time": "2026-10-04T00:53:52.594899Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "12208ca237a64aae77953fbd5f68592fe435d58a393bee7895a3071ab5d6d6940b7b:3",
+      "update_id": "12208ca237a64aae77953fbd5f68592fe435d58a393bee7895a3071ab5d6d6940b7b",
+      "record_time": "2026-10-04T00:53:52.594897Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "12208ca237a64aae77953fbd5f68592fe435d58a393bee7895a3071ab5d6d6940b7b:11",
+      "update_id": "12208ca237a64aae77953fbd5f68592fe435d58a393bee7895a3071ab5d6d6940b7b",
+      "record_time": "2026-10-04T00:53:52.594897Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "122057c968844e9fa14acd7c590de3880aba72028c83615e23029ad55182a169ae1c:3",
+      "update_id": "122057c968844e9fa14acd7c590de3880aba72028c83615e23029ad55182a169ae1c",
+      "record_time": "2026-10-04T00:53:52.594895Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "122057c968844e9fa14acd7c590de3880aba72028c83615e23029ad55182a169ae1c:11",
+      "update_id": "122057c968844e9fa14acd7c590de3880aba72028c83615e23029ad55182a169ae1c",
+      "record_time": "2026-10-04T00:53:52.594895Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "1220a372465ce01a93bfefc640a6e804e5a273ec20a3835d8be94e43cae8d8680c86:3",
+      "update_id": "1220a372465ce01a93bfefc640a6e804e5a273ec20a3835d8be94e43cae8d8680c86",
+      "record_time": "2026-10-04T00:53:52.594893Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "1220a372465ce01a93bfefc640a6e804e5a273ec20a3835d8be94e43cae8d8680c86:11",
+      "update_id": "1220a372465ce01a93bfefc640a6e804e5a273ec20a3835d8be94e43cae8d8680c86",
+      "record_time": "2026-10-04T00:53:52.594893Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "1220f2d9e3817785a6e69717777e6f55251a63b9d092248363839b6048544cc73e99:4",
+      "update_id": "1220f2d9e3817785a6e69717777e6f55251a63b9d092248363839b6048544cc73e99",
+      "record_time": "2026-10-04T00:53:52.301965Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "122000d5f8b377bbae590f6cbbe5a6486d78b82a16bbf76265a80c892f381edd97e4:3",
+      "update_id": "122000d5f8b377bbae590f6cbbe5a6486d78b82a16bbf76265a80c892f381edd97e4",
+      "record_time": "2026-10-04T00:53:52.301964Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "122000d5f8b377bbae590f6cbbe5a6486d78b82a16bbf76265a80c892f381edd97e4:11",
+      "update_id": "122000d5f8b377bbae590f6cbbe5a6486d78b82a16bbf76265a80c892f381edd97e4",
+      "record_time": "2026-10-04T00:53:52.301964Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "122074010d4e279baf15b4dabeee01c1ce6fbc8513783ca7d429e2c08530a63bff07:3",
+      "update_id": "122074010d4e279baf15b4dabeee01c1ce6fbc8513783ca7d429e2c08530a63bff07",
+      "record_time": "2026-10-04T00:53:52.301963Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "122074010d4e279baf15b4dabeee01c1ce6fbc8513783ca7d429e2c08530a63bff07:11",
+      "update_id": "122074010d4e279baf15b4dabeee01c1ce6fbc8513783ca7d429e2c08530a63bff07",
+      "record_time": "2026-10-04T00:53:52.301963Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "1220c7255684a781f86363f5a82ca0a909a1ca97ed21dbbb5ae91d219fa77d0ba9df:3",
+      "update_id": "1220c7255684a781f86363f5a82ca0a909a1ca97ed21dbbb5ae91d219fa77d0ba9df",
+      "record_time": "2026-10-04T00:53:52.301962Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "provider": "pixelplex-mainnet-3::12209a8ec282ec94bc941172f3052221413031f27394685693e2d83e4bfab6423ac6",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "1220aa1c3e09200c8cf36b2849b1094c016a35a6c557dd5bc566b8213fca14cdeffd:3",
+      "update_id": "1220aa1c3e09200c8cf36b2849b1094c016a35a6c557dd5bc566b8213fca14cdeffd",
+      "record_time": "2026-10-04T00:53:52.30196Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "1220aa1c3e09200c8cf36b2849b1094c016a35a6c557dd5bc566b8213fca14cdeffd:11",
+      "update_id": "1220aa1c3e09200c8cf36b2849b1094c016a35a6c557dd5bc566b8213fca14cdeffd",
+      "record_time": "2026-10-04T00:53:52.30196Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "122093cd932b64de0f91f222d8c3c7d82515f39f8112418a19120aa9cb3ba0ed9f63:3",
+      "update_id": "122093cd932b64de0f91f222d8c3c7d82515f39f8112418a19120aa9cb3ba0ed9f63",
+      "record_time": "2026-10-04T00:53:52.301959Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "122093cd932b64de0f91f222d8c3c7d82515f39f8112418a19120aa9cb3ba0ed9f63:11",
+      "update_id": "122093cd932b64de0f91f222d8c3c7d82515f39f8112418a19120aa9cb3ba0ed9f63",
+      "record_time": "2026-10-04T00:53:52.301959Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    },
+    {
+      "event_id": "1220cf845844f37e53c2e19e010e9ac5457148cfff0c92c9670a0812c070c9404f6f:3",
+      "update_id": "1220cf845844f37e53c2e19e010e9ac5457148cfff0c92c9670a0812c070c9404f6f",
+      "record_time": "2026-10-04T00:53:51.943879Z",
+      "reward_type": "featured_app_activity",
+      "beneficiary": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "provider": "MPCH-BRONdvn-1::122005b8d2f108b45b4d7872f0e982b13e14fa119a31a4f6ddf76f4a58bbbba49024",
+      "amount": "0.5886491417",
+      "weight": "1.0000000000",
+      "round_number": 115882
+    }
+  ],
+  "total": 724269568
+}
