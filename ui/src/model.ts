@@ -1,12 +1,13 @@
 import type { Contract } from "./ledger";
 
-export type Role = "GP" | "GP2" | "Administrator" | "LP_A" | "LP_B" | "LP_C" | "Auditor" | "Ecosystem";
+export type Role = "GP" | "GP2" | "GP3" | "Administrator" | "LP_A" | "LP_B" | "LP_C" | "Auditor" | "Ecosystem";
 
-export const ROLES: Role[] = ["GP", "GP2", "Administrator", "LP_A", "LP_B", "LP_C", "Auditor", "Ecosystem"];
+export const ROLES: Role[] = ["GP", "GP2", "GP3", "Administrator", "LP_A", "LP_B", "LP_C", "Auditor", "Ecosystem"];
 
 export const ROLE_INFO: Record<Role, { name: string; kind: string; hue: string }> = {
   GP: { name: "Ledgerline Capital", kind: "General partner", hue: "var(--hue-gp)" },
   GP2: { name: "Ridgeway Partners", kind: "General partner", hue: "var(--hue-gp2)" },
+  GP3: { name: "Northwind Credit", kind: "General partner", hue: "var(--hue-gp3)" },
   Administrator: { name: "Fund administrator", kind: "Administrator", hue: "var(--hue-admin)" },
   LP_A: { name: "Harbor Pension Plan", kind: "Limited partner", hue: "var(--hue-a)" },
   LP_B: { name: "Mesa Family Office", kind: "Limited partner", hue: "var(--hue-b)" },
@@ -44,9 +45,25 @@ export type Commitment = {
   gp: string; lp: string; administrator: string; cashIssuer: string; fundId: string; fundName: string;
   committed: string; contributed: string; distributed: string; terms: Terms;
 };
-export type CallNotice = { gp: string; lp: string; fundId: string; callId: string; amount: string; dueDate: string; purpose: string };
-export type ContributionReceipt = { gp: string; lp: string; fundId: string; callId: string; amount: string; paidAt: string };
-export type DistributionReceipt = { gp: string; lp: string; fundId: string; distributionId: string; amount: string; paidAt: string };
+export type CallNotice = {
+  gp: string; lp: string; fundId: string; callId: string; amount: string; issuedOn: string; dueDate: string; purpose: string;
+};
+/** valueDate = when the cash moved (business date); recordedAt = ledger time. */
+export type ContributionReceipt = {
+  gp: string; lp: string; fundId: string; callId: string; amount: string;
+  calledOn: string; dueDate: string; valueDate: string; recordedAt: string;
+};
+export type DistributionReceipt = {
+  gp: string; lp: string; fundId: string; distributionId: string; amount: string; valueDate: string; recordedAt: string;
+};
+/** Network statistics published by an administrator; aggregates only. */
+export type FundStatistics = {
+  administrator: string; viewer: string; period: string; asOf: string; publishedAt: string;
+  funds: string; lps: string; committed: string; called: string; distributed: string; nav: string;
+  tvpiMedian: string | null; tvpiLow: string | null; tvpiHigh: string | null;
+  callsPaid: string; medianDaysToPay: string | null; paidOnTimePct: string | null;
+  minFunds: string; minLps: string;
+};
 export type Cash = { issuer: string; owner: string; amount: string };
 export type AdminDesk = { administrator: string; gp: string; fundId: string };
 export type NavStatement = { gp: string; fundId: string; asOf: string; nav: string; totalContributed: string; lpCount: string };
@@ -108,9 +125,14 @@ export function byLp<T extends { lp: string }>(items: Contract<T>[]): Contract<T
 
 export const isLp = (r: Role) => r === "LP_A" || r === "LP_B" || r === "LP_C";
 
+// Investors in the seed that have no demo login.
+const BACKGROUND_NAMES: Record<string, string> = { LP_D: "Ashford Insurance Fund", LP_E: "Cedar Foundation" };
+
 export function partyName(party: string): string {
   const r = roleOf(party);
-  return r ? ROLE_INFO[r].name : party.split("::")[0];
+  if (r) return ROLE_INFO[r].name;
+  const hint = party.split("::")[0].replace(/-[0-9a-f]+$/, "");
+  return BACKGROUND_NAMES[hint] ?? hint;
 }
 
 /** Fund colour derived from the fund id, so it matches across panes. */

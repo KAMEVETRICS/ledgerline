@@ -122,6 +122,7 @@ const DEMO_USERS: [string, string][] = [
   ["mesa", "LP, two funds"],
   ["ledgerline-gp", "Fund manager"],
   ["ridgeway-gp", "Fund manager"],
+  ["northwind-gp", "Fund manager"],
   ["admin", "Fund administrator"],
   ["auditor", "Auditor"],
   ["ecosystem", "Network statistics"],

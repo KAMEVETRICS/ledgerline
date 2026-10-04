@@ -3,6 +3,7 @@
 // pushes a reload event after each rebuild, and forwards /v2 to the Canton
 // sandbox's JSON Ledger API, scoped to the signed-in user's party (auth.mjs).
 import * as esbuild from "esbuild-wasm";
+import { watch } from "node:fs";
 import { readFile } from "node:fs/promises";
 import http from "node:http";
 import path from "node:path";
@@ -31,7 +32,14 @@ const ctx = await esbuild.context({
   banner: { js: "new EventSource('/__reload').addEventListener('change', () => location.reload());" },
   plugins: [reload],
 });
-await ctx.watch();
+// esbuild-wasm's own watch mode does not notice changes on Windows, so
+// watch src/ with Node and rebuild (debounced) on any change.
+await ctx.rebuild().catch(() => {});
+let pending;
+watch("src", { recursive: true }, () => {
+  clearTimeout(pending);
+  pending = setTimeout(() => ctx.rebuild().catch(() => {}), 100);
+});
 
 function ledgerFetch(urlPath) {
   return new Promise((resolve, reject) => {

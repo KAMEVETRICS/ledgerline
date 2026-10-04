@@ -73,7 +73,7 @@ export function Pane({ role }: { role: Role }) {
         </div>
       </header>
       <div className="pane-body">
-        {(role === "GP" || role === "GP2") && <GpView role={role} />}
+        {(role === "GP" || role === "GP2" || role === "GP3") && <GpView role={role} />}
         {role === "Administrator" && <AdminView />}
         {isLp(role) && <LpView role={role} />}
         {role === "Auditor" && <AuditorView />}
@@ -180,6 +180,7 @@ function GpView({ role }: { role: Role }) {
                 exercise(gp, "Fund:Fund", fund.contractId, "IssueCapitalCall", {
                   callId: nextCallId,
                   totalAmount: callAmount,
+                  issuedOn: today(),
                   dueDate,
                   purpose,
                   commitmentCids: commitments.map((c) => c.contractId),
@@ -240,6 +241,7 @@ function GpView({ role }: { role: Role }) {
                   distributionId: `D-${distributions.length + 1}`,
                   amount: distAmount,
                   cashCid: holding.contractId,
+                  valueDate: today(),
                 });
               });
             }}
@@ -526,11 +528,11 @@ function LpView({ role }: { role: Role }) {
 
   const activity = [
     ...contributions.map((r) => ({
-      id: r.contractId, at: r.payload.paidAt, fundId: r.payload.fundId,
+      id: r.contractId, at: r.payload.valueDate, fundId: r.payload.fundId,
       label: `Paid ${r.payload.callId}`, amount: -num(r.payload.amount),
     })),
     ...distributions.map((r) => ({
-      id: r.contractId, at: r.payload.paidAt, fundId: r.payload.fundId,
+      id: r.contractId, at: r.payload.valueDate, fundId: r.payload.fundId,
       label: `Received ${r.payload.distributionId}`, amount: num(r.payload.amount),
     })),
   ].sort((a, b) => b.at.localeCompare(a.at));
@@ -645,6 +647,7 @@ function LpView({ role }: { role: Role }) {
                     exercise(lp, "Fund:CapitalCallNotice", n.contractId, "PayCall", {
                       commitmentCid: commitment!.contractId,
                       cashCid: holding!.contractId,
+                      valueDate: today(),
                     }),
                   )
                 }

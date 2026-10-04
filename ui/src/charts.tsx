@@ -6,6 +6,7 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
+  Legend,
   Line,
   LineChart,
   ResponsiveContainer,
@@ -79,11 +80,12 @@ export function TimeSeriesChart({
           <XAxis dataKey="t" tickFormatter={shortDate} minTickGap={28} {...axis} />
           <YAxis tickFormatter={format} width={52} {...axis} />
           <Tooltip content={<TooltipBox format={format} />} />
+          {series.length > 1 && <Legend iconType="plainline" wrapperStyle={{ fontSize: 11, color: "var(--muted)" }} />}
           {series.map((s, i) =>
             area ? (
-              <Area key={s.name} dataKey={s.name} type="monotone" stroke={SERIES_COLORS[i % 4]} fill={SERIES_COLORS[i % 4]} fillOpacity={0.12} strokeWidth={2} dot={false} />
+              <Area key={s.name} dataKey={s.name} type="monotone" stroke={SERIES_COLORS[i % 4]} fill={SERIES_COLORS[i % 4]} fillOpacity={0.12} strokeWidth={2} dot={false} isAnimationActive={false} />
             ) : (
-              <Line key={s.name} dataKey={s.name} type="monotone" stroke={SERIES_COLORS[i % 4]} strokeWidth={2} dot={false} />
+              <Line key={s.name} dataKey={s.name} type="monotone" stroke={SERIES_COLORS[i % 4]} strokeWidth={2} dot={false} isAnimationActive={false} />
             ),
           )}
         </Chart>
@@ -113,7 +115,7 @@ export function BarSeriesChart({
           <XAxis dataKey="t" tickFormatter={shortDate} minTickGap={28} {...axis} />
           <YAxis tickFormatter={format} width={52} {...axis} />
           <Tooltip content={<TooltipBox format={format} />} cursor={{ fill: "var(--surface-2)" }} />
-          <Bar dataKey={name} fill={SERIES_COLORS[0]} radius={[3, 3, 0, 0]} />
+          <Bar dataKey={name} fill={SERIES_COLORS[0]} radius={[3, 3, 0, 0]} isAnimationActive={false} />
         </BarChart>
       </ResponsiveContainer>
     </div>

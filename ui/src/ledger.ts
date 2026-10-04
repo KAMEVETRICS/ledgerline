@@ -44,7 +44,7 @@ function errorMessage(text: string, status: number): string {
 
 // ---- session (served by ui/scripts/auth.mjs, which scopes /v2 to the user's party)
 
-export type SessionRole = "Judge" | "GP" | "GP2" | "Administrator" | "LP_A" | "LP_B" | "LP_C" | "Auditor" | "Ecosystem";
+export type SessionRole = "Judge" | "GP" | "GP2" | "GP3" | "Administrator" | "LP_A" | "LP_B" | "LP_C" | "Auditor" | "Ecosystem";
 export type Session = { username: string; role: SessionRole; name: string };
 
 export class SignedOut extends Error {}
