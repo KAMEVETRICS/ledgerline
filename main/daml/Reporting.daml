@@ -1,7 +1,10 @@
 module Reporting where
 
-import DA.Foldable (forA_)
-import DA.List (unique)
+import DA.Date (toDateUTC)
+import DA.Foldable (forA_, maximum, minimum)
+import DA.List ((!!), dedup, sort, unique)
+import DA.Optional (mapOptional)
+import DA.Time (convertRelTimeToMicroseconds, subTime)
 
 import Fund
 
@@ -209,3 +212,128 @@ template AuditView
     choice WithdrawView : ()
       controller administrator
       do pure ()
+
+-- ---------------------------------------------------------------- network statistics
+
+-- | Privacy threshold: statistics across fewer funds or LPs than this could
+-- be traced back to a single fund or investor, so they are never published.
+minFundsForStatistics : Int
+minFundsForStatistics = 3
+
+minLpsForStatistics : Int
+minLpsForStatistics = 5
+
+-- | The administrator publishes network-level statistics across every fund it
+-- runs. Nonconsuming and signed by the administrator alone, so no fund
+-- manager or LP is an informee of the computation; the viewer (the public
+-- ecosystem party) receives only the aggregate.
+template StatisticsDesk
+  with
+    administrator : Party
+    viewer : Party
+  where
+    signatory administrator
+
+    nonconsuming choice PublishStatistics : ContractId FundStatistics
+      with
+        period : Text
+        asOf : Date
+        commitmentCids : [ContractId Commitment]
+        -- The latest NAV statement of each fund.
+        navCids : [ContractId NavStatement]
+        -- Capital call payments made during the period.
+        receiptCids : [ContractId ContributionReceipt]
+      controller administrator
+      do
+        assertMsg "Inputs must be distinct"
+          (unique commitmentCids && unique navCids && unique receiptCids)
+        commitments <- mapA fetch commitmentCids
+        navs <- mapA fetch navCids
+        receipts <- mapA fetch receiptCids
+        forA_ commitments \c -> assertMsg "Commitment not administered here" (c.administrator == administrator)
+        forA_ navs \n -> assertMsg "NAV not published here" (n.administrator == administrator)
+        forA_ receipts \r -> assertMsg "Receipt not administered here" (r.administrator == administrator)
+
+        let fundIds = dedup (map (\c -> c.fundId) commitments)
+            lps = dedup (map (\c -> c.lp) commitments)
+        assertMsg ("At least " <> show minFundsForStatistics <> " funds are needed to publish statistics")
+          (length fundIds >= minFundsForStatistics)
+        assertMsg ("At least " <> show minLpsForStatistics <> " LPs are needed to publish statistics")
+          (length lps >= minLpsForStatistics)
+        assertMsg "One NAV per fund, for funds in this set"
+          (unique (map (\n -> n.fundId) navs) && all (\n -> n.fundId `elem` fundIds) navs)
+
+        let tvpis = mapOptional (fundTvpi commitments) navs
+            days = map (\r -> daysBetween r.calledAt r.paidAt) receipts
+            onTime = length (filter (\r -> toDateUTC r.paidAt <= r.dueDate) receipts)
+        now <- getTime
+        create FundStatistics with
+          administrator
+          viewer
+          period
+          asOf
+          publishedAt = now
+          funds = length fundIds
+          lps = length lps
+          committed = total (\c -> c.committed) commitments
+          called = total (\c -> c.contributed) commitments
+          distributed = total (\c -> c.distributed) commitments
+          nav = total (\n -> n.nav) navs
+          tvpiMedian = median tvpis
+          tvpiLow = if null tvpis then None else Some (minimum tvpis)
+          tvpiHigh = if null tvpis then None else Some (maximum tvpis)
+          callsPaid = length receipts
+          medianDaysToPay = median days
+          paidOnTimePct =
+            if null receipts then None
+            else Some (intToDecimal onTime * 100.0 / intToDecimal (length receipts))
+          minFunds = minFundsForStatistics
+          minLps = minLpsForStatistics
+
+-- | Aggregates only: no fund ids, no parties other than the publisher and
+-- the viewer, nothing per fund or per LP.
+template FundStatistics
+  with
+    administrator : Party
+    viewer : Party
+    period : Text
+    asOf : Date
+    publishedAt : Time
+    funds : Int
+    lps : Int
+    committed : Decimal
+    called : Decimal
+    distributed : Decimal
+    nav : Decimal
+    tvpiMedian : Optional Decimal
+    tvpiLow : Optional Decimal
+    tvpiHigh : Optional Decimal
+    callsPaid : Int
+    medianDaysToPay : Optional Decimal
+    paidOnTimePct : Optional Decimal
+    minFunds : Int
+    minLps : Int
+  where
+    signatory administrator
+    observer viewer
+
+total : (a -> Decimal) -> [a] -> Decimal
+total f xs = foldl (+) 0.0 (map f xs)
+
+fundTvpi : [Commitment] -> NavStatement -> Optional Decimal
+fundTvpi commitments n =
+  let cs = filter (\c -> c.fundId == n.fundId) commitments
+      contributed = total (\c -> c.contributed) cs
+      distributed = total (\c -> c.distributed) cs
+  in if contributed > 0.0 then Some ((distributed + n.nav) / contributed) else None
+
+daysBetween : Time -> Time -> Decimal
+daysBetween from to = intToDecimal (convertRelTimeToMicroseconds (subTime to from)) / 86400000000.0
+
+median : [Decimal] -> Optional Decimal
+median [] = None
+median xs =
+  let s = sort xs
+      n = length s
+      mid = n / 2
+  in if n % 2 == 1 then Some (s !! mid) else Some ((s !! (mid - 1) + s !! mid) / 2.0)

@@ -1,0 +1,56 @@
+name: Daml build and test
+
+# Builds both Daml packages and runs every Daml Script test on Linux, then
+# publishes the DARs. The local Windows dev machine cannot build the test
+# package (Smart App Control blocks an unsigned SDK helper), so the demo can
+# use these DARs instead: `node scripts/fetch-dars.mjs`.
+
+on:
+  push:
+    branches: [main, "wp-*"]
+    paths: ["main/**", "test/**", "multi-package.yaml", ".github/workflows/daml.yml"]
+  pull_request:
+    paths: ["main/**", "test/**", "multi-package.yaml", ".github/workflows/daml.yml"]
+  workflow_dispatch:
+
+jobs:
+  daml:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Cache Daml SDK
+        uses: actions/cache@v4
+        with:
+          path: ~/.dpm
+          key: dpm-3.4.10-${{ runner.os }}-v1
+
+      - name: Install Daml SDK 3.4.10
+        run: |
+          export DPM_HOME="$HOME/.dpm"
+          if [ ! -x "$DPM_HOME/bin/dpm" ]; then
+            curl -sSfL https://get.digitalasset.com/install/install.sh | sh -s 3.4.10
+          fi
+          echo "DPM_HOME=$DPM_HOME" >> "$GITHUB_ENV"
+          echo "$DPM_HOME/bin" >> "$GITHUB_PATH"
+
+      - name: Build
+        run: dpm build --all
+
+      - name: Test
+        working-directory: test
+        run: dpm test
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dars
+          path: |
+            main/.daml/dist/*.dar
+            test/.daml/dist/*.dar
+          retention-days: 14
