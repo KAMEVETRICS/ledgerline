@@ -10,7 +10,7 @@
 
 import { spawn, spawnSync } from "node:child_process";
 import net from "node:net";
-import { existsSync, mkdirSync, createWriteStream } from "node:fs";
+import { existsSync, mkdirSync, createWriteStream, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { CI_DARS, fetchDars } from "./fetch-dars.mjs";
@@ -118,9 +118,12 @@ async function startSandbox() {
 // and party allocation fails until it has. Retry only on that error.
 async function seed() {
   log("Seeding four quarters of history: three funds, three managers, five LPs…");
+  const unit = path.join(ROOT, "log", "unit.json"); // Demo.Setup:setup takes ()
+  writeFileSync(unit, "{}");
   for (let attempt = 1; attempt <= 20; attempt++) {
     const r = capture(DPM, [
       "script",
+      "--input-file", unit,
       "--dar", dars.test,
       "--script-name", "Demo.Setup:setup",
       "--ledger-host", "localhost",

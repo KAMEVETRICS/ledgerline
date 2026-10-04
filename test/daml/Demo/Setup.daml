@@ -40,19 +40,21 @@ data Demo = Demo
 -- an administrator NAV with per-LP statements, and network statistics that
 -- clear the privacy threshold (3 funds, 5 LPs). MFN checks and audit access
 -- are left for the live demo.
-setup : Script ()
-setup = do
-  _ <- seedHistory
+-- Takes () so `dpm test` does not run it against the test ledger's 1970
+-- clock; scripts/demo.mjs runs it with --input-file containing {}.
+setup : () -> Script ()
+setup () = do
+  _ <- seedHistory ()
   pure ()
 
 -- | For Daml Script tests: fix the IDE ledger's clock first.
 setupDemo : Script Demo
 setupDemo = do
   setTime (time (date 2026 Oct 3) 12 0 0)
-  seedHistory
+  seedHistory ()
 
-seedHistory : Script Demo
-seedHistory = script do
+seedHistory : () -> Script Demo
+seedHistory () = script do
   bank <- allocateParty "Bank"
   gp <- allocateParty "GP"
   gp2 <- allocateParty "GP2"
