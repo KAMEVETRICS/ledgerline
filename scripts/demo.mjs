@@ -5,11 +5,16 @@
 //
 //   node scripts/demo.mjs            fresh ledger (or reuse one already running)
 //   node scripts/demo.mjs --no-build skip `dpm build --all`
+//   node scripts/demo.mjs --ci-dars  use DARs built by GitHub Actions (scripts/fetch-dars.mjs)
+//
+// The ledger runs on static time: the seed walks the clock through four
+// quarters of fund history, then stops at the moment the demo starts.
 
 import { spawn, spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, createWriteStream } from "node:fs";
+import { existsSync, mkdirSync, createWriteStream, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { CI_DARS, fetchDars } from "./fetch-dars.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const UI = path.join(ROOT, "ui");
@@ -18,6 +23,10 @@ const LEDGER_PORT = 6865;
 const UI_URL = "http://localhost:5173";
 const isWindows = process.platform === "win32";
 const args = new Set(process.argv.slice(2));
+let dars = {
+  main: "main/.daml/dist/ledgerline-0.1.0.dar",
+  test: "test/.daml/dist/ledgerline-test-0.1.0.dar",
+};
 
 const children = [];
 const log = (msg) => console.log(`\x1b[36m[demo]\x1b[0m ${msg}`);
@@ -91,8 +100,9 @@ async function startSandbox() {
   const out = createWriteStream(path.join(ROOT, "log", "sandbox.out"));
   const sandbox = start("Canton sandbox", DPM, [
     "sandbox",
-    "--dar", "main/.daml/dist/ledgerline-0.1.0.dar",
+    "--dar", dars.main,
     "--json-api-port", "7575",
+    "--static-time",
     "--canton-port-file", ".sandbox-ports.json",
   ]);
   sandbox.stdout.pipe(out);
@@ -109,14 +119,18 @@ async function startSandbox() {
 // The JSON API answers before the participant has joined its synchronizer,
 // and party allocation fails until it has. Retry only on that error.
 async function seed() {
-  log("Seeding two funds, two managers, three LPs…");
+  log("Seeding four quarters of history: three funds, three managers, five LPs…");
+  const input = path.join(ROOT, "log", "seed-now.json");
+  writeFileSync(input, JSON.stringify(new Date().toISOString()));
   for (let attempt = 1; attempt <= 20; attempt++) {
     const r = capture(DPM, [
       "script",
-      "--dar", "test/.daml/dist/ledgerline-test-0.1.0.dar",
+      "--dar", dars.test,
       "--script-name", "Demo.Setup:setup",
       "--ledger-host", "localhost",
       "--ledger-port", String(LEDGER_PORT),
+      "--static-time",
+      "--input-file", input,
     ]);
     if (r.ok) return;
     if (!r.out.includes("PARTY_ALLOCATION_WITHOUT_CONNECTED_SYNCHRONIZER")) {
@@ -129,9 +143,25 @@ async function seed() {
 }
 
 async function main() {
-  if (!args.has("--no-build")) {
+  const useCi = () => {
+    log("Fetching DARs built by GitHub Actions…");
+    try {
+      const { id, stale } = fetchDars();
+      log(`Using DARs from CI run ${id}${stale ? " (a different commit than your checkout)" : ""}.`);
+      dars = CI_DARS;
+    } catch (e) {
+      fail(e.message);
+    }
+  };
+  if (args.has("--ci-dars")) useCi();
+  else if (!args.has("--no-build")) {
     log("Building DARs…");
-    if (!run(DPM, ["build", "--all"])) fail("dpm build failed. Is the Daml SDK installed and on PATH?");
+    // On machines where Smart App Control blocks a Daml SDK helper, the test
+    // package cannot build locally; fall back to the CI-built DARs.
+    if (!run(DPM, ["build", "--all"])) {
+      log("Local build failed; falling back to CI-built DARs.");
+      useCi();
+    }
   }
 
   if (await jsonApi("/v2/state/ledger-end")) {

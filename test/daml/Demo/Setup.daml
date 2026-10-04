@@ -3,7 +3,7 @@ module Demo.Setup where
 import DA.Date (Month(..), addDays, date, toDateUTC)
 import DA.Foldable (forA_)
 import DA.List (sortOn)
-import DA.Time (addRelTime, days, hours, time)
+import DA.Time (addRelTime, days, hours, seconds, time)
 import Daml.Script
 
 import Cash
@@ -67,14 +67,14 @@ setupDemoAt now = script do
   ecosystem <- allocateParty "Ecosystem"
 
   forA_ [lpA, lpB, lpC, lpD, lpE] \lp ->
-    submit bank do createCmd Cash with issuer = bank; owner = lp; amount = 20000000.0
+    sub bank do createCmd Cash with issuer = bank; owner = lp; amount = 20000000.0
   forA_ [gp, gp2, gp3] \m ->
-    submit bank do createCmd Cash with issuer = bank; owner = m; amount = 1000000.0
+    sub bank do createCmd Cash with issuer = bank; owner = m; amount = 1000000.0
 
   fund1 <- newFund gp admin bank "LL-I" "Ledgerline Credit Fund I" 2025
   fund2 <- newFund gp2 admin bank "RW-II" "Ridgeway Real Estate Debt II" 2025
   fund3 <- newFund gp3 admin bank "NW-I" "Northwind Infrastructure Credit I" 2025
-  statsDesk <- submit admin do createCmd StatisticsDesk with administrator = admin; viewer = ecosystem
+  statsDesk <- sub admin do createCmd StatisticsDesk with administrator = admin; viewer = ecosystem
 
   _ <- commit fund1 gp lpA 5000000.0 200 True
   _ <- commit fund1 gp lpB 3000000.0 150 True
@@ -116,7 +116,7 @@ setupDemoAt now = script do
   -- Live: RW-II CC-3 is outstanding when the demo starts.
   setTime (at 2026 Oct 1)
   rw <- fundCommitments gp2 "RW-II"
-  _ <- submit gp2 do
+  _ <- sub gp2 do
     exerciseCmd fund2 IssueCapitalCall with
       callId = "CC-3"
       totalAmount = 500000.0
@@ -134,16 +134,16 @@ at y m d = time (date y m d) 10 0 0
 
 newFund : Party -> Party -> Party -> Text -> Text -> Int -> Script (ContractId Fund)
 newFund gp admin bank fundId name vintage = do
-  fundCid <- submit gp do
+  fundCid <- sub gp do
     createCmd Fund with gp; administrator = admin; cashIssuer = bank; fundId; name; vintage
-  _ <- submit admin do createCmd AdminDesk with administrator = admin; gp; fundId
+  _ <- sub admin do createCmd AdminDesk with administrator = admin; gp; fundId
   pure fundCid
 
 commit : ContractId Fund -> Party -> Party -> Decimal -> Int -> Bool -> Script (ContractId Commitment)
 commit fundCid gp lp amount fee mfn = do
   let terms = LpTerms with managementFeeBps = fee; carryBps = 2000; mostFavouredNation = mfn
-  offerCid <- submit gp do exerciseCmd fundCid OfferCommitment with lp; amount; terms
-  submit lp do exerciseCmd offerCid AcceptCommitment
+  offerCid <- sub gp do exerciseCmd fundCid OfferCommitment with lp; amount; terms
+  sub lp do exerciseCmd offerCid AcceptCommitment
 
 fundCommitments : Party -> Text -> Script [ContractId Commitment]
 fundCommitments p fundId = map fst . filter (\(_, c) -> c.fundId == fundId) <$> query @Commitment p
@@ -168,7 +168,7 @@ capitalCall gp fundCid fundId callId total issued purpose payments = do
   let issuedAt = time issued 10 0 0
   setTime issuedAt
   cids <- fundCommitments gp fundId
-  _ <- submit gp do
+  _ <- sub gp do
     exerciseCmd fundCid IssueCapitalCall with
       callId
       totalAmount = total
@@ -184,7 +184,7 @@ payCall lp fundId callId = do
   [(noticeCid, notice)] <- filter (\(_, n) -> n.fundId == fundId && n.callId == callId) <$> query @CapitalCallNotice lp
   (commitmentCid, _) <- commitmentIn lp fundId
   cashCid <- cashFor lp notice.amount
-  _ <- submit lp do exerciseCmd noticeCid PayCall with commitmentCid; cashCid
+  _ <- sub lp do exerciseCmd noticeCid PayCall with commitmentCid; cashCid
   pure ()
 
 distribute : Party -> Text -> Text -> Date -> [(Party, Decimal)] -> Script ()
@@ -193,7 +193,7 @@ distribute gp fundId distributionId on payouts = do
   forA_ payouts \(lp, amount) -> do
     [(commitmentCid, _)] <- filter (\(_, c) -> c.fundId == fundId && c.lp == lp) <$> query @Commitment gp
     cashCid <- cashFor gp amount
-    submit gp do exerciseCmd commitmentCid Distribute with distributionId; amount; cashCid
+    sub gp do exerciseCmd commitmentCid Distribute with distributionId; amount; cashCid
 
 -- | Quarter close: one NAV per fund (with LP statements), then network
 -- statistics over every fund, using payments made during the quarter.
@@ -204,12 +204,12 @@ quarterEnd admin statsDesk period qStart qEnd navs = do
   forA_ navs \(fundId, nav) -> do
     [(deskCid, _)] <- pure (filter (\(_, d) -> d.fundId == fundId) desks)
     cids <- fundCommitments admin fundId
-    submit admin do exerciseCmd deskCid PublishNav with asOf = qEnd; nav; commitmentCids = cids
+    sub admin do exerciseCmd deskCid PublishNav with asOf = qEnd; nav; commitmentCids = cids
   commitments <- map fst <$> query @Commitment admin
   navCids <- map fst . filter (\(_, n) -> n.asOf == qEnd) <$> query @NavStatement admin
   receipts <- map fst . filter (\(_, r) -> let d = toDateUTC r.paidAt in d >= qStart && d <= qEnd)
     <$> query @ContributionReceipt admin
-  _ <- submit admin do
+  _ <- sub admin do
     exerciseCmd statsDesk PublishStatistics with
       period
       asOf = qEnd
@@ -217,3 +217,20 @@ quarterEnd admin statsDesk period qStart qEnd navs = do
       navCids
       receiptCids = receipts
   pure ()
+
+-- | Submit, retrying briefly. On a static-time ledger the participant can
+-- need a moment after a clock jump before it can route the next command;
+-- a rejected submission has no effect, so retrying is safe.
+sub : Party -> Commands a -> Script a
+sub = retrySubmit 10
+
+retrySubmit : Int -> Party -> Commands a -> Script a
+retrySubmit n p cmds = do
+  r <- trySubmit p cmds
+  case r of
+    Right x -> pure x
+    Left e
+      | n > 0 -> do
+          passTime (seconds 1)
+          retrySubmit (n - 1) p cmds
+      | otherwise -> abort ("Submission failed after retries: " <> show e)
