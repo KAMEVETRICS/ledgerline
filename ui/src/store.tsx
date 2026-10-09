@@ -4,6 +4,7 @@ import {
   listParties,
   login,
   logout,
+  startFund as startFundApi,
   me,
   SignedOut,
   type Contract,
@@ -17,6 +18,8 @@ type Store = {
   status: "loading" | "signedout" | "ready" | "offline";
   session: Session | null;
   signIn: (username: string) => Promise<string | null>;
+  /** Self-serve demo: start a new fund and act as its manager. */
+  startFund: (name: string) => Promise<string | null>;
   signOut: () => Promise<void>;
   parties: Partial<Record<Role, string>>;
   /** Snapshots per role. Only the signed-in party's, except for the judge view. */
@@ -60,6 +63,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         const r = roleOf(p);
         if (r) byRole[r] = p;
       }
+      // An identity created on the fly is bound to its own party.
+      if (who.party && who.role !== "Judge") byRole[who.role as Role] = who.party;
       if (!byRole.GP) {
         setStatus("offline");
         return;
@@ -94,6 +99,16 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const signIn = useCallback<Store["signIn"]>(async (username) => {
     try {
       setSession(await login(username));
+      setStatus("loading");
+      return null;
+    } catch (e) {
+      return e instanceof Error ? e.message : String(e);
+    }
+  }, []);
+
+  const startFund = useCallback<Store["startFund"]>(async (name) => {
+    try {
+      setSession(await startFundApi(name));
       setStatus("loading");
       return null;
     } catch (e) {
@@ -147,8 +162,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   );
 
   const value = useMemo<Store>(
-    () => ({ status, session, signIn, signOut, parties, acs, act, busy, toasts, hovered, setHovered, seenBy }),
-    [status, session, signIn, signOut, parties, acs, act, busy, toasts, hovered, seenBy],
+    () => ({ status, session, signIn, startFund, signOut, parties, acs, act, busy, toasts, hovered, setHovered, seenBy }),
+    [status, session, signIn, startFund, signOut, parties, acs, act, busy, toasts, hovered, seenBy],
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

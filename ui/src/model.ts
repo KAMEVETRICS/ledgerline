@@ -56,6 +56,10 @@ export type ContributionReceipt = {
 export type DistributionReceipt = {
   gp: string; lp: string; fundId: string; distributionId: string; amount: string; valueDate: string; recordedAt: string;
 };
+export type CommitmentOffer = {
+  gp: string; lp: string; administrator: string; cashIssuer: string; fundId: string; fundName: string; amount: string; terms: Terms;
+};
+export type StatisticsDesk = { administrator: string; viewer: string };
 /** Network statistics published by an administrator; aggregates only. */
 export type FundStatistics = {
   administrator: string; viewer: string; period: string; asOf: string; publishedAt: string;

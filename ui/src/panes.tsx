@@ -46,15 +46,16 @@ import {
   type Role,
 } from "./model";
 import { FundHealth, FundTrend, LpCashFlows, LpPerformance } from "./private/FundCharts";
+import { CommitmentOffers, InviteInvestor, PublishStatistics } from "./private/SelfServe";
 import { useStore } from "./store";
 
 const lpName = partyName;
 
 export function Pane({ role }: { role: Role }) {
-  const { parties, acs } = useStore();
+  const { parties, acs, session } = useStore();
   const party = parties[role];
   const contracts = acs[role] ?? [];
-  const info = ROLE_INFO[role];
+  const info = session?.party && session.role === role ? { ...ROLE_INFO[role], name: session.name } : ROLE_INFO[role];
   const counts = new Map<string, number>();
   for (const c of contracts) counts.set(c.template, (counts.get(c.template) ?? 0) + 1);
 
@@ -171,6 +172,7 @@ function GpView({ role }: { role: Role }) {
       </Section>
 
       <FundTrend mine={mine} fundId={fund.payload.fundId} />
+      <InviteInvestor gp={gp} fund={fund} mine={mine} />
 
       <Section
         title="Capital calls"
@@ -311,13 +313,14 @@ function LinkedRow({ cid, children }: { cid: string; children: ReactNode }) {
 
 // The administrator serves several managers; each desk is one fund.
 function AdminView() {
-  const { acs } = useStore();
+  const { acs, parties } = useStore();
   const desks = of<AdminDesk>(acs.Administrator, "Reporting:AdminDesk").sort((a, b) =>
     a.payload.fundId.localeCompare(b.payload.fundId),
   );
   if (desks.length === 0) return <Empty>No admin desk yet.</Empty>;
   return (
     <>
+      <PublishStatistics admin={parties.Administrator!} mine={acs.Administrator} />
       {desks.map((d) => (
         <AdminFund key={d.contractId} desk={d} />
       ))}
@@ -514,7 +517,13 @@ function LpView({ role }: { role: Role }) {
   const contributions = of<ContributionReceipt>(mine, "Fund:ContributionReceipt");
   const distributions = of<DistributionReceipt>(mine, "Fund:DistributionReceipt");
 
-  if (holdings.length === 0) return <Empty>No commitments yet.</Empty>;
+  if (holdings.length === 0)
+    return (
+      <>
+        <CommitmentOffers lp={lp} mine={mine} />
+        <Empty>No commitments yet.</Empty>
+      </>
+    );
 
   const total = holdings.reduce(
     (t, h) => ({
@@ -543,6 +552,7 @@ function LpView({ role }: { role: Role }) {
 
   return (
     <>
+      <CommitmentOffers lp={lp} mine={mine} />
       <section className="card portfolio">
         <header className="card-head">
           <h4>Portfolio</h4>

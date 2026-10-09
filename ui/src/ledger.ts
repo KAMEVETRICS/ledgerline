@@ -45,7 +45,8 @@ function errorMessage(text: string, status: number): string {
 // ---- session (served by ui/scripts/auth.mjs, which scopes /v2 to the user's party)
 
 export type SessionRole = "Judge" | "GP" | "GP2" | "GP3" | "Administrator" | "LP_A" | "LP_B" | "LP_C" | "Auditor" | "Ecosystem";
-export type Session = { username: string; role: SessionRole; name: string };
+/** `party` is set for identities created on the fly, e.g. a visitor's own fund. */
+export type Session = { username: string; role: SessionRole; name: string; party?: string };
 
 export class SignedOut extends Error {}
 
@@ -73,6 +74,18 @@ export async function login(username: string): Promise<Session> {
   });
   const body = await res.json().catch(() => ({}));
   if (!res.ok) throw new LedgerError(body.error ?? "Sign-in failed");
+  return body as Session;
+}
+
+/** Self-serve demo: create a manager party and a fund, and start a session for it. */
+export async function startFund(name: string): Promise<Session> {
+  const res = await fetch("/api/demo/start-fund", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ name }),
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new LedgerError(body.error ?? "Could not start the fund");
   return body as Session;
 }
 

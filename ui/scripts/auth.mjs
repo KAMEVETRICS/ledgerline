@@ -10,6 +10,7 @@
 import { randomBytes } from "node:crypto";
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import { startFund } from "./onboard.mjs";
 
 const config = JSON.parse(readFileSync(path.resolve("demo-users.json"), "utf8"));
 const users = new Map(config.users.map((u) => [u.username, u]));
@@ -36,8 +37,28 @@ function json(res, status, body, headers = {}) {
   res.end(JSON.stringify(body));
 }
 
-/** Handles /api/*. Returns true when the request was handled. */
-export async function handleApi(req, res) {
+function startSession(res, user) {
+  const token = randomBytes(24).toString("hex");
+  sessions.set(token, user);
+  json(res, 200, publicUser(user), {
+    "set-cookie": `${COOKIE}=${token}; HttpOnly; SameSite=Strict; Path=/`,
+  });
+}
+
+/**
+ * Handles /api/*. Returns true when the request was handled. `ledger` gives
+ * direct (unscoped) access for the server's own onboarding steps.
+ */
+export async function handleApi(req, res, ledger) {
+  if (req.url === "/api/demo/start-fund" && req.method === "POST") {
+    try {
+      const body = JSON.parse((await readBody(req)).toString() || "{}");
+      startSession(res, await startFund(ledger, body.name));
+    } catch (e) {
+      json(res, e.status ?? 500, { error: e.message });
+    }
+    return true;
+  }
   if (req.url === "/api/login" && req.method === "POST") {
     let body = {};
     try {
@@ -47,11 +68,7 @@ export async function handleApi(req, res) {
     }
     const user = users.get(String(body.username ?? "").trim().toLowerCase());
     if (!user) return json(res, 401, { error: "Unknown demo identity" }), true;
-    const token = randomBytes(24).toString("hex");
-    sessions.set(token, user);
-    json(res, 200, publicUser(user), {
-      "set-cookie": `${COOKIE}=${token}; HttpOnly; SameSite=Strict; Path=/`,
-    });
+    startSession(res, user);
     return true;
   }
   if (req.url === "/api/logout" && req.method === "POST") {
@@ -72,7 +89,8 @@ export async function handleApi(req, res) {
   return false;
 }
 
-const publicUser = (u) => ({ username: u.username, role: u.role, name: u.name });
+// Identities created on the fly (a visitor's own fund) carry their party id.
+const publicUser = (u) => ({ username: u.username, role: u.role, name: u.name, ...(u.party ? { party: u.party } : {}) });
 
 // Party ids carry the hint the setup script allocated them with ("LP_A-1df4…::1220…").
 async function partyFor(role, ledgerFetch) {
@@ -97,7 +115,7 @@ export async function authorizeLedger(req, ledgerFetch) {
     return { ok: true, body };
   }
 
-  const party = await partyFor(user.role, ledgerFetch);
+  const party = user.party ?? (await partyFor(user.role, ledgerFetch));
   if (!party) return { ok: false, status: 503, error: `No ledger party for ${user.role} yet` };
   let payload;
   try {

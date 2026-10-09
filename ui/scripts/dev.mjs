@@ -53,6 +53,24 @@ function ledgerFetch(urlPath) {
   });
 }
 
+// POST to the ledger as the server itself (onboarding steps only).
+function ledgerPost(urlPath, body) {
+  const data = Buffer.from(JSON.stringify(body));
+  return new Promise((resolve, reject) => {
+    const r = http.request(
+      { hostname: "127.0.0.1", port: LEDGER_PORT, path: urlPath, method: "POST", headers: { "content-type": "application/json", "content-length": data.length } },
+      (res) => {
+        const chunks = [];
+        res.on("data", (c) => chunks.push(c));
+        res.on("end", () => resolve({ status: res.statusCode, body: Buffer.concat(chunks).toString() }));
+      },
+    );
+    r.on("error", reject);
+    r.end(data);
+  });
+}
+const ledger = { get: ledgerFetch, post: ledgerPost };
+
 async function proxyToLedger(req, res) {
   let decision;
   try {
@@ -100,7 +118,7 @@ async function serveStatic(req, res) {
 http
   .createServer(async (req, res) => {
     if (req.url?.startsWith("/api/network/") && (await handleNetwork(req, res))) return;
-    if (req.url?.startsWith("/api/") && (await handleApi(req, res))) return;
+    if (req.url?.startsWith("/api/") && (await handleApi(req, res, ledger))) return;
     if (req.url?.startsWith("/v2/")) return proxyToLedger(req, res);
     if (req.url === "/__reload") {
       res.writeHead(200, { "content-type": "text/event-stream", "cache-control": "no-store", connection: "keep-alive" });

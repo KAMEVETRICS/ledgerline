@@ -38,7 +38,9 @@ export function EcosystemPrivateMarkets() {
               singled out.
             </p>
           </div>
-          <span className="source ledger">Live · Canton ledger · signed by the administrator</span>
+          <span className="source demo" title="Fictional funds and investors, seeded on a local Canton ledger. The statistics are computed and signed by the administrator's contract, exactly as they would be on a real network.">
+            Demo funds · local Canton ledger · signed by the administrator
+          </span>
         </header>
 
         <section className="panel">
