@@ -84,6 +84,11 @@ function PortfolioBody({ data, requested }: { data: PartyPortfolio; requested: s
       <p className="wpc-help">{data.holdings.length === 0 ? "No holdings were reported." : <>{value.unvalued} {value.unvalued === 1 ? "holding has" : "holdings have"} no USD value.{value.unvalued > 0 ? " The reported total and allocation exclude them." : " All listed holdings are valued."}</>}</p>
       {data.party !== requested && <Empty>This sample source returns the same example portfolio for every lookup. Requested: <span className="wpc-id" title={requested}>{shortId(requested)}</span>.</Empty>}
       {data.meta.note && <p className="wpc-note">{data.meta.note}</p>}
+      {data.meta.sources?.includes("CoinGecko") && (
+        <p className="wpc-help">
+          CC price: data by <a href="https://www.coingecko.com/en/coins/canton-network" target="_blank" rel="noreferrer">CoinGecko</a>.
+        </p>
+      )}
       <h3>Allocation of valued holdings</h3>
       {value.allocatable ? <>
         <div className="wpc-allocation" role="img" aria-label={`Valued allocation: ${valued.map(h => `${h.instrument} ${percent(percentage(h.valueUsd, value.total)!)}`).join(", ")}`}>

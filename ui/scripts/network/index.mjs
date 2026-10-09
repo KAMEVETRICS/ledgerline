@@ -13,6 +13,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { enrichLiquidity, enrichOverview, enrichParty, enrichValidators } from "./enrich.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 // NETWORK_FIXTURE_SET=live serves recorded live CC Space responses instead of
@@ -31,6 +32,16 @@ if (process.env.CCSPACE_API_KEY) {
     console.warn(`[network] live adapter unavailable, serving fixtures: ${e.message}`);
   }
 }
+
+// Live responses are enriched with Lighthouse and CoinGecko data (./enrich.mjs) before saving.
+const enriched = (load, enrich) => load && (async (...args) => enrich(await load(...args)));
+const routes = live && {
+  overview: enriched(live.overview, enrichOverview),
+  validators: enriched(live.validators, enrichValidators),
+  apps: live.apps,
+  liquidity: enriched(live.liquidity, enrichLiquidity),
+  party: enriched(live.party, enrichParty),
+};
 
 function send(res, status, body) {
   res.writeHead(status, { "content-type": "application/json", "cache-control": "no-store" });
@@ -91,14 +102,14 @@ export async function handleNetwork(req, res) {
   if (req.method !== "GET") return send(res, 405, { error: "GET only" }), true;
 
   const route = url.pathname.slice("/api/network/".length);
-  if (route === "overview") await serve(res, "overview", "overview", live?.overview);
-  else if (route === "validators") await serve(res, "validators", "validators", live?.validators);
-  else if (route === "apps") await serve(res, "apps", "apps", live?.apps);
-  else if (route === "liquidity") await serve(res, "liquidity", "liquidity", live?.liquidity);
+  if (route === "overview") await serve(res, "overview", "overview", routes?.overview);
+  else if (route === "validators") await serve(res, "validators", "validators", routes?.validators);
+  else if (route === "apps") await serve(res, "apps", "apps", routes?.apps);
+  else if (route === "liquidity") await serve(res, "liquidity", "liquidity", routes?.liquidity);
   else if (route.startsWith("party/")) {
     const party = decodeURIComponent(route.slice("party/".length));
     if (!PARTY.test(party)) return send(res, 400, { error: "Not a valid party id" }), true;
-    await serve(res, `party-${party}`, "party", live?.party && (() => live.party(party)));
+    await serve(res, `party-${party}`, "party", routes?.party && (() => routes.party(party)));
   } else send(res, 404, { error: "Unknown network route" });
   return true;
 }

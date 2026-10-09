@@ -26,15 +26,19 @@ function LiquidityBody({ data, overview }: { data: LiquidityReport; overview: Ne
   const metrics = liquidityMetrics(data.cc);
   const currentPrice = metrics.price ?? overview?.ccPriceUsd ?? null;
   const priceFromOverview = metrics.price === null && currentPrice !== null;
-  const hasPriceHistory = data.cc.priceUsd.length > 0;
+  const history = data.cc.priceHistoryUsd?.length ? data.cc.priceHistoryUsd : data.cc.priceUsd;
+  const hasPriceHistory = history.length > 0;
+  const marketVolume = data.cc.marketVolumeDailyUsd ?? [];
+  const coingecko = data.meta.sources?.includes("CoinGecko") ?? false;
+  const since = history[0] ? new Date(`${history[0].t}T00:00:00Z`).toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" }) : "";
   const hasSupplyHistory = data.cc.supply.length > 0;
   return (
     <div className="wpc-stack">
       <section className="panel" aria-label="Canton Coin metrics">
         <div className="stats wpc-metrics">
-          <Stat label="CC price" value={formatValue(currentPrice, usd4)} sub={priceFromOverview ? "USD · current governance price" : "USD · latest observed price"} />
+          <Stat label="CC price" value={formatValue(currentPrice, usd4)} sub={priceFromOverview ? "USD · current governance price" : coingecko ? "USD · market price (CoinGecko)" : "USD · latest observed price"} />
           <Stat label="30-day price change" value={<span className={metrics.change === null ? "" : metrics.change < 0 ? "wpc-down" : "wpc-up"}>{formatValue(metrics.change, n => percent(n, true))}</span>} sub="Computed · first to last observation" />
-          <Stat label="CC supply" value={formatValue(metrics.supply, ccAmount)} sub="Latest observed supply" />
+          <Stat label="CC supply" value={formatValue(metrics.supply, ccAmount)} sub={coingecko ? "Circulating · market cap ÷ price" : "Latest observed supply"} />
           <Stat label="Market cap" value={formatValue(metrics.marketCap, usdCompact)} sub="Computed · price × supply" />
           <Stat label="Avg. daily volume" value={formatValue(metrics.averageVolume, ccAmount)} sub={`Computed · ${metrics.observedDays} observed days in the 30-day window`} />
         </div>
@@ -45,8 +49,8 @@ function LiquidityBody({ data, overview }: { data: LiquidityReport; overview: Ne
       <div className={hasPriceHistory ? "grid-2" : "wpc-stack"}>
         {hasPriceHistory && (
           <section className="panel" aria-labelledby="wpc-price">
-            <h3 id="wpc-price">CC price · USD</h3>
-            <TimeSeriesChart series={[{ name: "CC price", points: data.cc.priceUsd }]} area format={usd4} />
+            <h3 id="wpc-price">CC price · USD{since && history !== data.cc.priceUsd ? ` · since ${since}` : ""}</h3>
+            <TimeSeriesChart series={[{ name: "CC price", points: history }]} area format={usd4} />
             <p className="wpc-caption">Use observed prices to plan CC-denominated payments.</p>
           </section>
         )}
@@ -56,12 +60,25 @@ function LiquidityBody({ data, overview }: { data: LiquidityReport; overview: Ne
           <p className="wpc-caption">Compare daily flows when planning how much CC to keep available.</p>
         </section>
       </div>
+      {marketVolume.length > 0 && (
+        <section className="panel" aria-labelledby="wpc-market-volume">
+          <h3 id="wpc-market-volume">Exchange trading volume · USD</h3>
+          <BarSeriesChart name="Traded on exchanges" points={marketVolume} format={usdCompact} />
+          <p className="wpc-caption">Off-ledger trading on centralised exchanges, next to the on-ledger transfers above: how deep the CC market is when you need to buy or sell.</p>
+        </section>
+      )}
       {hasSupplyHistory && (
         <section className="panel" aria-labelledby="wpc-supply">
           <h3 id="wpc-supply">CC supply · CC</h3>
           <TimeSeriesChart series={[{ name: "CC supply", points: data.cc.supply }]} format={compact} height={180} />
           <p className="wpc-caption">Track observed supply when assessing changes in the CC market.</p>
         </section>
+      )}
+      {coingecko && (
+        <p className="wpc-caption">
+          Market price, exchange volume and supply: data by{" "}
+          <a href="https://www.coingecko.com/en/coins/canton-network" target="_blank" rel="noreferrer">CoinGecko</a>.
+        </p>
       )}
       <section className="panel" aria-labelledby="wpc-pools">
         <div className="wpc-section-head"><h3 id="wpc-pools">Trading pools</h3><span className="muted small">{data.pools.length} {data.pools.length === 1 ? "pool" : "pools"}</span></div>

@@ -105,6 +105,37 @@
 
 .wpb-detail h3 { text-transform: none; letter-spacing: 0; font-size: 16px; color: var(--text); }
 
+/* Attention queue, sponsor scorecard, liveness key */
+.wpb-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; margin-bottom: 8px; }
+.wpb-head h3 { margin: 0; }
+.wpb-tier {
+  display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--muted); margin-right: 6px;
+}
+.wpb-tier.t1 { background: var(--bad); }
+.wpb-tier.t2 { background: color-mix(in srgb, var(--bad) 55%, var(--muted)); }
+.wpb-tier.t3 { background: var(--warn); }
+.wpb-tier.t4 { background: color-mix(in srgb, var(--warn) 50%, var(--muted)); }
+.wpb-tier-hint { margin: 0 0 4px; }
+.wpb-linkish {
+  background: none; border: 0; padding: 0; font: inherit; color: var(--accent); cursor: pointer;
+  text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent); text-underline-offset: 2px;
+}
+.wpb-linkish:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.wpb-scroll .table.wpb-score { min-width: 500px; }
+.wpb-scroll .table.wpb-score th:first-child, .wpb-scroll .table.wpb-score td:first-child { width: auto; }
+.wpb-scroll .table.wpb-score th:nth-child(2), .wpb-scroll .table.wpb-score td:nth-child(2) { width: 84px; }
+.wpb-score th:nth-child(3), .wpb-score th:nth-child(4), .wpb-score th:nth-child(5) { width: 68px; }
+.wpb-score th:last-child { width: 100px; }
+.wpb-health { align-items: flex-end; }
+.wpb-split-c { background: var(--bad); }
+.wpb-key { list-style: none; padding: 0; margin: 10px 0 0; display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); }
+.wpb-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; }
+.wpb-dot.a { background: var(--good); }
+.wpb-dot.b { background: var(--muted); opacity: 0.45; }
+.wpb-dot.c { background: var(--bad); }
+.wpb-gap { margin-top: 20px; }
+.wpb-barlist .fill.lag { background: var(--warn); }
+
 @media (max-width: 640px) {
   .wpb-stack .list li { flex-wrap: wrap; align-items: flex-start; }
   .wpb-stack .list li .muted { text-align: left; }

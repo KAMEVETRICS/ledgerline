@@ -59,7 +59,7 @@ const operation = object({ id: str, at: timestamp, type: str, direction: choice(
 
 export function assertContract(route, value, { source = "ccspace", now = Date.now() } = {}) {
   const meta = object({ source: choice(source), network: choice("mainnet", "testnet", "devnet", "local"),
-    asOf: timestamp, note: str }, ["note"]);
+    asOf: timestamp, note: str, sources: array(str) }, ["note", "sources"]);
   const daily = series(now);
   const app = object({ id: str, name: str, provider: str, party: nullable(str), featured: bool,
     activity30d: nullable(number), rewards30dCC: nullable(number), activityDaily: daily, url: nullable(str) });
@@ -67,9 +67,9 @@ export function assertContract(route, value, { source = "ccspace", now = Date.no
     overview: object({ meta, latestRound: nullable(integer), validators: object({ total: integer, active: integer }),
       featuredApps: integer, ccPriceUsd: nullable(number), ccSupply: nullable(number), transfers24h: nullable(number),
       series: object({ transfersDaily: daily, activeValidatorsDaily: daily }) }),
-    validators: object({ meta, validators: array(validator), series: object({ activeDaily: daily, rewardsPerRoundCC: series(now, false) }) }),
+    validators: object({ meta, validators: array(validator), networkVersion: nullable(str), series: object({ activeDaily: daily, rewardsPerRoundCC: series(now, false) }) }, ["networkVersion"]),
     apps: object({ meta, apps: array(app) }),
-    liquidity: object({ meta, cc: object({ priceUsd: daily, supply: daily, transferVolumeDailyCC: daily }), pools: array(pool) }),
+    liquidity: object({ meta, cc: object({ priceUsd: daily, supply: daily, transferVolumeDailyCC: daily, priceHistoryUsd: array(point), marketVolumeDailyUsd: daily }, ["priceHistoryUsd", "marketVolumeDailyUsd"]), pools: array(pool) }),
     party: object({ meta, party: str, holdings: array(holding), recent: array(operation) }),
   };
   if (!Object.hasOwn(schemas, route)) fail("route", "a known network route");

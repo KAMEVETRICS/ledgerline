@@ -16,6 +16,8 @@ export type Meta = {
   /** When the underlying data was fetched. */
   asOf: string;
   note?: string;
+  /** Every public source that contributed, for attribution, e.g. ["CC Space", "CoinGecko"]. */
+  sources?: string[];
 };
 
 export type Point = { t: string; v: number };
@@ -53,6 +55,8 @@ export type Validator = {
 export type ValidatorsReport = {
   meta: Meta;
   validators: Validator[];
+  /** Version the network currently runs, when known. */
+  networkVersion?: string | null;
   series: {
     activeDaily: Point[];
     rewardsPerRoundCC: Point[];
@@ -90,6 +94,10 @@ export type LiquidityReport = {
     priceUsd: Point[];
     supply: Point[];
     transferVolumeDailyCC: Point[];
+    /** Daily market price since listing (up to a year). */
+    priceHistoryUsd?: Point[];
+    /** Daily exchange trading volume, last 30 days. */
+    marketVolumeDailyUsd?: Point[];
   };
   pools: Pool[];
 };
