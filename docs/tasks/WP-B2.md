@@ -36,7 +36,7 @@ Open http://localhost:5173. Recorded responses are in `ui/scripts/network/fixtur
 4. **Needs attention.** Show the first 10, then a "Show all N" button. Group by reason (stale, low uptime, not seen for 24h) with counts.
 5. **Validator table.** Paginate at 50 rows, with "Show more" (or pages) and the total count. Sorting and filtering apply to all rows, not just the visible page. The version column shows "—" when it's null, and the "versions in use" panel hides when every version is null.
 6. **Apps.** Show the display name (step 1). Hide the sparkline column when no app has `activityDaily` data. Keep the 30-day activity and rewards columns. "Movers" needs daily data: when it's missing, replace it with **"Top earners"** (top 5 by `rewards30dCC`) and **"Most active"** (top 5 by `activity30d`).
-7. Re-take the screenshots (desktop + 375px, live mode) into `wpb/shots/`, replacing the old ones.
+7. Re-take the screenshots (desktop + 375px, live mode) into `docs/qa/validators-apps/`, replacing the old ones.
 
 ## Acceptance criteria
 

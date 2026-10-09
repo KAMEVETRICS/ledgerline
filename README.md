@@ -1,99 +1,191 @@
 # Ledgerline
 
-Fund administration on Canton where every party sees a different, correct view of one ledger. LPs see only their own capital account. The GP sees the whole fund. Auditors see only what was disclosed, for a fixed window.
+**Decisions from Canton data. Every party sees only its own truth.**
 
-HackCanton Season 3 entry, Investment Infrastructure track (Funds, DAOs & Governance Tools).
+HackCanton Season 3 entry, **Data, Analytics & Ecosystem Dashboards** track.
 
-## Who sees what
+Ledgerline is a decision layer on top of Canton data, in two parts:
 
-| Contract | GP | Administrator | That LP | Other LPs | Auditor |
-|---|---|---|---|---|---|
-| `Fund` | ✓ | ✓ | | | |
-| `Commitment` (capital account + side-letter terms) | ✓ | ✓ | ✓ | | |
-| `CapitalCallNotice`, receipts | ✓ | ✓ | ✓ | | |
-| `NavStatement` (fund NAV) | ✓ | ✓ | | | |
-| `LpStatement` (NAV share, TVPI, DPI) | ✓ | ✓ | ✓ | | |
-| `MfnAttestation` (verdict only) | ✓ | ✓ | ✓ | | |
-| `AuditView` (snapshot) | | ✓ | | | ✓ |
+- **Network layer (public, live mainnet data).** A ranked queue of validators that need attention, a scorecard for each super validator's sponsored validators, app monitoring, liquidity views and a portfolio lookup for any party. It combines four public sources and credits each one on the page.
+- **Private-markets layer (our Daml contracts).** Fund flows, an investor's portfolio across several managers, and network statistics (median TVPI, days to pay a capital call, share paid on time) that are published only when at least 3 funds and 5 investors contribute. Each number is computed on the node of the party allowed to see it.
 
-With several funds, each manager sees only its own fund. An LP's node is the only place its positions across managers meet, so the portfolio view (`ui/src/panes.tsx`, `holdingsOf`) is computed there. No aggregator ever sees the whole book. `test/daml/Test/MultiFund.daml` asserts this.
+The two layers serve one story. The public layer is free and useful every day to validator operators and super validators. The private layer is what institutions pay for: fund administrators, managers and investors who need analytics and benchmarks without exposing their positions.
 
-Choices that read several LPs' data (`IssueCapitalCall`, `PublishNav`, `AttestMfn`) are **nonconsuming and controlled by a single party**. Only that party is an informee of the exercise. Each LP is an informee only of the contracts created for it, plus the fetch of its own commitment. An LP can infer that its commitment was read in a transaction, but cannot see who else was involved or what they hold.
+> **Live demo:** _hosted link to be added before submission._
 
-## Workflows
+---
 
-1. GP creates `Fund`. Administrator creates `AdminDesk` (consenting to the role).
-2. GP `OfferCommitment` → LP `AcceptCommitment` → `Commitment`.
-3. GP `IssueCapitalCall` → one pro-rata `CapitalCallNotice` per LP.
-4. LP `PayCall`: cash moves to the GP and the capital account updates in **one transaction**.
-5. GP `Distribute` on a commitment: cash goes to the LP and `distributed` updates.
-6. Administrator `PublishNav`: fund NAV plus every `LpStatement` in one transaction.
-7. Administrator `AttestMfn`: checks whether an LP's terms are at least as good as any LP with an equal or smaller commitment, without revealing those terms.
-8. GP `AuditGrant` → administrator `DiscloseToAuditor` (rejected after `validUntil`).
+## A five-minute tour
 
-## Build and test
+The **Network** pages need no sign-in.
 
-Uses Daml SDK 3.4.10, the same as `../clearhold`.
+1. **Validators.** Start with **Needs attention**: validators that went offline recently, then live validators running an old release, most fixable first. Validators silent for over 30 days are counted as retired, not as incidents. Then open the **Sponsor scorecard**. On Oct 8, 2026, every live validator onboarded by the Global Synchronizer Foundation and Digital Asset (14 validators) ran 0.6.x, two releases behind the network's 0.8.3. Select a sponsor to list its validators.
+2. **Liquidity.** CC market price since listing, circulating supply, on-ledger transfers next to exchange volume, and the OneSwap pools.
+3. **Portfolio lookup.** Paste any party ID to see its public CC holdings, valued in USD, and its recent activity.
+
+Then select **View as a party**. These are demo identities with no passwords: the funds and investors are fictional, but the privacy is enforced by the server and the ledger (see [Demo mode](#demo-mode)).
+
+4. **Harbor Pension Plan** (investor). One portfolio across two funds from two managers, assembled on Harbor's own node. Pay the outstanding **RW-II CC-3** capital call: cash and the capital account move in one transaction.
+5. **Start your own fund** (top of the identity picker). Name a fund, invite an investor, then switch to that investor to accept. Everything is an ordinary command on the ledger.
+6. **Fund administrator.** Publish this quarter's network statistics. The contract refuses to publish if fewer than 3 funds or 5 investors contribute.
+7. **Ecosystem viewer.** The published statistics, and nothing else: no fund, investor or position.
+8. **Judge** (demo only). Every party side by side, plus **Who holds what**, a count of each contract type on each party's node. An empty cell means that party's node never received the data.
+
+---
+
+## Network layer
+
+| Page | Sources | What it answers |
+|---|---|---|
+| Overview | CC Space | Is the network healthy: rounds, validators live, featured apps, transfers |
+| Validators | CC Space, 5N Lighthouse | Who needs attention first; how each sponsor's validators are doing; who runs an old release |
+| App monitoring | CC Space | Which featured apps are growing and what they earn |
+| Liquidity | CC Space, CoinGecko, OneSwap | CC price, supply, on-ledger and exchange volume, trading pools |
+| Portfolio lookup | CC Space, CoinGecko | A party's public CC holdings with a USD value, and recent activity |
+
+**Rules every page follows.** A value no source provides is shown as "—" and is never estimated. Each page shows its sources and when the data was fetched. Sample data is labelled "Sample data".
+
+**How it's served.** The gateway (`ui/scripts/network/`) calls the sources from the server, so API keys never reach the browser. It caches each response on disk for 30 minutes, because CC Space bills per request. If one source fails, pages still load and say what is missing. The response shapes are defined in `ui/src/network/types.ts`; field-level notes are in [`docs/data-sources.md`](docs/data-sources.md).
+
+**Sources:**
+
+- [CC Space](https://cc.itrocket.space): validators, liveness, sponsors, featured apps, transfers, party balances. Needs a paid API key.
+- [5N Lighthouse](https://lighthouse.cantonloop.com): validator versions and last-active times. Needs a free API key.
+- [CoinGecko](https://www.coingecko.com/en/coins/canton-network): CC market price, market cap and exchange volume. No key needed. Data by CoinGecko.
+- [OneSwap](https://oneswap.cc): trading pools, through its anonymous read API.
+
+**What no public source has yet:** validator uptime history and pool TVL. Both show as "—".
+
+---
+
+## Private-markets layer
+
+### Who sees what
+
+| Contract | GP | Administrator | That LP | Other LPs | Auditor | Ecosystem viewer |
+|---|---|---|---|---|---|---|
+| `Fund` | ✓ | ✓ | | | | |
+| `CommitmentOffer`, `Commitment` (capital account + side-letter terms) | ✓ | ✓ | ✓ | | | |
+| `CapitalCallNotice`, contribution and distribution receipts | ✓ | ✓ | ✓ | | | |
+| `NavStatement` (fund NAV) | ✓ | ✓ | | | | |
+| `LpStatement` (NAV share, TVPI, DPI) | ✓ | ✓ | ✓ | | | |
+| `MfnAttestation` (verdict only) | ✓ | ✓ | ✓ | | | |
+| `AuditView` (snapshot) | | ✓ | | | ✓ | |
+| `FundStatistics` (aggregates only) | | ✓ | | | | ✓ |
+
+With several funds, each manager sees only its own fund. An investor's node is the only place its positions across managers meet, so the portfolio view is computed there. No aggregator ever holds the whole book. `test/daml/Test/MultiFund.daml` asserts this.
+
+Choices that read several investors' data (`IssueCapitalCall`, `PublishNav`, `AttestMfn`, `PublishStatistics`) are **nonconsuming and controlled by a single party**, so only that party is an informee of the exercise. Each investor is an informee only of the contracts created for it, plus the fetch of its own commitment.
+
+### Workflows
+
+1. The GP creates a `Fund`; the administrator creates an `AdminDesk`, consenting to the role.
+2. GP `OfferCommitment` → investor `AcceptCommitment` (or declines) → `Commitment`.
+3. GP `IssueCapitalCall` → one pro-rata `CapitalCallNotice` per investor.
+4. Investor `PayCall`: cash moves to the GP and the capital account updates in **one transaction**.
+5. GP `Distribute` on a commitment: cash goes to the investor and `distributed` updates.
+6. Administrator `PublishNav`: the fund NAV plus every `LpStatement`, in one transaction.
+7. Administrator `AttestMfn`: checks that an investor's terms are at least as good as any investor with an equal or smaller commitment, without revealing those terms.
+8. GP grants audit access → administrator `DiscloseToAuditor`, refused after `validUntil`.
+9. Administrator `PublishStatistics` across every fund it runs. The contract enforces the 3-fund, 5-investor minimum.
+
+### The demo ledger
+
+`test/daml/Demo/Setup.daml` seeds three funds from three managers, five investors and four quarters of history (Q4 2025 to Q3 2026), with statistics published each quarter. RW-II CC-3 is left outstanding so there is something to pay. Cash is a test-only settlement token.
+
+---
+
+## Run it yourself
+
+**Network pages only.** Needs Node 22+; no Daml SDK or API key.
 
 ```bash
-dpm build --all
+cd ui
+npm install
+npm run dev
 ```
 
-```bash
-cd test && dpm test
+Open http://localhost:5173. Without keys, the network pages serve generic sample data, labelled as such. To see real recorded mainnet responses instead, start with `NETWORK_FIXTURE_SET=live`. For live data, create `ui/.env.local` (it is gitignored):
+
+```
+CCSPACE_API_KEY=...
+LIGHTHOUSE_API_KEY=...
 ```
 
-`test/daml/Test/FundLifecycle.daml` runs the full lifecycle and asserts the visibility rules above.
+CoinGecko needs no key.
 
-## Run the dashboard demo
-
-The UI in `ui/` talks to a local Canton sandbox through the JSON Ledger API. Each pane reads and writes as one party, so what it shows is exactly what that party's node holds.
-
-**One command** (from `ledgerline`; needs the Daml SDK, Java 17+ and Node 22+):
+**Everything, including the Canton ledger.** Needs Node 22+, Java 17+ and Daml SDK 3.4.10 (`dpm`). From the repository root:
 
 ```bash
 node scripts/demo.mjs
 ```
 
-This builds the DARs, starts a fresh sandbox, waits until it can allocate parties, seeds both funds, installs UI dependencies if needed and serves http://localhost:5173. Ctrl+C stops the ledger and the UI together. Sandbox output goes to `log/sandbox.out`. Run it again for a clean demo. Pass `--no-build` to skip the build. If a ledger is already running on :7575, the script reuses it.
+This builds the DARs, starts a fresh Canton sandbox, seeds the demo and serves http://localhost:5173. Ctrl+C stops everything. Run it again for a clean ledger. Options:
 
-**By hand**, the same steps:
+- `--no-build` skips the build.
+- `--ci-dars` uses the DARs built by GitHub Actions instead of building locally (needs `gh`).
 
-1. Build the contracts (from `ledgerline`):
+Sandbox output goes to `log/sandbox.out`.
 
-   ```bash
-   dpm build --all
-   ```
+**Tests.**
 
-2. Start the sandbox and leave it running (its own terminal):
+```bash
+dpm build --all
+cd test && dpm test
+```
 
-   ```bash
-   dpm sandbox --dar main/.daml/dist/ledgerline-0.1.0.dar --json-api-port 7575 --canton-port-file .sandbox-ports.json
-   ```
+There are four Daml Script tests: the full fund lifecycle with its visibility rules, privacy across funds, exact statistics figures, and the publication threshold. They also run in GitHub Actions on every push that changes the contracts (`.github/workflows/daml.yml`). The network adapter has its own tests:
 
-3. Once `.sandbox-ports.json` appears, wait a few more seconds for the sandbox to connect to its synchronizer, then seed the demo. This creates two funds from two managers. Ledgerline Capital runs LL-I (three LPs, CC-1 paid). Ridgeway Partners runs RW-II (Harbor and Mesa only, with a NAV, a distribution and CC-2 outstanding):
+```bash
+node --test ui/scripts/network/ccspace.test.mjs
+```
 
-   ```bash
-   dpm script --dar test/.daml/dist/ledgerline-test-0.1.0.dar --script-name Demo.Setup:setup --ledger-host localhost --ledger-port 6865
-   ```
+---
 
-4. Start the UI (first time: `npm install` in `ui/`), then open http://localhost:5173:
+## Demo mode
 
-   ```bash
-   npm --prefix ui run dev
-   ```
+The private views use passwordless demo identities so you can compare what each party sees. Switching identity is not a way around privacy:
 
-The sandbox keeps state in memory. To reset the demo, stop it and repeat steps 2–3.
+- Each session is bound to one party. The server (`ui/scripts/auth.mjs`) refuses any read or command for another party with HTTP 403.
+- Contracts a party is not entitled to never reach its node. The UI hides nothing; it shows what the ledger returns.
+- The **Judge** account, which sees every party, exists only in the demo.
 
-**Demo script for judges:** start on Harbor's portfolio. It combines two funds from two managers on Harbor's own node, while each GP pane shows only its own fund. Pay RW-II CC-2 from Harbor: Ridgeway's pane updates and Ledgerline Capital's doesn't. Then Ledgerline Capital issues CC-2 → each LP sees only its own notice → LP pays (cash and capital account move in one transaction) → admin publishes NAV (one statement per LP) → MFN checks give each LP a verdict without revealing peers' terms → GP grants audit access → admin discloses one account → the "Who holds what" tab shows the per-node contract counts. Hovering any contract highlights it in every pane that holds it.
+In production each organisation signs in with its own Canton wallet and runs on its own node, so there is nothing to switch to.
 
-The UI uses `esbuild-wasm` with a small Node dev server (`ui/scripts/dev.mjs`) rather than Vite, because Windows Application Control on the dev machine blocks Vite's unsigned native bundler binary.
+---
 
-## Simplifications (MVP)
+## Limits and what's next
 
-- `Cash` is a test-only settlement token. Swap it for a CIP-56 holding (e.g. a stablecoin) for DevNet pilots.
-- NAV is an input signed by the administrator, not computed. NAV share is pro rata to contributed capital. There are no fee or carry waterfalls.
-- The GP passes in the list of commitments for calls and NAV. Completeness is trusted to the GP and administrator, the same as off-chain fund admin today.
-- An `AuditView` is a snapshot. Withdrawing it stops further visibility, but the auditor's participant has already seen the data. Canton explicit disclosure is the production alternative.
-- Portfolio value = latest administrator NAV mark + capital called since, at cost. Distributions after a statement are not netted out until the next NAV.
-- Not yet: IRR (needs dated cash flows), LP stake transfers.
+- **Trust in the administrator.** Investors state their own payment dates, and the administrator chooses which records feed the statistics. The contract checks dates against the call and today, but a production version would take dates from the settlement rail and require every active record of a fund.
+- **Cash** is a test token. For a pilot, swap it for a CIP-56 holding such as a stablecoin.
+- **NAV** is an input signed by the administrator, not computed. There are no fee or carry waterfalls, and no IRR yet.
+- **An `AuditView` is a snapshot.** Withdrawing it stops further visibility, but the auditor's node has already seen the data. Canton explicit disclosure is the production alternative.
+- **Not built yet:** hosting on the hackathon DevNet, wallet sign-in, recording our own liveness samples for uptime history, sponsor reports and exports, and an AI assistant over a party's own data.
+
+---
+
+## How it was built
+
+- **Contracts:** Daml (SDK 3.4.10) on Canton, through the JSON Ledger API v2.
+- **Dashboard:** React 19, TypeScript and Recharts, bundled with `esbuild-wasm`, plus a small Node server (`ui/scripts/dev.mjs`) for the ledger proxy, sign-in and the network gateway.
+
+**AI coding agents.** Ledgerline was built with AI coding agents.
+- Claude Code acted as integrator: architecture, the contracts, the private-markets UI, reviews and merges.
+- Codex and Grok Build took work packages from [`docs/tasks/`](docs/tasks), against the data contract in `ui/src/network/types.ts`.
+- [`AGENTS.md`](AGENTS.md) holds the rules every agent followed, and [`docs/PLAN.md`](docs/PLAN.md) the plan.
+- Every change was reviewed and tested before merging.
+
+**Notes for Windows.** Windows Application Control on the main development machine blocks unsigned native binaries. That is why the UI uses `esbuild-wasm` instead of Vite. It is also why `scripts/demo.mjs` can fall back to CI-built DARs (`--ci-dars`), and to launching the SDK's sandbox and script runner with `java -jar` when `dpm` itself is blocked. None of this changes anything on other machines.
+
+## Layout
+
+```
+main/daml/            Daml contracts (Fund, Reporting, Cash)
+test/daml/            Daml Script tests and the demo seed (Demo/Setup.daml)
+scripts/demo.mjs      one command: build, start the sandbox, seed, serve the UI
+ui/scripts/           dev server, sign-in and access policy, self-serve onboarding
+ui/scripts/network/   network gateway, source adapters, fixtures, tests
+ui/src/network/       network pages and the data contract (types.ts)
+ui/src/private/       private-markets pages and self-serve flows
+docs/                 plan, data-source notes, agent task files
+```

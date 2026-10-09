@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Ledgerline">
+  <rect width="512" height="512" rx="112" fill="#FFFFFF"/>
+  <rect x="124" y="268" width="72" height="124" rx="14" fill="#0E1626" fill-opacity="0.35"/>
+  <rect x="220" y="204" width="72" height="188" rx="14" fill="#0E1626" fill-opacity="0.6"/>
+  <rect x="316" y="124" width="72" height="268" rx="14" fill="#0F9F8C"/>
+  <!-- Keyhole: each party sees through its own view only -->
+  <circle cx="352" cy="226" r="17" fill="#FFFFFF"/>
+  <path d="M344 236 L360 236 L366 290 L338 290 Z" fill="#FFFFFF"/>
+  <rect x="108" y="404" width="296" height="16" rx="8" fill="#0F9F8C"/>
+</svg>

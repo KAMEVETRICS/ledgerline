@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 640" width="1680" height="640">
+  <rect width="1680" height="640" fill="#FFFFFF"/>
+  <image href="a-private-bar.svg" x="40" y="40" width="512" height="512"/>
+  <image href="b-keyhole.svg" x="584" y="40" width="512" height="512"/>
+  <image href="c-redacted.svg" x="1128" y="40" width="512" height="512"/>
+  <g font-family="Arial, sans-serif" font-size="30" font-weight="bold" fill="#0E1626" text-anchor="middle">
+    <text x="296" y="605">A. Private bar</text>
+    <text x="840" y="605">B. Keyhole</text>
+    <text x="1384" y="605">C. Redacted</text>
+  </g>
+</svg>

@@ -13,4 +13,4 @@ The recordings establish that validator liveness is `active`/`stale`/`never_seen
 
 Inline literals in `ccspace.test.mjs` are explicitly synthetic boundary cases, including a synthetic coupon amount used to test the recorded reward type. Every pure mapper and all five full contracts are also tested against the real recordings.
 
-`screenshots/` contains local UI verification images, not upstream API recordings. Light/dark screenshots force the existing CSS media branches through a temporary QA proxy; no UI or CSS source was edited. Network pages remain the integrator's WP-B/WP-C stubs.
+UI verification screenshots for the gateway live in `docs/qa/gateway/`; they are not upstream API recordings. Light/dark screenshots force the existing CSS media branches through a temporary QA proxy; no UI or CSS source was edited. Network pages remain the integrator's WP-B/WP-C stubs.
