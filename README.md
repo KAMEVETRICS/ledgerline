@@ -11,7 +11,7 @@ Ledgerline is a decision layer on top of Canton data, in two parts:
 
 The two layers serve one story. The public layer is free and useful every day to validator operators and super validators. The private layer is what institutions pay for: fund administrators, managers and investors who need analytics and benchmarks without exposing their positions.
 
-> **Live demo:** _hosted link to be added before submission._
+> **Live demo:** https://ll.datatides.xyz (network pages need no sign-in; private views use demo identities)
 
 ---
 
