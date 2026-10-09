@@ -10,6 +10,7 @@
 
 import { spawn, spawnSync } from "node:child_process";
 import net from "node:net";
+import os from "node:os";
 import { existsSync, mkdirSync, createWriteStream, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -41,6 +42,26 @@ function findDpm() {
   return "dpm";
 }
 const DPM = findDpm();
+
+// The Daml SDK's tools are jars that dpm launches with Java. On a machine where
+// dpm itself is blocked (Smart App Control on the dev machine), launch the
+// same jars directly with Java; the DARs then come from CI.
+const SDK_VERSION = "3.4.10";
+const COMPONENTS = [process.env.DPM_HOME, process.env.APPDATA && path.join(process.env.APPDATA, "dpm"), path.join(os.homedir(), ".dpm")]
+  .filter(Boolean)
+  .map((home) => path.join(home, "cache", "components"))
+  .find((dir) => existsSync(dir));
+const JARS = COMPONENTS && {
+  sandbox: path.join(COMPONENTS, "canton-enterprise", SDK_VERSION, "lib", `canton-enterprise-${SDK_VERSION}.jar`),
+  script: path.join(COMPONENTS, "daml-script", SDK_VERSION, "daml-script-binary_distribute.jar"),
+};
+let dpmWorks = true;
+
+/** [command, args] for an SDK tool: through dpm, or straight to its jar. */
+function sdk(tool, toolArgs) {
+  if (dpmWorks) return [DPM, [tool, ...toolArgs]];
+  return ["java", ["-jar", JARS[tool], ...(tool === "sandbox" ? ["sandbox"] : []), ...toolArgs]];
+}
 
 function run(cmd, cmdArgs, opts = {}) {
   const r = spawnSync(cmd, cmdArgs, { cwd: ROOT, stdio: "inherit", shell: isWindows, ...opts });
@@ -97,12 +118,12 @@ const seeded = async () =>
 async function startSandbox() {
   mkdirSync(path.join(ROOT, "log"), { recursive: true });
   const out = createWriteStream(path.join(ROOT, "log", "sandbox.out"));
-  const sandbox = start("Canton sandbox", DPM, [
-    "sandbox",
+  const [sandboxCmd, sandboxArgs] = sdk("sandbox", [
     "--dar", dars.main,
     "--json-api-port", "7575",
     "--canton-port-file", ".sandbox-ports.json",
   ]);
+  const sandbox = start("Canton sandbox", sandboxCmd, sandboxArgs);
   sandbox.stdout.pipe(out);
   sandbox.stderr.pipe(out);
 
@@ -121,14 +142,13 @@ async function seed() {
   const unit = path.join(ROOT, "log", "unit.json"); // Demo.Setup:setup takes ()
   writeFileSync(unit, "{}");
   for (let attempt = 1; attempt <= 20; attempt++) {
-    const r = capture(DPM, [
-      "script",
+    const r = capture(...sdk("script", [
       "--input-file", unit,
       "--dar", dars.test,
       "--script-name", "Demo.Setup:setup",
       "--ledger-host", "localhost",
       "--ledger-port", String(LEDGER_PORT),
-    ]);
+    ]));
     if (r.ok) return;
     if (!r.out.includes("PARTY_ALLOCATION_WITHOUT_CONNECTED_SYNCHRONIZER")) {
       console.error(r.out.split("\n").filter((l) => /error|exception|failed/i.test(l)).slice(0, 8).join("\n"));
@@ -158,7 +178,12 @@ async function main() {
       fail(e.message);
     }
   };
-  if (args.has("--ci-dars")) useCi();
+  dpmWorks = capture(DPM, ["version"]).ok;
+  if (!dpmWorks) {
+    if (!JARS || !existsSync(JARS.sandbox) || !existsSync(JARS.script)) fail(`dpm cannot run and the SDK jars were not found. Is Daml SDK ${SDK_VERSION} installed?`);
+    log("dpm is blocked on this machine; running the SDK's Java tools directly.");
+    useCi();
+  } else if (args.has("--ci-dars")) useCi();
   else if (!args.has("--no-build")) {
     log("Building DARs…");
     // On machines where Smart App Control blocks a Daml SDK helper, the test
