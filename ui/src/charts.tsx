@@ -9,6 +9,8 @@ import {
   Legend,
   Line,
   LineChart,
+  ReferenceDot,
+  ReferenceLine,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -132,6 +134,60 @@ export function Sparkline({ points, width = 96, height = 28 }: { points: Point[]
   );
 }
 
+/**
+ * Borderless trend for hero cards: a glowing line, a dashed line at the first
+ * value, and the latest point marked and labelled.
+ */
+export function HeroSpark({
+  points,
+  tone = "accent",
+  label,
+  height = 120,
+  format = compact,
+}: {
+  points: Point[];
+  tone?: "accent" | "good" | "bad";
+  label?: string;
+  height?: number;
+  format?: (n: number) => string;
+}) {
+  if (points.length < 2) return null;
+  const color = tone === "bad" ? "var(--bad)" : tone === "good" ? "var(--good)" : "var(--accent)";
+  const id = `spark-${tone}`;
+  const last = points[points.length - 1];
+  const values = points.map((p) => p.v);
+  const min = Math.min(...values), max = Math.max(...values);
+  const pad = (max - min) * 0.25 || max * 0.05 || 1;
+  return (
+    <div className="chart" style={{ height }}>
+      <ResponsiveContainer width="100%" height="100%">
+        <AreaChart data={points} margin={{ top: 26, right: 34, bottom: 8, left: 0 }}>
+          <defs>
+            <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={color} stopOpacity={0.28} />
+              <stop offset="100%" stopColor={color} stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <YAxis hide domain={[min - pad, max + pad]} />
+          <XAxis dataKey="t" hide />
+          <Tooltip content={<TooltipBox format={format} />} cursor={{ stroke: "var(--border-strong)" }} />
+          <ReferenceLine y={points[0].v} stroke="var(--faint)" strokeDasharray="3 4" />
+          <Area dataKey="v" name="Value" type="monotone" stroke={color} strokeWidth={2} fill={`url(#${id})`} dot={false} isAnimationActive={false} style={{ filter: `drop-shadow(0 0 6px ${color})` }} />
+          <ReferenceDot
+            x={last.t}
+            y={last.v}
+            r={4}
+            fill="var(--surface)"
+            stroke={color}
+            strokeWidth={2}
+            label={label ? { value: label, position: "top", fill: "var(--text)", fontSize: 12, offset: 10 } : undefined}
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
 /** Where the numbers on a page come from. Sample data is always labelled. */
 export function SourceBadge({ meta }: { meta: Meta }) {
   const when = new Date(meta.asOf).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" });
@@ -139,8 +195,8 @@ export function SourceBadge({ meta }: { meta: Meta }) {
     meta.source === "fixture"
       ? "Sample data"
       : meta.source === "ccspace"
-        ? `Live · CC Space · ${meta.network}`
-        : `Live · Canton ledger · ${meta.network}`;
+        ? `Live · ${(meta.sources ?? ["CC Space"]).join(" + ")} · ${meta.network}`
+        : `Demo · local Canton ledger`;
   return (
     <span className={`source ${meta.source}`} title={meta.note ?? `As of ${when}`}>
       {label} <span className="muted">· {when}</span>

@@ -1,5 +1,5 @@
-// Network section shell: sub-navigation + one page per module. Pages live in
-// ./pages and are owned per docs/PLAN.md; this file only routes between them.
+// Network section: one page per module. The sidebar (ui/src/shell.tsx) lists
+// NETWORK_PAGES; this file only picks the page for the current route.
 import type { ReactNode } from "react";
 import type { Meta } from "./types";
 import { SourceBadge } from "../charts";
@@ -9,7 +9,7 @@ import { Overview } from "./pages/Overview";
 import { Portfolio } from "./pages/Portfolio";
 import { Validators } from "./pages/Validators";
 
-const PAGES = [
+export const NETWORK_PAGES = [
   { id: "overview", label: "Overview", Page: Overview },
   { id: "validators", label: "Validators", Page: Validators },
   { id: "apps", label: "App monitoring", Page: Apps },
@@ -17,18 +17,11 @@ const PAGES = [
   { id: "portfolio", label: "Portfolio lookup", Page: Portfolio },
 ] as const;
 
-export function NetworkSection({ page, go }: { page: string; go: (route: string) => void }) {
+export function NetworkSection({ page }: { page: string }) {
   const id = page.split("?")[0]; // pages may carry state in the hash, e.g. portfolio?party=…
-  const current = PAGES.find((p) => p.id === id) ?? PAGES[0];
+  const current = NETWORK_PAGES.find((p) => p.id === id) ?? NETWORK_PAGES[0];
   return (
     <div className="network">
-      <nav className="subnav" aria-label="Network pages">
-        {PAGES.map((p) => (
-          <button key={p.id} className={p === current ? "on" : ""} aria-current={p === current ? "page" : undefined} onClick={() => go(`network/${p.id}`)}>
-            {p.label}
-          </button>
-        ))}
-      </nav>
       <main className="network-page">
         <current.Page />
       </main>

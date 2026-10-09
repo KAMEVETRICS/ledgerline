@@ -5,6 +5,7 @@ import { ROLES, ROLE_INFO, TEMPLATE_LABELS, type Role } from "./model";
 import { NetworkSection } from "./network/NetworkSection";
 import { Pane } from "./panes";
 import { EcosystemPrivateMarkets } from "./private/EcosystemPrivateMarkets";
+import { privateNav, Sidebar, TopBar } from "./shell";
 import { useStore } from "./store";
 
 const DEFAULT_PANES: Role[] = ["GP", "GP2", "LP_A", "LP_B"];
@@ -21,60 +22,38 @@ function useRoute(): [string, (r: string) => void] {
   return [route, (r) => (window.location.hash = `/${r}`)];
 }
 
-type NavItem = { route: string; label: string };
-
-const NETWORK: NavItem = { route: "network/overview", label: "Network" };
-
-// The network dashboard is public. Private views need a demo identity.
-function navFor(role: SessionRole | null): NavItem[] {
-  if (role === null) return [NETWORK, { route: "view-as", label: "Private views" }];
-  if (role === "Judge")
-    return [{ route: "parties", label: "Party views" }, { route: "matrix", label: "Who holds what" }, NETWORK];
-  if (role === "Ecosystem") return [{ route: "private-markets", label: "Private markets" }, NETWORK];
-  return [{ route: "me", label: "My dashboard" }, NETWORK];
-}
-
 export default function App() {
   const { status, session, toasts } = useStore();
   const [route, go] = useRoute();
-  const nav = navFor(session?.role ?? null);
-  const active = nav.find((n) => route.split("/")[0] === n.route.split("/")[0]) ?? nav[0];
-  const onNetwork = active.route.startsWith("network");
+  const section = route.split("/")[0];
+  const priv = privateNav(session?.role ?? null);
+  const onNetwork = section === "network" || !priv.some((p) => p.route === section);
+  const privateRoute = onNetwork ? null : section;
 
   return (
-    <div className="app">
-      <header className="topbar">
-        <Brand />
-        <nav className="tabs" aria-label="Sections">
-          {nav.map((n) => (
-            <button key={n.route} className={n === active ? "on" : ""} aria-current={n === active ? "page" : undefined} onClick={() => go(n.route)}>
-              {n.label}
-            </button>
-          ))}
-        </nav>
-        {session ? <UserChip /> : <button className="btn primary" onClick={() => go("view-as")}>View as a party</button>}
-        <span className={`status ${status}`}>
-          <span className="dot" />
-          {status === "ready" ? "Canton ledger connected" : status === "offline" ? "Ledger offline" : session ? "Connecting…" : "Public view"}
-        </span>
-      </header>
+    <div className="shell">
+      <Sidebar route={route || "network/overview"} onNetwork={onNetwork} go={go} />
+      <div className="main">
+        <TopBar go={go} />
+        {session && !onNetwork && <DemoBanner judge={session.role === "Judge"} />}
 
-      {/* Public network data: works for everyone, with or without the local ledger. */}
-      {onNetwork && <NetworkSection page={route.split("/")[1] ?? "overview"} go={go} />}
-      {!session && active.route === "view-as" && <ViewAs onChosen={(r) => go(r === "Judge" ? "parties" : r === "Ecosystem" ? "private-markets" : "me")} />}
-      {session && !onNetwork && status === "offline" && <Offline />}
-      {session && status === "ready" && (
-        <>
-          {active.route === "parties" && <JudgeView />}
-          {active.route === "matrix" && <Matrix />}
-          {active.route === "private-markets" && <EcosystemPrivateMarkets />}
-          {active.route === "me" && (
-            <main className="solo">
-              <Pane role={session.role as Role} />
-            </main>
-          )}
-        </>
-      )}
+        {/* Public network data: works for everyone, with or without the local ledger. */}
+        {onNetwork && <NetworkSection page={route.split("/")[1] ?? "overview"} />}
+        {!session && privateRoute === "view-as" && <ViewAs onChosen={(r) => go(r === "Judge" ? "parties" : r === "Ecosystem" ? "private-markets" : "me")} />}
+        {session && !onNetwork && status === "offline" && <Offline />}
+        {session && status === "ready" && (
+          <>
+            {privateRoute === "parties" && <JudgeView />}
+            {privateRoute === "matrix" && <Matrix />}
+            {privateRoute === "private-markets" && <EcosystemPrivateMarkets />}
+            {privateRoute === "me" && (
+              <main className="solo">
+                <Pane role={session.role as Role} />
+              </main>
+            )}
+          </>
+        )}
+      </div>
 
       <div className="toasts" aria-live="polite">
         {toasts.map((t) => (
@@ -87,30 +66,17 @@ export default function App() {
   );
 }
 
-function Brand() {
+/** Shown on every private view: the funds are fictional, the privacy is real. */
+function DemoBanner({ judge }: { judge: boolean }) {
   return (
-    <div className="brand">
-      <span className="logo" aria-hidden>
-        <svg viewBox="0 0 24 24" width="22" height="22">
-          <path d="M4 5h4v14H4zM10 9h4v10h-4zM16 13h4v6h-4z" fill="currentColor" />
-        </svg>
+    <div className="demo-banner" role="note">
+      <strong>Demo mode</strong>
+      <span className="muted">
+        {judge
+          ? "This all-parties view exists only for the demo. In production no account can see more than one party."
+          : "Fictional funds and investors on a local Canton ledger. The privacy is real: this session can read and act only as one party, and the server refuses everything else."}{" "}
+        The Network pages use live mainnet data.
       </span>
-      <div>
-        <h1>Ledgerline</h1>
-        <p>Canton data for institutions. Every party sees only its own truth.</p>
-      </div>
-    </div>
-  );
-}
-
-function UserChip() {
-  const { session, signOut } = useStore();
-  return (
-    <div className="user">
-      <span className="user-name">{session!.name}</span>
-      <button className="btn ghost" onClick={() => signOut().then(() => (window.location.hash = "/network/overview"))}>
-        Leave view
-      </button>
     </div>
   );
 }
@@ -148,10 +114,25 @@ function ViewAs({ onChosen }: { onChosen: (role: SessionRole) => void }) {
           <h2>View the ledger as a party</h2>
           <p className="muted">
             Each identity is one Canton party. The server lets it read and act only as that party, so what you see is exactly what
-            that party's node holds. No password: these are demo identities.
+            that party's node holds.
           </p>
         </div>
       </header>
+      <div className="demo-note" role="note">
+        <p>
+          <strong>Demo mode.</strong> The funds, managers and investors here are fictional, seeded on a local Canton ledger. There
+          are no passwords so you can switch between parties and compare what each one sees.
+        </p>
+        <p>
+          Switching identity is not a way around privacy. Each session is bound to one party, and the server refuses any read or
+          command for another party (HTTP 403). Contracts a party is not entitled to never reach its node in the first place.
+        </p>
+        <p>
+          In production each organisation signs in with its own Canton wallet and runs on its own node, so there is nothing to
+          switch to. The all-parties Judge view exists only in this demo.
+        </p>
+      </div>
+      <StartFund onStarted={() => onChosen("GP")} />
       {error && <p className="signin-error" role="alert">{error}</p>}
       {!list && !error && <p className="empty">Loading identities…</p>}
       {list &&
@@ -226,7 +207,7 @@ function Matrix() {
       <div className="matrix-intro">
         <h2>Who holds what</h2>
         <p>
-          Live counts of active contracts on each party's node, read straight from the Canton ledger. An empty cell
+          Counts of active contracts on each party's node, read straight from the demo Canton ledger. An empty cell
           means that party's participant never received the data. Nothing is hidden by the UI.
         </p>
       </div>
@@ -274,5 +255,41 @@ dpm build --all
 dpm sandbox --dar main/.daml/dist/ledgerline-0.1.0.dar --json-api-port 7575
 dpm script --dar test/.daml/dist/ledgerline-test-0.1.0.dar --script-name Demo.Setup:setup --ledger-host localhost --ledger-port 6865`}</pre>
     </main>
+  );
+}
+
+// Self-serve: a visitor creates a real fund on the ledger and runs it.
+function StartFund({ onStarted }: { onStarted: () => void }) {
+  const { startFund } = useStore();
+  const [name, setName] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [pending, setPending] = useState(false);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPending(true);
+    const err = await startFund(name);
+    setPending(false);
+    if (err) setError(err);
+    else onStarted();
+  };
+
+  return (
+    <section className="viewas-group">
+      <h3>Start your own fund</h3>
+      <form className="startfund" onSubmit={submit}>
+        <p className="muted small">
+          Creates a new manager party and a fund on the Canton ledger. Invite the demo investors, issue capital calls, publish a
+          NAV, and see your fund counted in the network statistics.
+        </p>
+        <div className="startfund-row">
+          <input aria-label="Fund name" placeholder="Fund name, e.g. Harbourside Credit Fund I" value={name} maxLength={60} onChange={(e) => setName(e.target.value)} />
+          <button className="btn primary" type="submit" disabled={pending || name.trim().length < 3}>
+            {pending ? "Creating on the ledger…" : "Start fund"}
+          </button>
+        </div>
+        {error && <p className="signin-error" role="alert">{error}</p>}
+      </form>
+    </section>
   );
 }

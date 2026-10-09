@@ -8,10 +8,24 @@ async function get<T>(path: string): Promise<T> {
   return body as T;
 }
 
-export const fetchOverview = () => get<NetworkOverview>("/api/network/overview");
-export const fetchValidators = () => get<ValidatorsReport>("/api/network/validators");
-export const fetchApps = () => get<AppsReport>("/api/network/apps");
-export const fetchLiquidity = () => get<LiquidityReport>("/api/network/liquidity");
+// Several components show the same report (the sidebar watchlist and the
+// Validators page, the overview and Liquidity), so share one request a minute.
+const shared = new Map<string, { at: number; promise: Promise<unknown> }>();
+function once<T>(path: string): Promise<T> {
+  const hit = shared.get(path);
+  if (hit && Date.now() - hit.at < 60_000) return hit.promise as Promise<T>;
+  const promise = get<T>(path).catch((e) => {
+    shared.delete(path);
+    throw e;
+  });
+  shared.set(path, { at: Date.now(), promise });
+  return promise;
+}
+
+export const fetchOverview = () => once<NetworkOverview>("/api/network/overview");
+export const fetchValidators = () => once<ValidatorsReport>("/api/network/validators");
+export const fetchApps = () => once<AppsReport>("/api/network/apps");
+export const fetchLiquidity = () => once<LiquidityReport>("/api/network/liquidity");
 export const fetchParty = (party: string) => get<PartyPortfolio>(`/api/network/party/${encodeURIComponent(party)}`);
 
 export type Loadable<T> = { data: T | null; error: string | null; loading: boolean };
